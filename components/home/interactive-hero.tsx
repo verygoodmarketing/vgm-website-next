@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { useSearchParams } from 'next/navigation'
 import Container from '@/components/shared/container'
 import CustomButton from '@/components/shared/custom-button'
 import { useToast } from "@/hooks/use-toast"
@@ -13,17 +14,40 @@ interface InteractiveHeroProps {
 export default function InteractiveHero({ serviceIndustries }: InteractiveHeroProps) {
   // Get toast function
   const { toast } = useToast()
+  // Get search params
+  const searchParams = useSearchParams()
 
   // Initialize state with the first industry in the array as default
   const [activeIndustry, setActiveIndustry] = useState(serviceIndustries[0] || 'Tree Service')
 
-  // Load from localStorage on mount
+  // Handle URL parameters and localStorage on mount
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    // First check URL parameters (highest priority)
+    const industryParam = searchParams.get('industry')
+    
+    if (industryParam) {
+      // Convert param to proper case format (e.g., "tree-service" to "Tree Service")
+      const formattedIndustry = industryParam
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ')
+      
+      // Check if formatted industry exists in our list
+      if (serviceIndustries.includes(formattedIndustry)) {
+        setActiveIndustry(formattedIndustry)
+        localStorage.setItem('selectedIndustry', formattedIndustry)
+        return;
+      }
+    }
+    
+    // If no URL parameter, try localStorage
     const savedIndustry = localStorage.getItem('selectedIndustry')
     if (savedIndustry && serviceIndustries.includes(savedIndustry)) {
       setActiveIndustry(savedIndustry)
     }
-  }, [serviceIndustries])
+  }, [searchParams, serviceIndustries])
 
   // Map of industries to their background images
   const industryBackgrounds: Record<string, string> = {
@@ -50,12 +74,26 @@ export default function InteractiveHero({ serviceIndustries }: InteractiveHeroPr
     localStorage.setItem('selectedIndustry', industry)
   }
   
-  // Function to copy link to clipboard
-  const copyLink = () => {
-    navigator.clipboard.writeText(window.location.href)
+  // Function to convert industry name to URL param format
+  const getIndustryParam = (industry: string): string => {
+    return industry.toLowerCase().replace(/\s+/g, '-')
+  }
+  
+  // Function to generate shareable link for current industry
+  const getShareableLink = (): string => {
+    if (typeof window === 'undefined') return '';
+    const baseUrl = window.location.origin + window.location.pathname
+    return `${baseUrl}?industry=${getIndustryParam(activeIndustry)}`
+  }
+  
+  // Function to copy shareable link to clipboard
+  const copyShareableLink = () => {
+    if (typeof navigator === 'undefined' || !navigator.clipboard) return;
+    
+    navigator.clipboard.writeText(getShareableLink())
     toast({
       title: "Link copied!",
-      description: "Current link copied to clipboard",
+      description: "Shareable link copied to clipboard",
       variant: "default"
     })
   }
@@ -134,7 +172,7 @@ export default function InteractiveHero({ serviceIndustries }: InteractiveHeroPr
               </p>
               <button 
                 className="text-xs mt-2 text-white/70 hover:text-white underline flex items-center"
-                onClick={copyLink}
+                onClick={copyShareableLink}
               >
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
@@ -150,7 +188,7 @@ export default function InteractiveHero({ serviceIndustries }: InteractiveHeroPr
                     d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" 
                   />
                 </svg>
-                Copy Link
+                Copy Shareable Link
               </button>
             </div>
           </div>
