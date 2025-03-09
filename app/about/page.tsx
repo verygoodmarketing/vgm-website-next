@@ -7,67 +7,65 @@ import { Heart, LineChart, Lightbulb, Zap, MessageSquare, Target } from 'lucide-
 import { Check } from 'lucide-react'
 
 export const metadata: Metadata = {
-	title: 'About Us | Website Specialists for Service Businesses',
+	title: 'About | Small Service Business Marketing Specialist',
 	description:
-		'We help service businesses like cleaning, landscaping, and home services get more customers with professional websites.',
+		'Specialized marketing services for small service businesses like cleaning, landscaping, and home services - with professional websites as the foundation.',
 }
 
 export default function AboutPage() {
 	return (
 		<div>
 			<PageHeader
-				title="About Us"
-				description="We help service businesses get more customers with professional websites."
+				title="About"
+				description="Specialized marketing services for small service businesses, with websites as the foundation."
 			/>
 
 			<section className="py-16 md:py-24">
 				<Container>
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 						<div>
-							<h1 className="text-4xl md:text-5xl font-bold mb-6">We Understand Service Businesses</h1>
+							<h1 className="text-4xl md:text-5xl font-bold mb-6">Small Service Business Marketing Specialist</h1>
 							<p className="text-xl text-gray-600 mb-6">
-								We specialize in creating websites for service businesses like cleaning, landscaping, and home services
-								because we understand the unique challenges you face.
+								We specialize in marketing for small service businesses like cleaning, landscaping, and home services,
+								with professional websites as the foundation of all marketing strategies.
 							</p>
 							<p className="text-xl text-gray-600 mb-6">
-								Unlike other web designers who create generic websites, we build websites specifically designed to
-								generate leads for service businesses. We know that your website needs to:
+								Unlike generic marketers or web designers, we create comprehensive marketing solutions tailored specifically to generate leads for service businesses. Every effective marketing strategy starts with a website that:
 							</p>
 							<ul className="space-y-4 mb-6">
 								<li className="flex items-start">
 									<div className="bg-blue-100 rounded-full p-1 mr-3 mt-1">
 										<Check className="h-4 w-4 text-blue-600" />
 									</div>
-									<span className="text-gray-700">Build trust with potential customers who need your services</span>
+									<span className="text-gray-700">Builds trust with potential customers who need your services</span>
 								</li>
 								<li className="flex items-start">
 									<div className="bg-blue-100 rounded-full p-1 mr-3 mt-1">
 										<Check className="h-4 w-4 text-blue-600" />
 									</div>
-									<span className="text-gray-700">Show up in local searches when people need your services</span>
+									<span className="text-gray-700">Shows up in local searches when people need your services</span>
 								</li>
 								<li className="flex items-start">
 									<div className="bg-blue-100 rounded-full p-1 mr-3 mt-1">
 										<Check className="h-4 w-4 text-blue-600" />
 									</div>
-									<span className="text-gray-700">Make it easy for customers to contact you immediately</span>
+									<span className="text-gray-700">Makes it easy for customers to contact you immediately</span>
 								</li>
 								<li className="flex items-start">
 									<div className="bg-blue-100 rounded-full p-1 mr-3 mt-1">
 										<Check className="h-4 w-4 text-blue-600" />
 									</div>
-									<span className="text-gray-700">Highlight your service areas, licenses, and insurance</span>
+									<span className="text-gray-700">Highlights your service areas, licenses, and insurance</span>
 								</li>
 							</ul>
 							<p className="text-xl text-gray-600">
-								Our team has helped hundreds of service businesses get more customers with professional websites that
-								actually work.
+								We've helped many service businesses get more customers with effective marketing strategies built on professional websites that actually work.
 							</p>
 						</div>
 						<div className="relative h-[500px] rounded-lg overflow-hidden">
 							<Image
-								src="/images/about-team.jpg"
-								alt="Our team"
+								src="/images/service-business-marketing.jpg"
+								alt="Small service business marketing"
 								fill
 								className="object-cover"
 							/>
@@ -157,10 +155,9 @@ export default function AboutPage() {
 				<Container>
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 						<div className="order-2 lg:order-1">
-							<h2 className="text-3xl font-bold mb-6">Why We Focus on Service Businesses</h2>
+							<h2 className="text-3xl font-bold mb-6">How We Compare to Other Marketing Companies</h2>
 							<p className="text-lg text-gray-600 mb-6">
-								We've chosen to specialize in websites for service businesses like cleaning, landscaping, and home
-								services because:
+								When comparing Very Good Marketing to other marketing companies, there are several key differences:
 							</p>
 							<ul className="space-y-4 mb-6">
 								<li className="flex items-start">
@@ -168,7 +165,7 @@ export default function AboutPage() {
 										<Check className="h-4 w-4 text-blue-600" />
 									</div>
 									<span className="text-gray-700">
-										Service businesses have unique website needs that generic web designers don't understand
+										We focus exclusively on small service businesses, unlike generalist marketers who work with anyone
 									</span>
 								</li>
 								<li className="flex items-start">
@@ -176,7 +173,7 @@ export default function AboutPage() {
 										<Check className="h-4 w-4 text-blue-600" />
 									</div>
 									<span className="text-gray-700">
-										We've seen too many service businesses waste money on websites that don't generate leads
+										We start with a strong website foundation first, then build other marketing strategies on top
 									</span>
 								</li>
 								<li className="flex items-start">
@@ -184,7 +181,7 @@ export default function AboutPage() {
 										<Check className="h-4 w-4 text-blue-600" />
 									</div>
 									<span className="text-gray-700">
-										We believe service businesses are the backbone of local communities and deserve better
+										We provide personal service and focused attention, not a cookie-cutter approach where you're just another client
 									</span>
 								</li>
 								<li className="flex items-start">
@@ -192,13 +189,12 @@ export default function AboutPage() {
 										<Check className="h-4 w-4 text-blue-600" />
 									</div>
 									<span className="text-gray-700">
-										By specializing, we can deliver better results than generalist web designers
+										We offer transparent, affordable pricing without long-term contracts that lock you in
 									</span>
 								</li>
 							</ul>
 							<p className="text-lg text-gray-600">
-								Our focus allows us to create websites that truly understand the needs of your customers and effectively
-								convert them into leads for your business.
+								This specialized approach allows us to create marketing strategies that truly understand the needs of your customers and effectively convert them into leads for your business.
 							</p>
 						</div>
 						<div className="relative h-[400px] rounded-lg overflow-hidden order-1 lg:order-2">
@@ -216,75 +212,34 @@ export default function AboutPage() {
 			<section className="py-16 bg-gray-50">
 				<Container>
 					<div className="text-center mb-16">
-						<h2 className="text-3xl md:text-4xl font-bold mb-4">Meet Our Team</h2>
+						<h2 className="text-3xl md:text-4xl font-bold mb-4">Why We Focus on Small Service Businesses</h2>
 						<p className="text-xl text-gray-600 max-w-3xl mx-auto">
-							We're a small team of experts dedicated to helping service businesses succeed online.
+							Small service businesses face unique marketing challenges that require specialized solutions.
 						</p>
 					</div>
 
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-						<div className="bg-white rounded-lg shadow-lg overflow-hidden">
-							<div className="relative h-[300px]">
-								<Image
-									src="/placeholder.svg?height=600&width=600"
-									alt="Team Member 1"
-									fill
-									className="object-cover"
-								/>
-							</div>
-							<div className="p-6">
-								<h3 className="text-xl font-bold mb-2">John Smith</h3>
-								<p className="text-gray-600 mb-4">Founder & Lead Strategist</p>
-								<p className="text-gray-700">
-									With over 10 years of experience working with service businesses, John understands what it takes to
-									create websites that generate real leads.
-								</p>
-							</div>
-						</div>
-
-						<div className="bg-white rounded-lg shadow-lg overflow-hidden">
-							<div className="relative h-[300px]">
-								<Image
-									src="/placeholder.svg?height=600&width=600"
-									alt="Team Member 2"
-									fill
-									className="object-cover"
-								/>
-							</div>
-							<div className="p-6">
-								<h3 className="text-xl font-bold mb-2">Sarah Johnson</h3>
-								<p className="text-gray-600 mb-4">Web Designer & SEO Specialist</p>
-								<p className="text-gray-700">
-									Sarah combines beautiful design with technical SEO expertise to create websites that not only look
-									great but also rank well in local searches.
-								</p>
-							</div>
-						</div>
-
-						<div className="bg-white rounded-lg shadow-lg overflow-hidden">
-							<div className="relative h-[300px]">
-								<Image
-									src="/placeholder.svg?height=600&width=600"
-									alt="Team Member 3"
-									fill
-									className="object-cover"
-								/>
-							</div>
-							<div className="p-6">
-								<h3 className="text-xl font-bold mb-2">Mike Williams</h3>
-								<p className="text-gray-600 mb-4">Content Specialist</p>
-								<p className="text-gray-700">
-									Mike specializes in creating compelling content that speaks directly to the needs of your potential
-									customers and motivates them to contact you.
-								</p>
-							</div>
-						</div>
+					<div className="bg-white p-8 rounded-lg shadow-md max-w-3xl mx-auto">
+						<p className="text-lg text-gray-700 mb-6">
+							We've chosen to focus exclusively on small service businesses because we believe they're the backbone of local communities and deserve marketing that actually works for their unique needs.
+						</p>
+						
+						<p className="text-lg text-gray-700 mb-6">
+							Many small service businesses struggle with marketing because most agencies either charge too much or use cookie-cutter approaches that don't address the specific challenges of service-based companies.
+						</p>
+						
+						<p className="text-lg text-gray-700 mb-6">
+							By specializing in this niche, we've developed proven strategies that help service businesses like yours connect with ideal customers who need your services right now - starting with a professional website that serves as the foundation for all your marketing efforts.
+						</p>
+						
+						<p className="text-lg text-gray-700">
+							Whether you're a cleaning company, landscaper, home service provider, or other local service business, our approach focuses on practical, results-driven marketing that generates real leads instead of just looking pretty.
+						</p>
 					</div>
 				</Container>
 			</section>
 
 			<CallToAction
-				title="Ready to get more customers with a professional website?"
+				title="Ready to get more customers with effective marketing?"
 				description="Schedule a free discovery call to discuss how we can help your service business grow."
 				buttonText="Schedule Free Call"
 				buttonLink="/contact"
