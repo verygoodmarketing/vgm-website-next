@@ -7,6 +7,7 @@ import Footer from "@/components/layout/footer"
 import { TransitionProvider } from "@/components/transition-provider"
 import AnimatedContent from "@/components/animated-content"
 import ScrollToTop from "@/components/scroll-to-top"
+import { Toaster } from "@/components/ui/toaster"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -65,6 +66,7 @@ export default function RootLayout({
           </div>
           <ScrollToTop />
         </TransitionProvider>
+        <Toaster />
       </body>
     </html>
   )
