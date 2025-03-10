@@ -31,7 +31,7 @@ export const defaultSettings: SiteSettings = {
 	},
 	email: 'info@verygoodmarketing.com',
 	display: {
-		showAddressOnContact: true,
+		showAddressOnContact: false,
 	},
 }
 
