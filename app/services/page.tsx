@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
-import { Check, X } from 'lucide-react'
-import CustomButton from '@/components/shared/custom-button'
 import Container from '@/components/shared/container'
+import ServiceSection from '@/components/services/service-section'
+import BundlePricingSection from '@/components/services/bundle-pricing'
+import CustomButton from '@/components/shared/custom-button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Check } from 'lucide-react'
+import { getServicePricing, getBundlePricing } from '@/lib/pricing-service'
 
 export const metadata: Metadata = {
 	title: 'Digital Marketing Services for Service Businesses',
@@ -12,6 +14,15 @@ export const metadata: Metadata = {
 }
 
 export default function ServicesPage() {
+	// Get all service pricing data
+	const websitePricing = getServicePricing('website')
+	const googleAdsPricing = getServicePricing('google-ads')
+	const socialAdsPricing = getServicePricing('social-ads')
+	const socialMediaPricing = getServicePricing('social-media')
+
+	// Get bundle pricing data
+	const bundleData = getBundlePricing()
+
 	return (
 		<div>
 			<section className="py-16 md:py-24">
@@ -27,347 +38,42 @@ export default function ServicesPage() {
 			</section>
 
 			{/* Service Business Website Package */}
-			<section className="py-16 bg-gray-50">
-				<Container>
-					<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-						<div>
-							<h2 className="text-3xl font-bold mb-6">Service Business Website Package</h2>
-							<p className="text-lg text-gray-600 mb-6">
-								A complete website solution designed specifically for service businesses like cleaning, landscaping,
-								plumbing, HVAC, electrical, and other home services.
-							</p>
-
-							<div className="space-y-4 mb-8">
-								<div className="flex items-start">
-									<Check className="w-5 h-5 text-green-500 mr-3 mt-1" />
-									<div>
-										<h3 className="font-bold text-lg">Professional Design That Builds Trust</h3>
-										<p className="text-gray-600">
-											Custom design that reflects your brand and builds instant credibility with potential customers.
-										</p>
-									</div>
-								</div>
-
-								<div className="flex items-start">
-									<Check className="w-5 h-5 text-green-500 mr-3 mt-1" />
-									<div>
-										<h3 className="font-bold text-lg">Lead Generation Features</h3>
-										<p className="text-gray-600">
-											Contact forms, click-to-call buttons, and service area maps that convert visitors into leads.
-										</p>
-									</div>
-								</div>
-
-								<div className="flex items-start">
-									<Check className="w-5 h-5 text-green-500 mr-3 mt-1" />
-									<div>
-										<h3 className="font-bold text-lg">Local SEO Fundamentals</h3>
-										<p className="text-gray-600">
-											Built-in SEO features to help you rank in local searches for your services.
-										</p>
-									</div>
-								</div>
-
-								<div className="flex items-start">
-									<Check className="w-5 h-5 text-green-500 mr-3 mt-1" />
-									<div>
-										<h3 className="font-bold text-lg">Mobile-Friendly Design</h3>
-										<p className="text-gray-600">
-											Looks perfect on all devices, especially smartphones where most customers will find you.
-										</p>
-									</div>
-								</div>
-							</div>
-
-							<div className="bg-blue-50 p-6 rounded-lg mb-6">
-								<h3 className="font-bold text-lg mb-2">Pricing</h3>
-								<p className="text-2xl font-bold text-blue-600 mb-1">
-									$1,499 <span className="text-base font-normal text-gray-600">one-time setup</span>
-								</p>
-								<p className="text-xl font-bold text-blue-600">
-									$99 <span className="text-base font-normal text-gray-600">per month maintenance</span>
-								</p>
-								<p className="text-sm text-gray-600 mt-2">Includes hosting, security updates, and regular backups</p>
-							</div>
-
-							<CustomButton
-								variant="blue"
-								href="/contact?service=website"
-							>
-								Get Started
-							</CustomButton>
-						</div>
-
-						<div className="relative h-[500px] rounded-lg overflow-hidden">
-							<Image
-								src="/images/service-business-website.png"
-								alt="Service business website example"
-								fill
-								className="object-cover"
-							/>
-						</div>
-					</div>
-				</Container>
-			</section>
+			{websitePricing && (
+				<ServiceSection
+					pricing={websitePricing}
+					imagePath="/images/service-business-website.png"
+					imageAlt="Service business website example"
+				/>
+			)}
 
 			{/* Google Ads Management */}
-			<section className="py-16 bg-white">
-				<Container>
-					<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-						<div className="order-2 lg:order-1">
-							<h2 className="text-3xl font-bold mb-6">Google Ads Management</h2>
-							<p className="text-lg text-gray-600 mb-6">
-								Get in front of customers actively searching for your services right now. Our Google Ads management
-								service helps service businesses appear at the top of Google when local customers are looking for
-								exactly what you offer.
-							</p>
-
-							<div className="space-y-4 mb-8">
-								<div className="flex items-start">
-									<Check className="w-5 h-5 text-green-500 mr-3 mt-1" />
-									<div>
-										<h3 className="font-bold text-lg">Targeted Local Campaigns</h3>
-										<p className="text-gray-600">
-											We target your specific service area so you only pay for clicks from potential customers in your
-											area.
-										</p>
-									</div>
-								</div>
-
-								<div className="flex items-start">
-									<Check className="w-5 h-5 text-green-500 mr-3 mt-1" />
-									<div>
-										<h3 className="font-bold text-lg">Service-Specific Keywords</h3>
-										<p className="text-gray-600">
-											We target high-intent keywords like "emergency plumber near me" or "house cleaning service" that
-											indicate someone is ready to hire.
-										</p>
-									</div>
-								</div>
-
-								<div className="flex items-start">
-									<Check className="w-5 h-5 text-green-500 mr-3 mt-1" />
-									<div>
-										<h3 className="font-bold text-lg">Call Tracking & Reporting</h3>
-										<p className="text-gray-600">
-											Know exactly how many calls and leads your ads generate with detailed reporting and call tracking.
-										</p>
-									</div>
-								</div>
-
-								<div className="flex items-start">
-									<Check className="w-5 h-5 text-green-500 mr-3 mt-1" />
-									<div>
-										<h3 className="font-bold text-lg">Continuous Optimization</h3>
-										<p className="text-gray-600">
-											We constantly refine your campaigns to improve performance and reduce your cost per lead over
-											time.
-										</p>
-									</div>
-								</div>
-							</div>
-
-							<div className="bg-blue-50 p-6 rounded-lg mb-6">
-								<h3 className="font-bold text-lg mb-2">Pricing</h3>
-								<p className="text-2xl font-bold text-blue-600 mb-1">
-									$499 <span className="text-base font-normal text-gray-600">monthly management fee</span>
-								</p>
-								<p className="text-base text-gray-600">Plus your ad spend (minimum $500/month recommended)</p>
-								<div className="mt-4 bg-green-100 p-3 rounded-md">
-									<p className="text-sm font-bold text-green-800">Website Bundle Discount: $399/month</p>
-									<p className="text-xs text-green-700">When you bundle with our website package</p>
-								</div>
-							</div>
-
-							<CustomButton
-								variant="blue"
-								href="/contact?service=google-ads"
-							>
-								Start Getting Leads Now
-							</CustomButton>
-						</div>
-						<div className="relative h-[400px] rounded-lg overflow-hidden order-1 lg:order-2">
-							<Image
-								src="/images/google-image-search.png"
-								alt="Google Ads Management"
-								fill
-								className="object-cover"
-							/>
-						</div>
-					</div>
-				</Container>
-			</section>
+			{googleAdsPricing && (
+				<ServiceSection
+					pricing={googleAdsPricing}
+					imagePath="/images/google-image-search.png"
+					imageAlt="Google Ads Management"
+					reversed={true}
+				/>
+			)}
 
 			{/* Facebook & Instagram Ads */}
-			<section className="py-16 bg-gray-50">
-				<Container>
-					<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-						<div>
-							<h2 className="text-3xl font-bold mb-6">Facebook & Instagram Advertising</h2>
-							<p className="text-lg text-gray-600 mb-6">
-								Reach potential customers in your area before they even know they need you. Our social media advertising
-								puts your services in front of local homeowners with compelling visuals and targeted messaging.
-							</p>
-
-							<div className="space-y-4 mb-8">
-								<div className="flex items-start">
-									<Check className="w-5 h-5 text-green-500 mr-3 mt-1" />
-									<div>
-										<h3 className="font-bold text-lg">Precise Audience Targeting</h3>
-										<p className="text-gray-600">
-											Target homeowners in specific neighborhoods, income levels, and with interests relevant to your
-											services.
-										</p>
-									</div>
-								</div>
-
-								<div className="flex items-start">
-									<Check className="w-5 h-5 text-green-500 mr-3 mt-1" />
-									<div>
-										<h3 className="font-bold text-lg">Eye-Catching Ad Creative</h3>
-										<p className="text-gray-600">
-											Professional images and videos that showcase your work and stop people from scrolling.
-										</p>
-									</div>
-								</div>
-
-								<div className="flex items-start">
-									<Check className="w-5 h-5 text-green-500 mr-3 mt-1" />
-									<div>
-										<h3 className="font-bold text-lg">Lead Generation Campaigns</h3>
-										<p className="text-gray-600">
-											Capture contact information directly through Facebook with easy-to-complete lead forms.
-										</p>
-									</div>
-								</div>
-
-								<div className="flex items-start">
-									<Check className="w-5 h-5 text-green-500 mr-3 mt-1" />
-									<div>
-										<h3 className="font-bold text-lg">Retargeting Campaigns</h3>
-										<p className="text-gray-600">
-											Stay in front of people who visited your website but didn't contact you yet.
-										</p>
-									</div>
-								</div>
-							</div>
-
-							<div className="bg-blue-50 p-6 rounded-lg mb-6">
-								<h3 className="font-bold text-lg mb-2">Pricing</h3>
-								<p className="text-2xl font-bold text-blue-600 mb-1">
-									$399 <span className="text-base font-normal text-gray-600">monthly management fee</span>
-								</p>
-								<p className="text-base text-gray-600">Plus your ad spend (minimum $400/month recommended)</p>
-								<div className="mt-4 bg-green-100 p-3 rounded-md">
-									<p className="text-sm font-bold text-green-800">Website Bundle Discount: $299/month</p>
-									<p className="text-xs text-green-700">When you bundle with our website package</p>
-								</div>
-							</div>
-
-							<CustomButton
-								variant="blue"
-								href="/contact?service=social-ads"
-							>
-								Start Your Campaign
-							</CustomButton>
-						</div>
-						<div className="relative h-[400px] rounded-lg overflow-hidden">
-							<Image
-								src="/images/facebook-instagram.jpg"
-								alt="Facebook and Instagram Advertising"
-								fill
-								className="object-cover"
-							/>
-						</div>
-					</div>
-				</Container>
-			</section>
+			{socialAdsPricing && (
+				<ServiceSection
+					pricing={socialAdsPricing}
+					imagePath="/images/facebook-instagram.jpg"
+					imageAlt="Facebook and Instagram Advertising"
+				/>
+			)}
 
 			{/* Social Media Marketing */}
-			<section className="py-16 bg-white">
-				<Container>
-					<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-						<div className="order-2 lg:order-1">
-							<h2 className="text-3xl font-bold mb-6">Social Media Marketing</h2>
-							<p className="text-lg text-gray-600 mb-6">
-								Build your brand, showcase your work, and engage with your community through professional social media
-								management. We handle everything from content creation to posting and community management.
-							</p>
-
-							<div className="space-y-4 mb-8">
-								<div className="flex items-start">
-									<Check className="w-5 h-5 text-green-500 mr-3 mt-1" />
-									<div>
-										<h3 className="font-bold text-lg">Content Creation</h3>
-										<p className="text-gray-600">
-											Professional posts that showcase your work, share helpful tips, and highlight your team.
-										</p>
-									</div>
-								</div>
-
-								<div className="flex items-start">
-									<Check className="w-5 h-5 text-green-500 mr-3 mt-1" />
-									<div>
-										<h3 className="font-bold text-lg">Consistent Posting Schedule</h3>
-										<p className="text-gray-600">
-											Regular posts to keep your audience engaged and your business top-of-mind.
-										</p>
-									</div>
-								</div>
-
-								<div className="flex items-start">
-									<Check className="w-5 h-5 text-green-500 mr-3 mt-1" />
-									<div>
-										<h3 className="font-bold text-lg">Review Management</h3>
-										<p className="text-gray-600">
-											We help you get more positive reviews and respond professionally to all reviews.
-										</p>
-									</div>
-								</div>
-
-								<div className="flex items-start">
-									<Check className="w-5 h-5 text-green-500 mr-3 mt-1" />
-									<div>
-										<h3 className="font-bold text-lg">Community Engagement</h3>
-										<p className="text-gray-600">
-											We respond to comments and messages, building relationships with your audience.
-										</p>
-									</div>
-								</div>
-							</div>
-
-							<div className="bg-blue-50 p-6 rounded-lg mb-6">
-								<h3 className="font-bold text-lg mb-2">Pricing</h3>
-								<p className="text-2xl font-bold text-blue-600 mb-1">
-									$349 <span className="text-base font-normal text-gray-600">monthly</span>
-								</p>
-								<p className="text-base text-gray-600">
-									Includes management of 2 platforms (Facebook, Instagram, etc.)
-								</p>
-								<div className="mt-4 bg-green-100 p-3 rounded-md">
-									<p className="text-sm font-bold text-green-800">Website Bundle Discount: $249/month</p>
-									<p className="text-xs text-green-700">When you bundle with our website package</p>
-								</div>
-							</div>
-
-							<CustomButton
-								variant="blue"
-								href="/contact?service=social-media"
-							>
-								Boost Your Social Presence
-							</CustomButton>
-						</div>
-						<div className="relative h-[400px] rounded-lg overflow-hidden order-1 lg:order-2">
-							<Image
-								src="/images/social-media-marketing.jpg"
-								alt="Social Media Marketing"
-								fill
-								className="object-cover"
-							/>
-						</div>
-					</div>
-				</Container>
-			</section>
+			{socialMediaPricing && (
+				<ServiceSection
+					pricing={socialMediaPricing}
+					imagePath="/images/social-media-marketing.jpg"
+					imageAlt="Social Media Marketing"
+					reversed={true}
+				/>
+			)}
 
 			{/* Bundle Packages */}
 			<section className="py-16 bg-gray-50">
@@ -380,127 +86,7 @@ export default function ServicesPage() {
 						</p>
 					</div>
 
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-						<Card className="border-2 border-blue-100">
-							<CardHeader className="bg-blue-50">
-								<CardTitle className="text-center">Essential Bundle</CardTitle>
-							</CardHeader>
-							<CardContent className="p-6">
-								<div className="space-y-4 mb-6">
-									<div className="flex items-start">
-										<Check className="w-5 h-5 text-green-500 mr-2" />
-										<span>Professional Website</span>
-									</div>
-									<div className="flex items-start">
-										<Check className="w-5 h-5 text-green-500 mr-2" />
-										<span>Google Ads Management</span>
-									</div>
-									<div className="flex items-start">
-										<X className="w-5 h-5 text-gray-300 mr-2" />
-										<span className="text-gray-400">Social Media Advertising</span>
-									</div>
-									<div className="flex items-start">
-										<X className="w-5 h-5 text-gray-300 mr-2" />
-										<span className="text-gray-400">Social Media Management</span>
-									</div>
-								</div>
-
-								<div className="text-center">
-									<p className="text-3xl font-bold text-blue-600 mb-1">$1,898</p>
-									<p className="text-sm text-gray-500 mb-4">Initial setup + $498/month</p>
-									<p className="text-sm font-medium text-green-600 mb-6">Save $100/month</p>
-									<CustomButton
-										variant="blue"
-										href="/contact?bundle=essential"
-										className="w-full"
-									>
-										Get Started
-									</CustomButton>
-								</div>
-							</CardContent>
-						</Card>
-
-						<Card className="border-2 border-blue-600 shadow-lg relative">
-							<div className="absolute top-0 right-0 bg-blue-600 text-white px-4 py-1 text-sm font-bold rounded-bl-lg">
-								MOST POPULAR
-							</div>
-							<CardHeader className="bg-blue-600 text-white">
-								<CardTitle className="text-center">Complete Bundle</CardTitle>
-							</CardHeader>
-							<CardContent className="p-6">
-								<div className="space-y-4 mb-6">
-									<div className="flex items-start">
-										<Check className="w-5 h-5 text-green-500 mr-2" />
-										<span>Professional Website</span>
-									</div>
-									<div className="flex items-start">
-										<Check className="w-5 h-5 text-green-500 mr-2" />
-										<span>Google Ads Management</span>
-									</div>
-									<div className="flex items-start">
-										<Check className="w-5 h-5 text-green-500 mr-2" />
-										<span>Social Media Advertising</span>
-									</div>
-									<div className="flex items-start">
-										<X className="w-5 h-5 text-gray-300 mr-2" />
-										<span className="text-gray-400">Social Media Management</span>
-									</div>
-								</div>
-
-								<div className="text-center">
-									<p className="text-3xl font-bold text-blue-600 mb-1">$2,297</p>
-									<p className="text-sm text-gray-500 mb-4">Initial setup + $797/month</p>
-									<p className="text-sm font-medium text-green-600 mb-6">Save $200/month</p>
-									<CustomButton
-										variant="blue"
-										href="/contact?bundle=complete"
-										className="w-full"
-									>
-										Get Started
-									</CustomButton>
-								</div>
-							</CardContent>
-						</Card>
-
-						<Card className="border-2 border-blue-100">
-							<CardHeader className="bg-blue-50">
-								<CardTitle className="text-center">Ultimate Bundle</CardTitle>
-							</CardHeader>
-							<CardContent className="p-6">
-								<div className="space-y-4 mb-6">
-									<div className="flex items-start">
-										<Check className="w-5 h-5 text-green-500 mr-2" />
-										<span>Professional Website</span>
-									</div>
-									<div className="flex items-start">
-										<Check className="w-5 h-5 text-green-500 mr-2" />
-										<span>Google Ads Management</span>
-									</div>
-									<div className="flex items-start">
-										<Check className="w-5 h-5 text-green-500 mr-2" />
-										<span>Social Media Advertising</span>
-									</div>
-									<div className="flex items-start">
-										<Check className="w-5 h-5 text-green-500 mr-2" />
-										<span>Social Media Management</span>
-									</div>
-								</div>
-
-								<div className="text-center">
-									<p className="text-3xl font-bold text-blue-600 mb-1">$2,546</p>
-									<p className="text-sm text-gray-500 mb-4">Initial setup + $1,046/month</p>
-									<p className="text-sm font-medium text-green-600 mb-6">Save $300/month</p>
-									<CustomButton
-										variant="blue"
-										href="/contact?bundle=ultimate"
-										className="w-full"
-									>
-										Get Started
-									</CustomButton>
-								</div>
-							</CardContent>
-						</Card>
-					</div>
+					{bundleData && <BundlePricingSection bundles={bundleData.bundles} />}
 				</Container>
 			</section>
 
