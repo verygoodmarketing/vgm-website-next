@@ -16,18 +16,19 @@ export default function HubspotIntegration({
   url = "https://app.verygoodmarketing.com/meetings/brad-bodine/consultation",
   styles = { minHeight: "700px", width: "100%", border: "none" },
 }: HubspotIntegrationProps) {
-  const [hubspotUrl, setHubspotUrl] = useState<string>(url || "")
+  const [isClient, setIsClient] = useState(false)
+  const [hubspotUrl, setHubspotUrl] = useState<string>("")
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
+  // Set isClient to true when component mounts
   useEffect(() => {
-    // If URL is provided as prop or set as default, use it directly
+    setIsClient(true)
     if (url) {
       setHubspotUrl(url)
       setIsLoading(false)
     } else {
       setIsLoading(true)
-      // Could add API fetch here if needed in the future
       setError("Hubspot URL not provided")
       setIsLoading(false)
     }
@@ -88,11 +89,18 @@ export default function HubspotIntegration({
         <CardTitle className="text-2xl">Schedule a Consultation</CardTitle>
       </CardHeader>
       <CardContent>
-        {isLoading ? (
+        {!isClient ? (
+          // Initial server render - show loading state
+          <div className="flex items-center justify-center h-[600px]">
+            <div className="h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        ) : isLoading ? (
+          // Client loading state
           <div className="flex items-center justify-center h-[600px]">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
           </div>
         ) : embedUrl ? (
+          // Successfully loaded embed URL
           <iframe
             src={embedUrl}
             frameBorder="0"
@@ -102,6 +110,7 @@ export default function HubspotIntegration({
             className="min-h-[700px] w-full"
           />
         ) : (
+          // Error state
           <div className="flex flex-col items-center justify-center py-12 text-center">
             <AlertCircle className="h-12 w-12 text-amber-500 mb-4" />
             <h3 className="text-xl font-semibold mb-2">Scheduling Temporarily Unavailable</h3>
