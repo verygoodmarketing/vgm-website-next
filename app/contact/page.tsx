@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Container from "@/components/shared/container"
-import ContactPageClient from "./page-client-fixed"
+import ContactPageClient from "./page-client-updated"
 
 export const metadata: Metadata = {
   title: "Contact Us | Get Your Service Business Website",

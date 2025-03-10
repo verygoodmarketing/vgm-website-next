@@ -66,6 +66,7 @@ export default function InteractiveHero({ serviceIndustries }: InteractiveHeroPr
 		Electrical: '/images/hero/hero-bg-electrical.jpg',
 		Painting: '/images/hero/hero-bg-painting.jpg',
 		Roofing: '/images/hero/hero-bg-roofing.jpg',
+		Fencing: '/images/hero/hero-bg-fencing.jpg',
 	}
 
 	// Function to handle industry selection

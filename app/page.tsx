@@ -31,6 +31,7 @@ export default function Home() {
 		'Electrical',
 		'Handyman',
 		'General Contracting',
+		'Fencing',
 	]
 
 	return (
