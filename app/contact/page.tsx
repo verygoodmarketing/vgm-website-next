@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Container from "@/components/shared/container"
 import ContactPageClient from "./page-client-updated"
-import ContactInfo from "@/components/contact/contact-info"
+import { fetchSiteSettings } from "@/lib/settings-actions"
 
 export const metadata: Metadata = {
   title: "Contact Us | Get Your Service Business Website",
@@ -9,7 +9,10 @@ export const metadata: Metadata = {
     "Contact us to discuss how we can help your cleaning, landscaping, or home service business get more customers with a professional website.",
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  // Fetch the settings server-side
+  const settings = await fetchSiteSettings()
+  
   return (
     <>
       <section className="py-16 md:py-24">
@@ -34,10 +37,7 @@ export default function ContactPage() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <ContactPageClient />
-            <ContactInfo />
-          </div>
+          <ContactPageClient settings={settings} />
         </div>
       </section>
     </>
