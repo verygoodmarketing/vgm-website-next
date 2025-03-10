@@ -2,13 +2,15 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import PageHeader from "@/components/shared/page-header"
 import { Card, CardContent } from "@/components/ui/card"
+import { fetchSiteSettings } from "@/lib/settings-actions"
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "Learn how Very Good Marketing Co. LLC collects, uses, and protects your personal information.",
 }
 
-export default function PrivacyPolicyPage() {
+export default async function PrivacyPolicyPage() {
+  const settings = await fetchSiteSettings()
   return (
     <div>
       <PageHeader title="Privacy Policy" description="How we collect, use, and protect your information" />
@@ -325,15 +327,19 @@ export default function PrivacyPolicyPage() {
                     <p>
                       <strong>Very Good Marketing Co. LLC</strong>
                     </p>
-                    <p>123 Marketing Street</p>
-                    <p>Business City, ST 12345</p>
+                    {settings.address && (
+                      <>
+                        <p>{settings.address.street}</p>
+                        <p>{settings.address.city}, {settings.address.state} {settings.address.zip}</p>
+                      </>
+                    )}
                     <p>
                       Email:{" "}
-                      <a href="mailto:privacy@verygoodmarketing.com" className="text-blue-600 hover:underline">
-                        privacy@verygoodmarketing.com
+                      <a href={`mailto:${settings.email}`} className="text-blue-600 hover:underline">
+                        {settings.email}
                       </a>
                     </p>
-                    <p>Phone: (555) 123-4567</p>
+                    <p>Phone: <a href={settings.phone.href} className="text-blue-600 hover:underline">{settings.phone.display}</a></p>
                   </div>
                 </div>
               </div>

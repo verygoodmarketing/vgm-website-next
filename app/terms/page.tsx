@@ -2,13 +2,15 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import PageHeader from "@/components/shared/page-header"
 import { Card, CardContent } from "@/components/ui/card"
+import { fetchSiteSettings } from "@/lib/settings-actions"
 
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "The terms and conditions governing your use of Very Good Marketing Co. LLC services.",
 }
 
-export default function TermsOfServicePage() {
+export default async function TermsOfServicePage() {
+  const settings = await fetchSiteSettings()
   return (
     <div>
       <PageHeader title="Terms of Service" description="The rules and guidelines for using our services" />
@@ -305,13 +307,13 @@ export default function TermsOfServicePage() {
                   <h2 className="text-2xl font-bold mb-4 text-gray-900">10. Dispute Resolution</h2>
                   <p className="mb-4">
                     <strong>Governing Law:</strong> These Terms and your use of the Services shall be governed by and
-                    construed in accordance with the laws of the State of [State], without giving effect to any choice
+                    construed in accordance with the laws of the State of {settings.address?.state || "California"}, without giving effect to any choice
                     or conflict of law provision or rule.
                   </p>
                   <p className="mb-4">
                     <strong>Arbitration:</strong> Any dispute arising from or relating to these Terms or the Services
                     shall be resolved through binding arbitration in accordance with the American Arbitration
-                    Association's rules. The arbitration shall be conducted in [City, State], and judgment on the
+                    Association's rules. The arbitration shall be conducted in {settings.address ? `${settings.address.city}, ${settings.address.state}` : "Anytown, CA"}, and judgment on the
                     arbitration award may be entered in any court having jurisdiction.
                   </p>
                   <p className="mb-4">
@@ -368,15 +370,19 @@ export default function TermsOfServicePage() {
                     <p>
                       <strong>Very Good Marketing Co. LLC</strong>
                     </p>
-                    <p>123 Marketing Street</p>
-                    <p>Business City, ST 12345</p>
+                    {settings.address && (
+                      <>
+                        <p>{settings.address.street}</p>
+                        <p>{settings.address.city}, {settings.address.state} {settings.address.zip}</p>
+                      </>
+                    )}
                     <p>
                       Email:{" "}
-                      <a href="mailto:legal@verygoodmarketing.com" className="text-blue-600 hover:underline">
-                        legal@verygoodmarketing.com
+                      <a href={`mailto:${settings.email}`} className="text-blue-600 hover:underline">
+                        {settings.email}
                       </a>
                     </p>
-                    <p>Phone: (555) 123-4567</p>
+                    <p>Phone: <a href={settings.phone.href} className="text-blue-600 hover:underline">{settings.phone.display}</a></p>
                   </div>
                 </div>
               </div>

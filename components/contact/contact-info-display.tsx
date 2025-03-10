@@ -1,14 +1,16 @@
-import { fetchSiteSettings } from "@/lib/settings-actions"
+import { SiteSettings } from "@/lib/settings-service"
 import { Mail, Phone, Clock, MapPin } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-export default async function ContactInfo() {
-  const settings = await fetchSiteSettings()
-  
-  // Check if we should show the address
-  const showAddress = settings.address && 
-    (settings.display?.showAddressOnContact === undefined || settings.display.showAddressOnContact === true);
-  
+interface ContactInfoDisplayProps {
+  settings: SiteSettings
+}
+
+export default function ContactInfoDisplay({ settings }: ContactInfoDisplayProps) {
+  const addressDisplay = settings.address 
+    ? `${settings.address.street || ""}, ${settings.address.city || ""}, ${settings.address.state || ""} ${settings.address.zip || ""}`
+    : "123 Marketing Street, Business City, ST 12345"
+
   return (
     <Card className="bg-gray-50 h-full">
       <CardHeader>
@@ -43,13 +45,13 @@ export default async function ContactInfo() {
           </div>
         </div>
 
-        {showAddress && (
+        {settings.address && (
           <div className="flex items-start">
             <MapPin className="h-6 w-6 text-blue-600 mr-3 mt-1" />
             <div>
               <h4 className="font-semibold">Location</h4>
-              <p>{settings.address?.street}</p>
-              <p>{settings.address?.city}, {settings.address?.state} {settings.address?.zip}</p>
+              <p>{settings.address.street}</p>
+              <p>{settings.address.city}, {settings.address.state} {settings.address.zip}</p>
             </div>
           </div>
         )}
@@ -65,4 +67,3 @@ export default async function ContactInfo() {
     </Card>
   )
 }
-

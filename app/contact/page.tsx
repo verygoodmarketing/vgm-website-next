@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Container from "@/components/shared/container"
 import ContactPageClient from "./page-client-updated"
+import ContactInfo from "@/components/contact/contact-info"
 
 export const metadata: Metadata = {
   title: "Contact Us | Get Your Service Business Website",
@@ -23,8 +24,8 @@ export default function ContactPage() {
         </Container>
       </section>
 
-      <ContactPageClient
-        intro={
+      <section className="py-12 md:py-20 bg-white">
+        <div className="container mx-auto px-4">
           <div className="max-w-md mx-auto text-center mb-8">
             <h2 className="text-2xl font-bold mb-4">Get Started Today</h2>
             <p className="text-gray-600">
@@ -32,8 +33,13 @@ export default function ContactPage() {
               achieve them with a professional website.
             </p>
           </div>
-        }
-      />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <ContactPageClient />
+            <ContactInfo />
+          </div>
+        </div>
+      </section>
     </>
   )
 }

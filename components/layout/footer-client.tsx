@@ -1,9 +1,14 @@
-import { fetchSiteSettings } from "@/lib/settings-actions"
-import Link from "next/link"
-import { Facebook, Instagram, Linkedin, Mail, Phone } from "lucide-react"
+"use client"
 
-export default async function Footer() {
-  const settings = await fetchSiteSettings()
+import Link from "next/link"
+import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone } from "lucide-react"
+import { SiteSettings } from "@/lib/settings-service"
+
+interface FooterClientProps {
+  settings: SiteSettings
+}
+
+export default function FooterClient({ settings }: FooterClientProps) {
   const currentYear = new Date().getFullYear()
 
   return (
@@ -111,4 +116,3 @@ export default async function Footer() {
     </footer>
   )
 }
-

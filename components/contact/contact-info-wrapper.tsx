@@ -1,9 +1,12 @@
-import { fetchSiteSettings } from "@/lib/settings-actions"
+"use client"
+
+import { defaultSettings } from "@/lib/settings-service"
 import { Mail, Phone, Clock, MapPin } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-export default async function ContactInfo() {
-  const settings = await fetchSiteSettings()
+// This client component can be used directly in other client components
+export default function ContactInfoWrapper() {
+  const settings = defaultSettings;
   
   // Check if we should show the address
   const showAddress = settings.address && 
@@ -48,8 +51,8 @@ export default async function ContactInfo() {
             <MapPin className="h-6 w-6 text-blue-600 mr-3 mt-1" />
             <div>
               <h4 className="font-semibold">Location</h4>
-              <p>{settings.address?.street}</p>
-              <p>{settings.address?.city}, {settings.address?.state} {settings.address?.zip}</p>
+              <p>{settings.address.street}</p>
+              <p>{settings.address.city}, {settings.address.state} {settings.address.zip}</p>
             </div>
           </div>
         )}
@@ -65,4 +68,3 @@ export default async function ContactInfo() {
     </Card>
   )
 }
-
