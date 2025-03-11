@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 	keywords: ['marketing', 'small business', 'transparent marketing', 'cost-effective advertising'],
 	authors: [{ name: 'Very Good Marketing Co. LLC' }],
 	creator: 'Very Good Marketing Co. LLC',
+	icons: '/vgm-favicon.png',
 	openGraph: {
 		type: 'website',
 		locale: 'en_US',
@@ -56,7 +57,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			className="scroll-smooth"
 			suppressHydrationWarning
 		>
-			<body className={inter.className} suppressHydrationWarning>
+			<body
+				className={inter.className}
+				suppressHydrationWarning
+			>
 				<TransitionProvider>
 					<div className="flex min-h-screen flex-col">
 						<Header />
