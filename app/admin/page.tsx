@@ -2,14 +2,19 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { CustomButton } from "@/components/custom-button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { FileText, Users, Settings, BarChart } from "lucide-react"
+import { FileText, Users, Settings, BarChart, Star } from "lucide-react"
+import { getTestimonials } from "@/lib/testimonial-service"
 
 export const metadata: Metadata = {
   title: "Admin Dashboard",
   description: "Very Good Marketing Co. LLC admin dashboard",
 }
 
-export default function AdminDashboardPage() {
+export default async function AdminDashboardPage() {
+  // Get testimonials count for the dashboard
+  const testimonials = await getTestimonials()
+  const featuredTestimonials = testimonials.filter(t => t.featured).length
+  
   return (
     <div className="container mx-auto px-4 py-12">
       <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
@@ -28,12 +33,12 @@ export default function AdminDashboardPage() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Total Comments</CardTitle>
-            <Users className="h-4 w-4 text-gray-500" />
+            <CardTitle className="text-sm font-medium">Testimonials</CardTitle>
+            <Star className="h-4 w-4 text-gray-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">2</div>
-            <p className="text-xs text-gray-500">+0% from last month</p>
+            <div className="text-2xl font-bold">{testimonials.length}</div>
+            <p className="text-xs text-gray-500">{featuredTestimonials} featured</p>
           </CardContent>
         </Card>
 
@@ -73,15 +78,31 @@ export default function AdminDashboardPage() {
             <CustomButton asChild variant="outline" className="w-full">
               <Link href="/admin/blog">Manage Blog Posts</Link>
             </CustomButton>
+            
+            <CustomButton asChild variant="outline" className="w-full">
+              <Link href="/admin/testimonials">Manage Testimonials</Link>
+            </CustomButton>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
+            <CardTitle>Recent Updates</CardTitle>
           </CardHeader>
-          <CardContent>
-            <p className="text-gray-500 text-center py-8">No recent activity</p>
+          <CardContent className="space-y-4">
+            <div className="border-l-4 border-blue-500 pl-3 py-1">
+              <h3 className="font-medium">New Feature: Testimonials Management</h3>
+              <p className="text-sm text-gray-600">
+                You can now add, edit, and manage client testimonials that appear on your website.
+              </p>
+            </div>
+            
+            <div className="border-l-4 border-blue-500 pl-3 py-1">
+              <h3 className="font-medium">New Page: Success Stories</h3>
+              <p className="text-sm text-gray-600">
+                A new success stories page has been added to showcase your client testimonials.
+              </p>
+            </div>
           </CardContent>
         </Card>
       </div>

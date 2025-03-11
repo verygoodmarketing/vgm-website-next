@@ -1,0 +1,54 @@
+---
+testimonials: [
+  {
+    "id": "ts-1",
+    "quote": "Very Good Marketing transformed our online presence. Our website now generates more leads in a month than we used to get in a quarter.",
+    "author": "Jane Smith",
+    "company": "Local Plumbing Co.",
+    "image": "/placeholder.svg?height=100&width=100",
+    "industry": "Plumbing",
+    "featured": true,
+    "rating": 5
+  },
+  {
+    "id": "ts-2",
+    "quote": "Unlike other agencies we've worked with, they actually care about our long-term success, not just collecting a monthly fee.",
+    "author": "John Doe",
+    "company": "City Dental Practice",
+    "image": "/placeholder.svg?height=100&width=100",
+    "industry": "Healthcare",
+    "featured": true,
+    "rating": 5
+  },
+  {
+    "id": "ts-3",
+    "quote": "Their transparent approach to marketing is refreshing. We always know exactly what we're paying for and the results we're getting.",
+    "author": "Sarah Johnson",
+    "company": "Johnson Law Firm",
+    "image": "/placeholder.svg?height=100&width=100",
+    "industry": "Legal",
+    "featured": true,
+    "rating": 5
+  },
+  {
+    "id": "ts-4",
+    "quote": "Within 3 months of launching our new website, we were ranking on the first page of Google for 'landscaping near me'. Now we have more leads than we can handle.",
+    "author": "Michael Chen",
+    "company": "Green Leaf Landscaping",
+    "image": "/placeholder.svg?height=100&width=100",
+    "industry": "Landscaping",
+    "featured": false,
+    "rating": 5
+  },
+  {
+    "id": "ts-5",
+    "quote": "Our professional website has helped us stand out from competitors. Customers tell us they called us because our website made us look more trustworthy.",
+    "author": "Robert Davis",
+    "company": "Reliable Plumbing",
+    "image": "/placeholder.svg?height=100&width=100",
+    "industry": "Plumbing",
+    "featured": false,
+    "rating": 5
+  }
+]
+---

@@ -6,6 +6,7 @@ import { Search, Star, DollarSign, Clock, Phone, MapPin, Shield } from 'lucide-r
 import Link from 'next/link'
 import { Card } from '@/components/ui/card'
 import InteractiveHero from '@/components/home/interactive-hero'
+import Testimonials from '@/components/home/testimonials'
 
 export const metadata: Metadata = {
 	title: 'Your Website: Your #1 Marketing Asset for Service Businesses',
@@ -226,106 +227,8 @@ export default function Home() {
 				</Container>
 			</section>
 
-			{/* Service Business Success Stories */}
-			<section className="py-20 bg-gray-50">
-				<Container>
-					<div className="text-center mb-16">
-						<h2 className="text-3xl md:text-4xl font-bold mb-4">
-							Service Businesses Like Yours Are Succeeding With Our Websites
-						</h2>
-						<p className="text-xl text-gray-600 max-w-3xl mx-auto">
-							Don't just take our word for it. Here's how other service businesses have transformed their results with a
-							professional website.
-						</p>
-					</div>
-
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-						<Card className="bg-white rounded-lg shadow-md overflow-hidden">
-							<div className="p-6">
-								<div className="flex items-center mb-4">
-									<div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-										<span className="text-blue-600 font-bold">JC</span>
-									</div>
-									<div>
-										<h3 className="font-bold">Johnson Cleaning Services</h3>
-										<p className="text-sm text-gray-600">Residential & Commercial Cleaning</p>
-									</div>
-								</div>
-								<p className="text-gray-700 mb-4">
-									"Our new website generates 15-20 leads per month, compared to the 2-3 we were getting before. It's
-									completely transformed our business."
-								</p>
-								<div className="flex text-amber-500">
-									<Star className="w-5 h-5 fill-current" />
-									<Star className="w-5 h-5 fill-current" />
-									<Star className="w-5 h-5 fill-current" />
-									<Star className="w-5 h-5 fill-current" />
-									<Star className="w-5 h-5 fill-current" />
-								</div>
-							</div>
-						</Card>
-
-						<Card className="bg-white rounded-lg shadow-md overflow-hidden">
-							<div className="p-6">
-								<div className="flex items-center mb-4">
-									<div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-										<span className="text-blue-600 font-bold">GL</span>
-									</div>
-									<div>
-										<h3 className="font-bold">Green Leaf Landscaping</h3>
-										<p className="text-sm text-gray-600">Lawn Care & Landscaping</p>
-									</div>
-								</div>
-								<p className="text-gray-700 mb-4">
-									"Within 3 months of launching our new website, we were ranking on the first page of Google for
-									'landscaping near me'. Now we have more leads than we can handle."
-								</p>
-								<div className="flex text-amber-500">
-									<Star className="w-5 h-5 fill-current" />
-									<Star className="w-5 h-5 fill-current" />
-									<Star className="w-5 h-5 fill-current" />
-									<Star className="w-5 h-5 fill-current" />
-									<Star className="w-5 h-5 fill-current" />
-								</div>
-							</div>
-						</Card>
-
-						<Card className="bg-white rounded-lg shadow-md overflow-hidden">
-							<div className="p-6">
-								<div className="flex items-center mb-4">
-									<div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-										<span className="text-blue-600 font-bold">RP</span>
-									</div>
-									<div>
-										<h3 className="font-bold">Reliable Plumbing</h3>
-										<p className="text-sm text-gray-600">Residential Plumbing Services</p>
-									</div>
-								</div>
-								<p className="text-gray-700 mb-4">
-									"Our professional website has helped us stand out from competitors. Customers tell us they called us
-									because our website made us look more trustworthy."
-								</p>
-								<div className="flex text-amber-500">
-									<Star className="w-5 h-5 fill-current" />
-									<Star className="w-5 h-5 fill-current" />
-									<Star className="w-5 h-5 fill-current" />
-									<Star className="w-5 h-5 fill-current" />
-									<Star className="w-5 h-5 fill-current" />
-								</div>
-							</div>
-						</Card>
-					</div>
-
-					<div className="text-center mt-12">
-						<Link
-							href="/contact"
-							className="text-blue-600 hover:underline"
-						>
-							See more success stories →
-						</Link>
-					</div>
-				</Container>
-			</section>
+			{/* Testimonials Section */}
+			<Testimonials />
 
 			{/* CTA Section */}
 			<section className="py-20 bg-blue-600 text-white">
@@ -340,7 +243,7 @@ export default function Home() {
 						<div className="flex flex-col sm:flex-row gap-4 justify-center">
 							<CustomButton
 								variant="white"
-								href="/contact"
+								href="/success-stories"
 							>
 								Get Your Professional Website
 							</CustomButton>
