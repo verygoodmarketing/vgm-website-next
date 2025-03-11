@@ -20,7 +20,7 @@ export default function AdminNavigation() {
 
   const navItems = [
     { href: '/admin', label: 'Dashboard', icon: <Home className="mr-2 h-4 w-4" /> },
-    { href: '/admin/blog', label: 'Blog Posts', icon: <FileText className="mr-2 h-4 w-4" /> },
+    { href: '/admin/blog', label: 'Articles', icon: <FileText className="mr-2 h-4 w-4" /> },
     { href: '/admin/testimonials', label: 'Testimonials', icon: <Star className="mr-2 h-4 w-4" /> },
     { href: '/admin/submissions', label: 'Form Submissions', icon: <FileQuestion className="mr-2 h-4 w-4" /> },
     { href: '/admin/settings', label: 'Settings', icon: <Settings className="mr-2 h-4 w-4" /> },

@@ -61,7 +61,7 @@ export default function FooterClient({ settings }: FooterClientProps) {
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-gray-100 hover:text-white transition-colors">
+                <Link href="/articles" className="text-gray-100 hover:text-white transition-colors">
                   Resources
                 </Link>
               </li>

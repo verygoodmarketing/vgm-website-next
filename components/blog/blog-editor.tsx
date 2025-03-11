@@ -4,8 +4,9 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import type { BlogPostFormData, Tag } from "@/types/blog"
-import { BlogService, TagService } from "@/lib/blog-service"
+import type { ArticleFormData, Tag } from "@/types/article"
+import { getAllTags, createArticle, updateArticle, getArticleBySlug, getAllArticles } from "@/lib/article-service"
+import { generateSlug, calculateReadingTime } from "@/lib/article-utils"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -20,11 +21,11 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import ReactMarkdown from "react-markdown"
 
-interface BlogEditorProps {
-  postId?: string
+interface ArticleEditorProps {
+  slug?: string // Updated to use slug instead of postId
 }
 
-export default function BlogEditor({ postId }: BlogEditorProps) {
+export default function ArticleEditor({ slug }: ArticleEditorProps) {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -34,7 +35,7 @@ export default function BlogEditor({ postId }: BlogEditorProps) {
   const [activeTab, setActiveTab] = useState("edit")
   const [imageUrl, setImageUrl] = useState("")
 
-  const [formData, setFormData] = useState<BlogPostFormData>({
+  const [formData, setFormData] = useState<ArticleFormData>({
     title: "",
     excerpt: "",
     content: "",
@@ -48,34 +49,33 @@ export default function BlogEditor({ postId }: BlogEditorProps) {
     featuredImage: "/placeholder.svg?height=600&width=1200",
   })
 
-  // Load post data if editing an existing post
+  // Load article data if editing an existing article
   useEffect(() => {
     const loadData = async () => {
       try {
         setIsLoading(true)
 
         // Load available tags
-        const tags = await TagService.getAllTags()
+        const tags = await getAllTags()
         setAvailableTags(tags)
 
-        // If editing an existing post, load its data
-        if (postId) {
-          const posts = await BlogService.getAllPosts()
-          const post = posts.find((p) => p.id === postId)
+        // If editing an existing article, load its data
+        if (slug) {
+          const article = await getArticleBySlug(slug)
 
-          if (post) {
+          if (article) {
             setFormData({
-              id: post.id,
-              title: post.title,
-              excerpt: post.excerpt,
-              content: post.content,
-              author: post.author,
-              tags: post.tags,
-              isPublished: post.isPublished,
-              featuredImage: post.featuredImage,
+              id: article.id,
+              title: article.title,
+              excerpt: article.excerpt,
+              content: article.content,
+              author: article.author,
+              tags: article.tags,
+              isPublished: article.isPublished,
+              featuredImage: article.featuredImage,
             })
           } else {
-            setError("Post not found")
+            setError("Article not found")
           }
         }
       } catch (err) {
@@ -87,7 +87,7 @@ export default function BlogEditor({ postId }: BlogEditorProps) {
     }
 
     loadData()
-  }, [postId])
+  }, [slug])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -116,7 +116,16 @@ export default function BlogEditor({ postId }: BlogEditorProps) {
     if (!newTagName.trim()) return
 
     try {
-      const newTag = await TagService.createTag(newTagName)
+      // Create a new tag
+      const id = `tag-${Date.now()}`;
+      const slug = generateSlug(newTagName);
+      
+      const newTag: Tag = {
+        id,
+        name: newTagName,
+        slug
+      };
+      
       setAvailableTags((prev) => [...prev, newTag])
       setFormData((prev) => ({
         ...prev,
@@ -165,14 +174,13 @@ export default function BlogEditor({ postId }: BlogEditorProps) {
         return
       }
 
-      // Save the post
-      if (formData.id) {
-        await BlogService.updatePost(formData)
-        setSuccess("Post updated successfully")
+      // Save the article
+      if (slug) {
+        await updateArticle(slug, formData)
+        setSuccess("Article updated successfully")
       } else {
-        const newPost = await BlogService.createPost(formData)
-        setFormData((prev) => ({ ...prev, id: newPost.id }))
-        setSuccess("Post created successfully")
+        await createArticle(formData)
+        setSuccess("Article created successfully")
       }
 
       // Redirect after a short delay
@@ -180,7 +188,7 @@ export default function BlogEditor({ postId }: BlogEditorProps) {
         router.push("/admin/blog")
       }, 1500)
     } catch (err) {
-      setError("Failed to save post")
+      setError("Failed to save article")
       console.error(err)
     } finally {
       setIsLoading(false)
@@ -190,7 +198,7 @@ export default function BlogEditor({ postId }: BlogEditorProps) {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>{postId ? "Edit Post" : "Create New Post"}</CardTitle>
+        <CardTitle>{slug ? "Edit Article" : "Create New Article"}</CardTitle>
       </CardHeader>
       <CardContent>
         {error && (
@@ -215,7 +223,7 @@ export default function BlogEditor({ postId }: BlogEditorProps) {
                 name="title"
                 value={formData.title}
                 onChange={handleInputChange}
-                placeholder="Enter post title"
+                placeholder="Enter article title"
                 className="mt-1"
               />
             </div>
@@ -227,7 +235,7 @@ export default function BlogEditor({ postId }: BlogEditorProps) {
                 name="excerpt"
                 value={formData.excerpt}
                 onChange={handleInputChange}
-                placeholder="Brief summary of the post"
+                placeholder="Brief summary of the article"
                 className="mt-1"
                 rows={3}
               />
@@ -286,7 +294,7 @@ export default function BlogEditor({ postId }: BlogEditorProps) {
                     name="content"
                     value={formData.content}
                     onChange={handleInputChange}
-                    placeholder="Write your post content here... (Markdown supported)"
+                    placeholder="Write your article content here... (Markdown supported)"
                     className="min-h-[400px] font-mono"
                   />
                 </TabsContent>
@@ -338,7 +346,7 @@ export default function BlogEditor({ postId }: BlogEditorProps) {
 
             <div className="flex items-center space-x-2">
               <Checkbox id="isPublished" checked={formData.isPublished} onCheckedChange={handlePublishToggle} />
-              <Label htmlFor="isPublished">Publish this post</Label>
+              <Label htmlFor="isPublished">Publish this article</Label>
             </div>
           </div>
 
@@ -349,7 +357,7 @@ export default function BlogEditor({ postId }: BlogEditorProps) {
 
             <CustomButton variant="blue" onClick={handleSave} disabled={isLoading}>
               <Save className="h-4 w-4 mr-2" />
-              {isLoading ? "Saving..." : "Save Post"}
+              {isLoading ? "Saving..." : "Save Article"}
             </CustomButton>
           </div>
         </div>

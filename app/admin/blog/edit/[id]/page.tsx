@@ -1,22 +1,22 @@
 import type { Metadata } from "next"
-import BlogEditor from "@/components/blog/blog-editor"
+import ArticleEditor from "@/components/blog/blog-editor"
 
-interface EditBlogPostPageProps {
+interface EditArticlePageProps {
   params: {
-    id: string
+    id: string // This ID is now the slug
   }
 }
 
 export const metadata: Metadata = {
-  title: "Edit Blog Post",
-  description: "Edit an existing blog post",
+  title: "Edit Article",
+  description: "Edit an existing article",
 }
 
-export default function EditBlogPostPage({ params }: EditBlogPostPageProps) {
+export default function EditArticlePage({ params }: EditArticlePageProps) {
   return (
     <div className="container mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold mb-8">Edit Blog Post</h1>
-      <BlogEditor postId={params.id} />
+      <h1 className="text-3xl font-bold mb-8">Edit Article</h1>
+      <ArticleEditor slug={params.id} />
     </div>
   )
 }

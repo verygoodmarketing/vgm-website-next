@@ -78,7 +78,7 @@ export default function NotFound() {
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-blue-600 hover:text-blue-800 transition-colors">
+                <Link href="/articles" className="text-blue-600 hover:text-blue-800 transition-colors">
                   Resources
                 </Link>
               </li>

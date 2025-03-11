@@ -76,7 +76,7 @@ export default async function Footer() {
 							</li>
 							<li>
 								<Link
-									href="/blog"
+									href="/articles"
 									className="text-gray-100 hover:text-white transition-colors"
 								>
 									Resources

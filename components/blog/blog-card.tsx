@@ -3,17 +3,18 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 
-interface BlogCardProps {
+interface ArticleCardProps {
   post: {
     title: string
     excerpt: string
     date: string
     image: string
     slug: string
+    tags?: { id: string; name: string; slug: string }[]
   }
 }
 
-export default function BlogCard({ post }: BlogCardProps) {
+export default function ArticleCard({ post }: ArticleCardProps) {
   return (
     <Card className="overflow-hidden">
       <div className="relative h-48 overflow-hidden">
@@ -31,7 +32,7 @@ export default function BlogCard({ post }: BlogCardProps) {
       </CardContent>
       <CardFooter>
         <Link
-          href={post.slug}
+          href={`/articles/${post.slug}`}
           className="inline-flex items-center text-blue-700 font-medium hover:text-blue-800 transition-colors"
         >
           Read More <ArrowRight className="ml-2 h-4 w-4" />
