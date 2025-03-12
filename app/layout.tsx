@@ -15,6 +15,7 @@ import GoogleAnalytics from '@/components/google-analytics'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+	metadataBase: new URL('https://verygoodmarketing.com'),
 	title: {
 		template: '%s | Very Good Marketing Co. LLC',
 		default: 'Very Good Marketing Co. LLC - Transparent Marketing for Small Businesses',
