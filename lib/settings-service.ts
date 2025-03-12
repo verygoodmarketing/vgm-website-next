@@ -17,7 +17,10 @@ export interface SiteSettings {
 		state?: string
 		zip?: string
 	}
-	hours?: string
+	hours?: {
+		weekday?: string
+		weekend?: string
+	}
 	display?: {
 		showAddressOnContact?: boolean
 	}

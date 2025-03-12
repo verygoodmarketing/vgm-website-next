@@ -129,7 +129,8 @@ export default async function Footer() {
 								/>
 								<h4 className="text-sm font-semibold">Office Hours</h4>
 							</div>
-							<p className="text-gray-100 text-sm mt-1">{settings.hours}</p>
+							<p className="text-gray-100 text-sm mt-1">{settings.hours?.weekday}</p>
+							<p className="text-gray-100 text-sm mt-1">{settings.hours?.weekend}</p>
 						</div>
 					</div>
 				</div>

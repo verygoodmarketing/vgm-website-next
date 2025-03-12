@@ -4,7 +4,7 @@ phone:
   href: 'tel:+14234144022'
 email: 'info@verygoodmarketing.com'
 social:
-  facebook: 'https://facebook.com/verygoodmarketing'
+  facebook: 'https://facebook.com/verygoodco'
   instagram: 'https://instagram.com/verygoodmarketing'
   linkedin: 'https://linkedin.com/company/verygoodmarketing'
 address:
@@ -12,7 +12,10 @@ address:
   city: 'Hartselle'
   state: 'AL'
   zip: '35640'
-hours: 'Monday - Friday: 7am - 5pm CST'
+hours:
+  weekday: 'Monday - Friday: 7am - 5pm CST'
+  weekend: 'Saturday: 7am - 12pm CST'
+
 display:
   showAddressOnContact: false
 ---
