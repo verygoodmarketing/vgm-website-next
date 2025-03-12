@@ -10,6 +10,7 @@ import ScrollToTop from '@/components/scroll-to-top'
 import { Toaster } from '@/components/ui/toaster'
 import HubspotScript from '@/components/hubspot-script'
 import FacebookPixel from '@/components/facebook-pixel'
+import GoogleAnalytics from '@/components/google-analytics'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -75,6 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<Toaster />
 				<HubspotScript />
 				<FacebookPixel />
+				<GoogleAnalytics />
 			</body>
 		</html>
 	)
