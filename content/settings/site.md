@@ -12,7 +12,7 @@ address:
   city: 'Hartselle'
   state: 'AL'
   zip: '35640'
-hours: 'Monday - Friday: 9am - 5pm CST'
+hours: 'Monday - Friday: 7am - 5pm CST'
 display:
   showAddressOnContact: false
 ---

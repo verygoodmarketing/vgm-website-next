@@ -148,7 +148,7 @@ export default function InteractiveHero({ serviceIndustries }: InteractiveHeroPr
 
 					{/* Service Industries */}
 					<div className="mt-12 pt-6 border-t border-white/20">
-						<p className="text-sm uppercase tracking-wider mb-4">Click to see websites for:</p>
+						<p className="text-sm uppercase tracking-wider mb-4">Industries We Serve:</p>
 						<div className="flex flex-wrap justify-center gap-x-4 gap-y-3">
 							{serviceIndustries.map((industry, index) => (
 								<button

@@ -17,9 +17,9 @@ export const metadata: Metadata = {
 export default function Home() {
 	// List of service industries we target - ordered by priority
 	const serviceIndustries = [
-		'Tree Service', // New default first (most important)
-		'Lawn Care',
+		'Lawn Care', // New default first (most important)
 		'Landscaping',
+		'Tree Service',
 		'Pressure Washing',
 		'Window Cleaning',
 		'Cleaning',

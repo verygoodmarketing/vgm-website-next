@@ -9,6 +9,7 @@ import AnimatedContent from '@/components/animated-content'
 import ScrollToTop from '@/components/scroll-to-top'
 import { Toaster } from '@/components/ui/toaster'
 import HubspotScript from '@/components/hubspot-script'
+import FacebookPixel from '@/components/facebook-pixel'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -73,6 +74,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				</TransitionProvider>
 				<Toaster />
 				<HubspotScript />
+				<FacebookPixel />
 			</body>
 		</html>
 	)
