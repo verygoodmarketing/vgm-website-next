@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import Container from '@/components/shared/container'
 import PageHeader from '@/components/shared/page-header'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, BookOpen, Mail } from 'lucide-react'
 
 export const metadata: Metadata = {
 	title: 'Marketing Guides - Resources',
@@ -28,20 +28,41 @@ export default function GuidesPage() {
 						</Link>
 					</div>
 
-					<div className="text-center py-16">
-						<h2 className="text-2xl font-bold mb-4">Coming Soon</h2>
-						<p className="text-gray-600 max-w-lg mx-auto">
-							We're currently developing our collection of marketing guides. Check back soon or subscribe to our
-							newsletter to be notified when they're available.
-						</p>
-						<div className="mt-8">
-							<p className="text-gray-600 mb-4">In the meantime, check out our articles:</p>
-							<Link
-								href="/resources/articles"
-								className="inline-flex items-center text-blue-600 hover:text-blue-800"
-							>
-								Browse Articles <ArrowRight className="ml-2 h-4 w-4" />
-							</Link>
+					<div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 md:p-12 shadow-sm border border-blue-100">
+						<div className="text-center max-w-2xl mx-auto">
+							<div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-6">
+								<BookOpen className="h-8 w-8 text-blue-600" />
+							</div>
+							<h2 className="text-3xl font-bold text-gray-800 mb-4">Our Guides Are Coming Soon</h2>
+							<p className="text-gray-600 text-lg mb-8">
+								We're crafting comprehensive marketing guides to help your business succeed. Stay tuned for expert
+								strategies, actionable tips, and industry insights.
+							</p>
+
+							<div className="bg-white rounded-lg p-6 shadow-sm border border-blue-100 mb-8">
+								<h3 className="text-lg font-semibold mb-3">Get Notified When Guides Launch</h3>
+								<div className="flex flex-col sm:flex-row gap-3">
+									<input
+										type="email"
+										placeholder="Your email address"
+										className="flex-grow px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+									/>
+									<button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition-colors flex items-center justify-center">
+										<Mail className="mr-2 h-4 w-4" />
+										Subscribe
+									</button>
+								</div>
+							</div>
+
+							<div className="mt-8">
+								<h3 className="text-lg font-semibold mb-4">In the meantime, explore our articles:</h3>
+								<Link
+									href="/resources/articles"
+									className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg transition-colors"
+								>
+									Browse Articles <ArrowRight className="ml-2 h-4 w-4" />
+								</Link>
+							</div>
 						</div>
 					</div>
 				</Container>
