@@ -4,15 +4,9 @@ import { getArticleBySlug } from '@/lib/article-service'
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
-interface RouteParams {
-	params: {
-		slug: string
-	}
-}
-
-export async function GET(request: Request, { params }: RouteParams) {
+export async function GET(request: Request, context: any) {
 	try {
-		const { slug } = params
+		const { slug } = context.params
 		const timestamp = new Date().toISOString()
 
 		if (!slug) {
