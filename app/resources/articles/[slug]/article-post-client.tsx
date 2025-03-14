@@ -10,7 +10,7 @@ import type { Article } from '@/types/article'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { CustomButton } from '@/components/custom-button'
-import { Facebook, Linkedin, Clock, Calendar, User, Share2, ChevronUp } from 'lucide-react'
+import { Facebook, Linkedin, Clock, Calendar, User, Share2, ChevronUp, RefreshCw } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
@@ -22,96 +22,106 @@ interface ArticlePostClientProps {
 	article: Article
 }
 
-// Custom X Logo component
+// X Logo component for social sharing
 const XLogo = () => (
 	<svg
-		xmlns="http://www.w3.org/2000/svg"
 		viewBox="0 0 24 24"
-		width="24"
-		height="24"
-		color="currentColor"
-		fill="none"
+		className="h-5 w-5"
+		aria-hidden="true"
+		fill="currentColor"
 	>
-		<path
-			d="M3 21L10.5484 13.4516M21 3L13.4516 10.5484M13.4516 10.5484L8 3H3L10.5484 13.4516M13.4516 10.5484L21 21H16L10.5484 13.4516"
-			stroke="currentColor"
-			strokeWidth="1.5"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-		/>
+		<path d="M13.6823 10.6218L20.2391 3H18.6854L12.9921 9.61788L8.44486 3H3.2002L10.0765 13.0074L3.2002 21H4.75404L10.7663 14.0113L15.5685 21H20.8132L13.6819 10.6218H13.6823ZM11.5541 13.0956L10.8574 12.0991L5.31391 4.16971H7.70053L12.1742 10.5689L12.8709 11.5655L18.6861 19.8835H16.2995L11.5541 13.096V13.0956Z" />
 	</svg>
 )
 
-export default function ArticlePostClient({ article }: ArticlePostClientProps) {
+export default function ArticlePostClient({ article: initialArticle }: ArticlePostClientProps) {
 	const [showScrollTop, setShowScrollTop] = useState(false)
+	const [article, setArticle] = useState<Article>(initialArticle)
+	const [loading, setLoading] = useState(false)
+	const [autoRefresh, setAutoRefresh] = useState(true)
+	const [lastUpdated, setLastUpdated] = useState<string>(new Date().toLocaleTimeString())
+	const autoRefreshIntervalRef = useRef<NodeJS.Timeout | null>(null)
 	const articleContentRef = useRef<HTMLDivElement>(null)
 
-	// Track scroll for the scroll to top button
-	useEffect(() => {
-		const handleScroll = () => {
-			// Show scroll to top button when scrolled down enough
-			setShowScrollTop(window.scrollY > 500)
-		}
-
-		window.addEventListener('scroll', handleScroll)
-		handleScroll() // Initial calculation
-
-		return () => window.removeEventListener('scroll', handleScroll)
-	}, [])
-
-	const scrollToTop = () => {
-		window.scrollTo({ top: 0, behavior: 'smooth' })
-	}
-
+	// Get the URL for sharing
 	const shareUrl = typeof window !== 'undefined' ? window.location.href : ''
 	const shareTitle = encodeURIComponent(article.title)
 
-	return (
-		<>
-			{/* Scroll to Top Button */}
-			{showScrollTop && (
-				<button
-					onClick={scrollToTop}
-					className="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 transition-all"
-					aria-label="Scroll to top"
-				>
-					<ChevronUp className="h-5 w-5" />
-				</button>
-			)}
+	// Fetch the latest article data
+	const fetchArticle = async () => {
+		setLoading(true)
+		try {
+			const response = await fetch(`/api/articles/${article.slug}?t=${Date.now()}`)
+			const data = await response.json()
 
-			{/* Social Sharing Sidebar (visible on larger screens) */}
-			<div className="hidden lg:flex fixed left-4 top-1/4 flex-col space-y-4 z-40">
-				<div className="bg-white p-3 rounded-full shadow-md">
-					<Share2 className="h-5 w-5 text-gray-500" />
-				</div>
-				<a
-					href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
-					target="_blank"
-					rel="noopener noreferrer"
-					className="bg-white p-3 rounded-full shadow-md text-gray-500 hover:text-blue-600 transition-colors"
-					aria-label="Share on Facebook"
-				>
-					<Facebook className="h-5 w-5" />
-				</a>
-				<a
-					href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}`}
-					target="_blank"
-					rel="noopener noreferrer"
-					className="bg-white p-3 rounded-full shadow-md text-gray-500 hover:text-black transition-colors"
-					aria-label="Share on X"
-				>
-					<XLogo />
-				</a>
-				<a
-					href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`}
-					target="_blank"
-					rel="noopener noreferrer"
-					className="bg-white p-3 rounded-full shadow-md text-gray-500 hover:text-blue-700 transition-colors"
-					aria-label="Share on LinkedIn"
-				>
-					<Linkedin className="h-5 w-5" />
-				</a>
-			</div>
+			if (data.article) {
+				setArticle(data.article)
+				setLastUpdated(new Date().toLocaleTimeString())
+			}
+		} catch (error) {
+			console.error('Error refreshing article:', error)
+		} finally {
+			setLoading(false)
+		}
+	}
+
+	// Set up scroll event listener
+	useEffect(() => {
+		const handleScroll = () => {
+			setShowScrollTop(window.scrollY > 300)
+		}
+
+		window.addEventListener('scroll', handleScroll)
+		return () => window.removeEventListener('scroll', handleScroll)
+	}, [])
+
+	// Set up auto-refresh in development mode
+	useEffect(() => {
+		// Only setup auto-refresh if we're in development mode
+		if (process.env.NODE_ENV === 'development' && autoRefresh) {
+			autoRefreshIntervalRef.current = setInterval(() => {
+				console.log('Auto-refreshing article...')
+				fetchArticle()
+			}, 5000) // Check for updates every 5 seconds
+		}
+
+		return () => {
+			// Clean up interval on component unmount
+			if (autoRefreshIntervalRef.current) {
+				clearInterval(autoRefreshIntervalRef.current)
+			}
+		}
+	}, [autoRefresh, article.slug])
+
+	// Toggle auto-refresh
+	const toggleAutoRefresh = () => {
+		setAutoRefresh(prev => !prev)
+	}
+
+	// Scroll to top function
+	const scrollToTop = () => {
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth',
+		})
+	}
+
+	// Check if we're in dev mode
+	const isDev = process.env.NODE_ENV === 'development'
+
+	return (
+		<div className="bg-white">
+			{/* Scroll to top button */}
+			<button
+				onClick={scrollToTop}
+				className={cn(
+					'fixed bottom-6 right-6 p-3 rounded-full bg-blue-600 text-white shadow-lg transition-all z-50',
+					showScrollTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
+				)}
+				aria-label="Scroll to top"
+			>
+				<ChevronUp className="h-5 w-5" />
+			</button>
 
 			<div className="container mx-auto px-4 py-12">
 				<div className="max-w-3xl mx-auto">
@@ -144,6 +154,46 @@ export default function ArticlePostClient({ article }: ArticlePostClientProps) {
 								<span className="text-gray-900">{article.title}</span>
 							</nav>
 						</div>
+
+						{/* Dev mode controls */}
+						{isDev && (
+							<div className="mb-6 p-4 bg-blue-50 rounded-lg">
+								<div className="flex flex-wrap items-center justify-between gap-3">
+									<div>
+										<p className="text-blue-700 text-sm">Developer Mode: Last updated at {lastUpdated}</p>
+									</div>
+									<div className="flex items-center gap-4">
+										<label className="inline-flex items-center cursor-pointer">
+											<input
+												type="checkbox"
+												className="sr-only peer"
+												checked={autoRefresh}
+												onChange={toggleAutoRefresh}
+											/>
+											<div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+											<span className="ms-3 text-sm font-medium text-gray-700">Auto-refresh</span>
+										</label>
+										<button
+											onClick={fetchArticle}
+											disabled={loading}
+											className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm flex items-center gap-2"
+										>
+											{loading ? (
+												<>
+													<RefreshCw className="h-4 w-4 animate-spin" />
+													<span>Refreshing...</span>
+												</>
+											) : (
+												<>
+													<RefreshCw className="h-4 w-4" />
+													<span>Refresh Article</span>
+												</>
+											)}
+										</button>
+									</div>
+								</div>
+							</div>
+						)}
 
 						{/* Article Header */}
 						<header className="mb-10">
@@ -242,42 +292,121 @@ export default function ArticlePostClient({ article }: ArticlePostClientProps) {
 							</div>
 						</div>
 
-						{/* Author Bio */}
-						<div className="bg-gray-50 rounded-lg p-6 mb-12 shadow-sm">
-							<div className="flex items-start">
-								{article.author.avatar && (
-									<div className="mr-4 flex-shrink-0">
-										<Image
-											src={article.author.avatar || '/placeholder.svg'}
-											alt={article.author.name}
-											width={80}
-											height={80}
-											className="rounded-full"
-										/>
+						{/* Author Box */}
+						<Card className="mb-12">
+							<CardContent className="p-6">
+								<div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
+									{article.author.avatar && (
+										<div className="w-20 h-20 rounded-full overflow-hidden flex-shrink-0 bg-gray-100">
+											<Image
+												src={article.author.avatar}
+												alt={article.author.name}
+												width={80}
+												height={80}
+												className="object-cover w-full h-full"
+											/>
+										</div>
+									)}
+									<div className="flex-1 text-center md:text-left">
+										<h3 className="font-bold text-xl mb-2 text-gray-900">About the Author</h3>
+										<h4 className="font-medium text-lg mb-3 text-gray-800">{article.author.name}</h4>
+										<p className="text-gray-600 mb-4">{article.author.bio}</p>
+										<div className="flex justify-center md:justify-start">
+											<CustomButton
+												variant="outline"
+												size="sm"
+												href="/contact"
+											>
+												Contact the Author
+											</CustomButton>
+										</div>
 									</div>
-								)}
-								<div>
-									<h3 className="text-lg font-bold text-gray-900 mb-2">About {article.author.name}</h3>
-									<p className="text-gray-700 leading-relaxed">
-										{article.author.bio ||
-											'Marketing specialist with years of experience helping small businesses grow.'}
-									</p>
 								</div>
+							</CardContent>
+						</Card>
+
+						{/* Related Articles Section (Placeholder) */}
+						<div className="mb-12">
+							<h2 className="text-2xl font-bold mb-6 text-gray-900">You might also like</h2>
+							{/* This would be populated with actual related articles */}
+							<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+								<Card>
+									<CardContent className="p-4">
+										<h3 className="font-bold text-lg mb-2 hover:text-blue-600">
+											<Link href="/resources/articles">More marketing tips for your business</Link>
+										</h3>
+										<p className="text-gray-600 text-sm mb-3">Explore our collection of marketing articles</p>
+										<Link
+											href="/resources/articles"
+											className="text-blue-600 text-sm font-medium hover:underline"
+										>
+											Read more articles
+										</Link>
+									</CardContent>
+								</Card>
+								<Card>
+									<CardContent className="p-4">
+										<h3 className="font-bold text-lg mb-2 hover:text-blue-600">
+											<Link href="/contact">Need personalized marketing advice?</Link>
+										</h3>
+										<p className="text-gray-600 text-sm mb-3">Get in touch for a free consultation</p>
+										<Link
+											href="/contact"
+											className="text-blue-600 text-sm font-medium hover:underline"
+										>
+											Contact us
+										</Link>
+									</CardContent>
+								</Card>
 							</div>
 						</div>
 
-						{/* Back to Articles */}
-						<div className="text-center">
-							<CustomButton
-								asChild
-								variant="outline"
-							>
-								<Link href="/resources/articles">Back to All Articles</Link>
-							</CustomButton>
+						{/* Social Sharing (desktop) - Fixed on right */}
+						<div className="hidden lg:block fixed right-10 top-1/3 transform -translate-y-1/2">
+							<div className="flex flex-col items-center space-y-4 bg-white p-3 rounded-full shadow-md">
+								<span className="font-medium text-gray-900 text-sm mb-2">Share</span>
+								<a
+									href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-gray-500 hover:text-blue-600 p-2"
+									aria-label="Share on Facebook"
+								>
+									<Facebook className="h-5 w-5" />
+								</a>
+								<a
+									href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}`}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-gray-500 hover:text-blue-400 p-2"
+									aria-label="Share on X"
+								>
+									<XLogo />
+								</a>
+								<a
+									href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-gray-500 hover:text-blue-700 p-2"
+									aria-label="Share on LinkedIn"
+								>
+									<Linkedin className="h-5 w-5" />
+								</a>
+								<button
+									onClick={() => {
+										navigator.clipboard.writeText(shareUrl)
+										alert('Link copied to clipboard!')
+									}}
+									className="text-gray-500 hover:text-green-600 p-2"
+									aria-label="Copy link"
+								>
+									<Share2 className="h-5 w-5" />
+								</button>
+							</div>
 						</div>
 					</main>
 				</div>
 			</div>
-		</>
+		</div>
 	)
 }

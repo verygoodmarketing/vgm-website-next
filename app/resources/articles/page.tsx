@@ -92,14 +92,30 @@ export default async function ArticlesPage() {
 			<section className="py-12 md:py-20 bg-white">
 				<div className="container mx-auto px-4">
 					{isDev && (
-						<div className="mb-6 p-4 bg-blue-50 rounded-lg text-center">
-							<p className="text-blue-700 mb-2">Developer Mode: Articles are statically generated at build time.</p>
-							<Link
-								href="/resources/articles/client"
-								className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-							>
-								Switch to Client-Side Articles Page (with refresh)
-							</Link>
+						<div className="mb-8 p-6 bg-blue-50 rounded-lg">
+							<h3 className="text-xl font-semibold text-blue-700 mb-2">Developer Mode Notice</h3>
+							<p className="text-blue-700 mb-4">
+								You're viewing the static version of the articles page. For a better development experience with hot
+								reloading of markdown content:
+							</p>
+							<div className="flex flex-col sm:flex-row gap-4">
+								<Link
+									href="/resources/articles/client"
+									className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center"
+								>
+									Switch to Hot Reloading Articles Page
+								</Link>
+								<Link
+									href="/"
+									className="inline-block px-6 py-3 bg-white border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors text-center"
+								>
+									Continue with Static Page
+								</Link>
+							</div>
+							<p className="mt-4 text-sm text-blue-600">
+								<strong>Note:</strong> The hot reloading version will automatically detect changes to your markdown
+								files and update the preview without a full page refresh.
+							</p>
 						</div>
 					)}
 					<ArticlesList
