@@ -3,7 +3,7 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { Article, Author, Tag, Comment } from '@/types/article'
+import { Article, Author, Tag } from '@/types/article'
 import crypto from 'crypto'
 import { generateSlug, calculateReadingTime } from './article-utils'
 
@@ -51,7 +51,6 @@ async function readArticleFromFile(filePath: string): Promise<Article | null> {
 			updatedAt: data.updatedAt || new Date().toISOString(),
 			isPublished: data.isPublished !== false, // Default to true if not specified
 			readingTime: data.readingTime || calculateReadingTime(content),
-			comments: (data.comments || []) as Comment[],
 		}
 	} catch (error) {
 		console.error(`Error reading article from ${filePath}:`, error)
@@ -127,7 +126,6 @@ export async function createArticle(
 		createdAt: new Date().toISOString(),
 		updatedAt: new Date().toISOString(),
 		readingTime: calculateReadingTime(articleData.content),
-		comments: [],
 	}
 
 	await saveArticleToFile(newArticle)
@@ -185,57 +183,6 @@ export async function deleteArticle(slug: string): Promise<boolean> {
 export async function getArticlesByTag(tagSlug: string): Promise<Article[]> {
 	const articles = await getPublishedArticles()
 	return articles.filter(article => article.tags.some(tag => tag.slug === tagSlug))
-}
-
-// Add a comment to an article
-export async function addComment(
-	articleSlug: string,
-	author: { name: string; email: string },
-	content: string
-): Promise<Comment | null> {
-	const article = await getArticleBySlug(articleSlug)
-
-	if (!article) {
-		return null
-	}
-
-	const newComment: Comment = {
-		id: crypto.randomBytes(4).toString('hex'),
-		articleId: article.id,
-		author: {
-			name: author.name,
-			email: author.email,
-			avatar: `/placeholder.svg?height=50&width=50&text=${author.name.charAt(0)}`,
-		},
-		content,
-		createdAt: new Date().toISOString(),
-		isApproved: true, // Auto-approve for demo purposes
-	}
-
-	article.comments = [...(article.comments || []), newComment]
-	await saveArticleToFile(article)
-
-	return newComment
-}
-
-// Delete a comment
-export async function deleteComment(articleSlug: string, commentId: string): Promise<boolean> {
-	const article = await getArticleBySlug(articleSlug)
-
-	if (!article || !article.comments) {
-		return false
-	}
-
-	const commentIndex = article.comments.findIndex(c => c.id === commentId)
-
-	if (commentIndex === -1) {
-		return false
-	}
-
-	article.comments.splice(commentIndex, 1)
-	await saveArticleToFile(article)
-
-	return true
 }
 
 // Get all tags

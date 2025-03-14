@@ -7,6 +7,14 @@ const nextConfig = {
 				protocol: 'https',
 				hostname: '**',
 			},
+			{
+				protocol: 'https',
+				hostname: 'unsplash.com',
+			},
+			{
+				protocol: 'https',
+				hostname: 'images.unsplash.com',
+			},
 		],
 	},
 	async redirects() {

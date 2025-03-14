@@ -1,23 +1,23 @@
 ---
-id: "article-2"
-title: "Social Media Marketing Strategies for Service Businesses"
-slug: "social-media-marketing-strategies-service-businesses"
-excerpt: "Discover effective ways to leverage social media to attract more customers to your service business."
-featuredImage: "/placeholder.svg?height=600&width=1200"
+id: 'article-2'
+title: 'Social Media Marketing Strategies for Service Businesses'
+slug: 'social-media-marketing-strategies-service-businesses'
+excerpt: 'Discover effective ways to leverage social media to attract more customers to your service business.'
+featuredImage: 'https://images.unsplash.com/photo-1683721003111-070bcc053d8b'
 author:
-  id: "1"
-  name: "Marketing Expert"
-  avatar: "/placeholder.svg?height=100&width=100"
-  bio: "Marketing specialist with 10+ years of experience helping small businesses grow."
+  id: '1'
+  name: 'Marketing Expert'
+  avatar: '/placeholder.svg?height=100&width=100'
+  bio: 'Marketing specialist with 10+ years of experience helping small businesses grow.'
 tags:
-  - id: "1"
-    name: "Marketing"
-    slug: "marketing"
-  - id: "3"
-    name: "Social Media"
-    slug: "social-media"
-createdAt: "2024-03-05T12:00:00.000Z"
-updatedAt: "2024-03-05T12:00:00.000Z"
+  - id: '1'
+    name: 'Marketing'
+    slug: 'marketing'
+  - id: '3'
+    name: 'Social Media'
+    slug: 'social-media'
+createdAt: '2024-03-05T12:00:00.000Z'
+updatedAt: '2024-03-05T12:00:00.000Z'
 isPublished: true
 readingTime: 6
 ---
@@ -47,6 +47,8 @@ For service businesses, demonstrating your expertise is crucial:
 - Showcase your team's expertise through educational content
 
 Visual proof of your quality work will build trust with potential customers.
+
+![Social Media Marketing Strategy](https://images.unsplash.com/photo-1606425271492-57c2d77cb3fe 'A visual representation of social media marketing strategy showing various platform icons and analytics')
 
 ## 3. Target Local Customers
 
