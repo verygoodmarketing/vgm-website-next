@@ -6,7 +6,9 @@ import CustomButton from '@/components/shared/custom-button'
 import Container from '@/components/shared/container'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import ArticleCard from '@/components/article/article-card'
-import { getFeaturedArticles } from '@/lib/article-service'
+import { getFeaturedArticles, getAllTags } from '@/lib/article-service'
+import { Tag } from '@/types/article'
+import FeaturedArticlesSection from '@/components/article/featured-articles-section'
 
 export const metadata: Metadata = {
 	title: 'Resources - Very Good Marketing',
@@ -16,6 +18,24 @@ export const metadata: Metadata = {
 
 export default async function ResourcesPage() {
 	const featuredArticles = await getFeaturedArticles(3)
+	const allTags = await getAllTags()
+
+	// Create demo tags if no real tags exist
+	const demoTags: Tag[] =
+		allTags.length > 0
+			? allTags
+			: [
+					{ id: 'website', name: 'Website', slug: 'website' },
+					{ id: 'seo', name: 'SEO', slug: 'seo' },
+					{ id: 'marketing', name: 'Marketing', slug: 'marketing' },
+					{ id: 'business', name: 'Business', slug: 'business' },
+				]
+
+	// Make sure each tag has a valid slug
+	const validatedTags = demoTags.map(tag => ({
+		...tag,
+		slug: tag.slug || tag.name.toLowerCase().replace(/\s+/g, '-'),
+	}))
 
 	// Map featured articles to the format expected by ArticleCard
 	const articlesList =
@@ -37,6 +57,7 @@ export default async function ResourcesPage() {
 						date: new Date().toLocaleDateString(),
 						image: '/placeholder.svg?height=600&width=1200&text=Website+Marketing',
 						slug: '#',
+						tags: [validatedTags[0], validatedTags[2]], // Website, Marketing
 					},
 				]
 
@@ -66,14 +87,10 @@ export default async function ResourcesPage() {
 						</Link>
 					</div>
 
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-						{articlesList.map((post, index) => (
-							<ArticleCard
-								key={index}
-								post={post}
-							/>
-						))}
-					</div>
+					<FeaturedArticlesSection
+						articles={articlesList}
+						allTags={validatedTags}
+					/>
 				</Container>
 			</section>
 

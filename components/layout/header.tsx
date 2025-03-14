@@ -128,7 +128,7 @@ export default function Header() {
 								alt="Very Good Marketing"
 								width={200}
 								height={40}
-								priority
+								priority={true}
 							/>
 						</Link>
 					</div>
@@ -215,6 +215,7 @@ export default function Header() {
 							width={120}
 							height={24}
 							className="h-6 w-auto"
+							priority={true}
 						/>
 					</div>
 

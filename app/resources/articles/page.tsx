@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import PageHeader from '@/components/shared/page-header'
-import ArticleCard from '@/components/article/article-card'
+import ArticlesList from '@/components/article/articles-list'
 import CallToAction from '@/components/shared/call-to-action'
-import { getPublishedArticles } from '@/lib/article-service'
+import { getPublishedArticles, getAllTags } from '@/lib/article-service'
+import { Tag } from '@/types/article'
 
 export const metadata: Metadata = {
 	title: 'Articles & Blog - Very Good Marketing',
@@ -11,6 +12,24 @@ export const metadata: Metadata = {
 
 export default async function ArticlesPage() {
 	const articles = await getPublishedArticles()
+	const allTags = await getAllTags()
+
+	// Create demo tags if no real tags exist
+	const demoTags: Tag[] =
+		allTags.length > 0
+			? allTags
+			: [
+					{ id: 'website', name: 'Website', slug: 'website' },
+					{ id: 'seo', name: 'SEO', slug: 'seo' },
+					{ id: 'marketing', name: 'Marketing', slug: 'marketing' },
+					{ id: 'business', name: 'Business', slug: 'business' },
+				]
+
+	// Make sure each tag has a valid slug
+	const validatedTags = demoTags.map(tag => ({
+		...tag,
+		slug: tag.slug || tag.name.toLowerCase().replace(/\s+/g, '-'),
+	}))
 
 	// If we have published articles from markdown files, use those
 	const articlesList =
@@ -32,6 +51,7 @@ export default async function ArticlesPage() {
 						date: 'Coming Soon',
 						image: '/placeholder.svg?height=400&width=600',
 						slug: '#',
+						tags: [validatedTags[0], validatedTags[2]], // Website, Marketing
 					},
 					{
 						title: '5 Website Mistakes Service Businesses Make That Cost Them Customers',
@@ -40,6 +60,7 @@ export default async function ArticlesPage() {
 						date: 'Coming Soon',
 						image: '/placeholder.svg?height=400&width=600',
 						slug: '#',
+						tags: [validatedTags[0], validatedTags[3]], // Website, Business
 					},
 					{
 						title: 'Local SEO Guide for Cleaning, Landscaping, and Home Service Businesses',
@@ -47,6 +68,7 @@ export default async function ArticlesPage() {
 						date: 'Coming Soon',
 						image: '/placeholder.svg?height=400&width=600',
 						slug: '#',
+						tags: [validatedTags[1], validatedTags[3]], // SEO, Business
 					},
 					{
 						title: 'How to Use Your Website to Book More Service Appointments',
@@ -54,6 +76,7 @@ export default async function ArticlesPage() {
 						date: 'Coming Soon',
 						image: '/placeholder.svg?height=400&width=600',
 						slug: '#',
+						tags: [validatedTags[0], validatedTags[2], validatedTags[3]], // Website, Marketing, Business
 					},
 				]
 
@@ -61,27 +84,15 @@ export default async function ArticlesPage() {
 		<div>
 			<PageHeader
 				title="Articles & Blog"
-				description="Browse our collection of marketing articles and guides for service business owners."
+				description="Browse our collection of marketing articles and guides for service business owners. Filter by tag to find content on specific topics."
 			/>
 
 			<section className="py-12 md:py-20 bg-white">
 				<div className="container mx-auto px-4">
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-						{articlesList.map((post, index) => (
-							<ArticleCard
-								key={index}
-								post={post}
-							/>
-						))}
-					</div>
-					{articlesList[0].slug === '#' && (
-						<div className="text-center mt-12">
-							<p className="text-lg text-gray-600">
-								More educational content coming soon! Subscribe to our newsletter to be notified when new resources are
-								available.
-							</p>
-						</div>
-					)}
+					<ArticlesList
+						articles={articlesList}
+						allTags={validatedTags}
+					/>
 				</div>
 			</section>
 
