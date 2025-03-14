@@ -32,7 +32,7 @@ export default function ArticleCard({ post }: ArticleCardProps) {
 			</CardContent>
 			<CardFooter>
 				<Link
-					href={`/articles/${post.slug}`}
+					href={post.slug === '#' ? '#' : `/resources/articles/${post.slug}`}
 					className="inline-flex items-center text-blue-700 font-medium hover:text-blue-800 transition-colors"
 				>
 					Read More <ArrowRight className="ml-2 h-4 w-4" />

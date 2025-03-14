@@ -21,12 +21,15 @@ export default function Header() {
 		{ name: 'Home', href: '/' },
 		{ name: 'Services', href: '/services' },
 		{ name: 'About', href: '/about' },
-		{ name: 'Resources', href: '/articles' },
+		{ name: 'Resources', href: '/resources' },
 		{ name: 'Contact', href: '/contact' },
 	]
 
 	const isActive = (path: string) => {
-		return pathname === path
+		if (path === '/') {
+			return pathname === '/'
+		}
+		return pathname === path || pathname.startsWith(`${path}/`)
 	}
 
 	// Clear any existing timeouts to prevent race conditions

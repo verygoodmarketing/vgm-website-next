@@ -91,7 +91,7 @@ export default function ArticlePostClient({ article }: ArticlePostClientProps) {
 						</Link>
 						<span className="mx-2">/</span>
 						<Link
-							href="/articles"
+							href="/resources/articles"
 							className="hover:text-blue-600"
 						>
 							Articles
@@ -131,7 +131,7 @@ export default function ArticlePostClient({ article }: ArticlePostClientProps) {
 						{article.tags.map(tag => (
 							<Link
 								key={tag.id}
-								href={`/articles?tag=${tag.slug}`}
+								href={`/resources/articles?tag=${tag.slug}`}
 							>
 								<Badge variant="secondary">{tag.name}</Badge>
 							</Link>
@@ -329,7 +329,7 @@ export default function ArticlePostClient({ article }: ArticlePostClientProps) {
 						asChild
 						variant="outline"
 					>
-						<Link href="/articles">Back to All Articles</Link>
+						<Link href="/resources/articles">Back to All Articles</Link>
 					</CustomButton>
 				</div>
 			</div>
