@@ -3,7 +3,7 @@ id: 'article-3'
 title: 'Local SEO Essentials for Home Service Businesses'
 slug: 'local-seo-essentials-home-service-businesses'
 excerpt: 'Discover how to optimize your online presence to dominate local search results and attract more customers in your service area.'
-featuredImage: '/placeholder.svg?height=600&width=1200'
+featuredImage: 'https://images.unsplash.com/photo-1562577309-2592ab84b1bc'
 author:
   id: '1'
   name: 'Marketing Expert'
