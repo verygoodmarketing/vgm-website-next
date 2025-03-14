@@ -41,17 +41,24 @@ export default function TemplatesPage() {
 
 							<div className="bg-white rounded-lg p-6 shadow-sm border border-blue-100 mb-8">
 								<h3 className="text-lg font-semibold mb-3">Get Notified When Templates Launch</h3>
-								<div className="flex flex-col sm:flex-row gap-3">
+								<form
+									method="post"
+									action="#"
+									className="flex flex-col sm:flex-row gap-3"
+								>
 									<input
 										type="email"
+										name="email"
 										placeholder="Your email address"
+										required
 										className="flex-grow px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
 									/>
-									<button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition-colors flex items-center justify-center">
-										<Mail className="mr-2 h-4 w-4" />
-										Subscribe
-									</button>
-								</div>
+									<input
+										type="submit"
+										value="Subscribe"
+										className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition-colors cursor-pointer"
+									/>
+								</form>
 							</div>
 
 							<div className="mt-8">

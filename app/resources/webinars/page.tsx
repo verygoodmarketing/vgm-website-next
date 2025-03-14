@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import Container from '@/components/shared/container'
 import PageHeader from '@/components/shared/page-header'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Video, Mail } from 'lucide-react'
 
 export const metadata: Metadata = {
 	title: 'Webinars & Events - Resources',
@@ -28,20 +28,48 @@ export default function WebinarsPage() {
 						</Link>
 					</div>
 
-					<div className="text-center py-16">
-						<h2 className="text-2xl font-bold mb-4">Coming Soon</h2>
-						<p className="text-gray-600 max-w-lg mx-auto">
-							We're currently planning our webinar schedule. Check back soon or subscribe to our newsletter to be
-							notified about upcoming events.
-						</p>
-						<div className="mt-8">
-							<p className="text-gray-600 mb-4">In the meantime, check out our articles:</p>
-							<Link
-								href="/resources/articles"
-								className="inline-flex items-center text-blue-600 hover:text-blue-800"
-							>
-								Browse Articles <ArrowRight className="ml-2 h-4 w-4" />
-							</Link>
+					<div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 md:p-12 shadow-sm border border-blue-100">
+						<div className="text-center max-w-2xl mx-auto">
+							<div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-6">
+								<Video className="h-8 w-8 text-blue-600" />
+							</div>
+							<h2 className="text-3xl font-bold text-gray-800 mb-4">Our Webinars Are Coming Soon</h2>
+							<p className="text-gray-600 text-lg mb-8">
+								We're planning an exciting schedule of live webinars and events to help you master marketing strategies.
+								Join us for expert discussions, Q&A sessions, and interactive workshops.
+							</p>
+
+							<div className="bg-white rounded-lg p-6 shadow-sm border border-blue-100 mb-8">
+								<h3 className="text-lg font-semibold mb-3">Get Notified About Upcoming Webinars</h3>
+								<form
+									method="post"
+									action="#"
+									className="flex flex-col sm:flex-row gap-3"
+								>
+									<input
+										type="email"
+										name="email"
+										placeholder="Your email address"
+										required
+										className="flex-grow px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+									/>
+									<input
+										type="submit"
+										value="Subscribe"
+										className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition-colors cursor-pointer"
+									/>
+								</form>
+							</div>
+
+							<div className="mt-8">
+								<h3 className="text-lg font-semibold mb-4">In the meantime, explore our articles:</h3>
+								<Link
+									href="/resources/articles"
+									className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg transition-colors"
+								>
+									Browse Articles <ArrowRight className="ml-2 h-4 w-4" />
+								</Link>
+							</div>
 						</div>
 					</div>
 				</Container>
