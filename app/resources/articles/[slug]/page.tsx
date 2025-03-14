@@ -3,15 +3,18 @@ import { notFound } from 'next/navigation'
 import { getArticleBySlug } from '@/lib/article-service'
 import ArticlePostClient from './article-post-client'
 
-interface ArticlePostPageProps {
-	params: {
+// Update the interface to be compatible with Next.js 15
+// In Next.js 15, params and searchParams need to be Promises
+type ArticlePostPageProps = {
+	params: Promise<{
 		slug: string
-	}
+	}>
+	searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export async function generateMetadata({ params }: ArticlePostPageProps): Promise<Metadata> {
 	// Ensure params is always treated as a Promise
-	const resolvedParams = await Promise.resolve(params)
+	const resolvedParams = await params
 	const slug = resolvedParams?.slug
 
 	if (!slug) {
@@ -62,7 +65,7 @@ export async function generateMetadata({ params }: ArticlePostPageProps): Promis
 
 export default async function ArticlePostPage({ params }: ArticlePostPageProps) {
 	// Ensure params is always treated as a Promise
-	const resolvedParams = await Promise.resolve(params)
+	const resolvedParams = await params
 	const slug = resolvedParams?.slug
 
 	if (!slug) {
