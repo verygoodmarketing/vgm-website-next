@@ -44,6 +44,7 @@ export default function WebinarsPage() {
 								<form
 									method="post"
 									action="#"
+									id="webinar-subscribe-form"
 									className="flex flex-col sm:flex-row gap-3"
 								>
 									<input

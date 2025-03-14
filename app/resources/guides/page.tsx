@@ -44,6 +44,7 @@ export default function GuidesPage() {
 								<form
 									method="post"
 									action="#"
+									id="guide-subscribe-form"
 									className="flex flex-col sm:flex-row gap-3"
 								>
 									<input

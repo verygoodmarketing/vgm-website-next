@@ -44,6 +44,7 @@ export default function TemplatesPage() {
 								<form
 									method="post"
 									action="#"
+									id="template-subscribe-form"
 									className="flex flex-col sm:flex-row gap-3"
 								>
 									<input
