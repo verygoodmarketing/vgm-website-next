@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import Container from '@/components/shared/container'
 import PageHeader from '@/components/shared/page-header'
-import { ArrowLeft, ArrowRight, Video, Mail } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Video, Mail, CheckCircle } from 'lucide-react'
 
 export const metadata: Metadata = {
 	title: 'Webinars & Events - Resources',
@@ -43,7 +43,7 @@ export default function WebinarsPage() {
 								<h3 className="text-lg font-semibold mb-3">Get Notified About Upcoming Webinars</h3>
 								<form
 									method="post"
-									action="#"
+									action="#webinar-success"
 									id="webinar-subscribe-form"
 									className="flex flex-col sm:flex-row gap-3"
 								>
@@ -60,6 +60,15 @@ export default function WebinarsPage() {
 										className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition-colors cursor-pointer"
 									/>
 								</form>
+
+								{/* Success notification - hidden by default, shown when targeted */}
+								<div
+									id="webinar-success"
+									className="hidden mt-4 p-3 bg-green-100 text-green-800 rounded-lg border border-green-200 items-center justify-center target:flex"
+								>
+									<CheckCircle className="h-5 w-5 mr-2" />
+									<span>Thank you! You've been successfully subscribed.</span>
+								</div>
 							</div>
 
 							<div className="mt-8">
