@@ -4,6 +4,7 @@ import ArticlesList from '@/components/article/articles-list'
 import CallToAction from '@/components/shared/call-to-action'
 import { getPublishedArticles, getAllTags } from '@/lib/article-service'
 import { Tag } from '@/types/article'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
 	title: 'Articles & Blog - Very Good Marketing',
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 export default async function ArticlesPage() {
 	const articles = await getPublishedArticles()
 	const allTags = await getAllTags()
+	const isDev = process.env.NODE_ENV === 'development'
 
 	// Create demo tags if no real tags exist
 	const demoTags: Tag[] =
@@ -89,6 +91,17 @@ export default async function ArticlesPage() {
 
 			<section className="py-12 md:py-20 bg-white">
 				<div className="container mx-auto px-4">
+					{isDev && (
+						<div className="mb-6 p-4 bg-blue-50 rounded-lg text-center">
+							<p className="text-blue-700 mb-2">Developer Mode: Articles are statically generated at build time.</p>
+							<Link
+								href="/resources/articles/client"
+								className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+							>
+								Switch to Client-Side Articles Page (with refresh)
+							</Link>
+						</div>
+					)}
 					<ArticlesList
 						articles={articlesList}
 						allTags={validatedTags}

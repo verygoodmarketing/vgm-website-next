@@ -79,6 +79,14 @@ async function saveArticleToFile(article: Article): Promise<void> {
 // Get all articles
 export async function getAllArticles(): Promise<Article[]> {
 	try {
+		// In development, add a timestamp parameter to bypass cache
+		const isDevelopment = process.env.NODE_ENV === 'development'
+
+		// Always reread files from disk in development
+		if (isDevelopment) {
+			console.log('Reading articles from disk - bypassing cache in development')
+		}
+
 		const filePaths = await getArticleFilePaths()
 		const articlePromises = filePaths.map(filePath => readArticleFromFile(filePath))
 		const articleResults = await Promise.all(articlePromises)

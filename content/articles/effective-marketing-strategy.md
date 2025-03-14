@@ -1,23 +1,23 @@
 ---
-id: "article-1"
-title: "How to Create an Effective Marketing Strategy on a Small Budget"
-slug: "effective-marketing-strategy-small-budget"
-excerpt: "Learn practical tips for maximizing your marketing impact without breaking the bank."
-featuredImage: "/placeholder.svg?height=600&width=1200"
+id: 'article-1'
+title: 'How to Create an Effective Marketing Strategy on a Small Budget'
+slug: 'effective-marketing-strategy-small-budget'
+excerpt: 'Learn practical tips for maximizing your marketing impact without breaking the bank.'
+featuredImage: '/placeholder.svg?height=600&width=1200'
 author:
-  id: "1"
-  name: "Marketing Expert"
-  avatar: "/placeholder.svg?height=100&width=100"
-  bio: "Marketing specialist with 10+ years of experience helping small businesses grow."
+  id: '1'
+  name: 'Marketing Expert'
+  avatar: '/placeholder.svg?height=100&width=100'
+  bio: 'Marketing specialist with 10+ years of experience helping small businesses grow.'
 tags:
-  - id: "1"
-    name: "Marketing"
-    slug: "marketing"
-  - id: "2"
-    name: "Small Business"
-    slug: "small-business"
-createdAt: "2024-03-01T12:00:00.000Z"
-updatedAt: "2024-03-01T12:00:00.000Z"
+  - id: '1'
+    name: 'Marketing'
+    slug: 'marketing'
+  - id: '2'
+    name: 'Small Business'
+    slug: 'small-business'
+createdAt: '2024-03-01T12:00:00.000Z'
+updatedAt: '2024-03-01T12:00:00.000Z'
 isPublished: true
 readingTime: 5
 ---
