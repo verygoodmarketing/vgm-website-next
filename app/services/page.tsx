@@ -6,6 +6,7 @@ import CustomButton from '@/components/shared/custom-button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Check } from 'lucide-react'
 import { getServicePricing, getBundlePricing } from '@/lib/pricing-service'
+import SectionScrollHandler from '@/components/services/section-scroll-handler'
 
 export const metadata: Metadata = {
 	title: 'Digital Marketing Services for Service Businesses',
@@ -25,6 +26,9 @@ export default function ServicesPage() {
 
 	return (
 		<div>
+			{/* Client-side scroll handler */}
+			<SectionScrollHandler />
+
 			<section className="py-16 md:py-24">
 				<Container>
 					<div className="max-w-3xl mx-auto text-center">
@@ -39,40 +43,48 @@ export default function ServicesPage() {
 
 			{/* Service Business Website Package */}
 			{websitePricing && (
-				<ServiceSection
-					pricing={websitePricing}
-					imagePath="/images/service-business-website.png"
-					imageAlt="Service business website example"
-				/>
+				<section id="website-creation">
+					<ServiceSection
+						pricing={websitePricing}
+						imagePath="/images/service-business-website.png"
+						imageAlt="Service business website example"
+					/>
+				</section>
 			)}
 
 			{/* Google Ads Management */}
 			{googleAdsPricing && (
-				<ServiceSection
-					pricing={googleAdsPricing}
-					imagePath="/images/google-image-search.png"
-					imageAlt="Google Ads Management"
-					reversed={true}
-				/>
+				<section id="google-ads">
+					<ServiceSection
+						pricing={googleAdsPricing}
+						imagePath="/images/google-image-search.png"
+						imageAlt="Google Ads Management"
+						reversed={true}
+					/>
+				</section>
 			)}
 
 			{/* Facebook & Instagram Ads */}
 			{socialAdsPricing && (
-				<ServiceSection
-					pricing={socialAdsPricing}
-					imagePath="/images/facebook-instagram.jpg"
-					imageAlt="Facebook and Instagram Advertising"
-				/>
+				<section id="social-ads">
+					<ServiceSection
+						pricing={socialAdsPricing}
+						imagePath="/images/facebook-instagram.jpg"
+						imageAlt="Facebook and Instagram Advertising"
+					/>
+				</section>
 			)}
 
 			{/* Social Media Marketing */}
 			{socialMediaPricing && (
-				<ServiceSection
-					pricing={socialMediaPricing}
-					imagePath="/images/social-media-marketing.jpg"
-					imageAlt="Social Media Marketing"
-					reversed={true}
-				/>
+				<section id="social-media">
+					<ServiceSection
+						pricing={socialMediaPricing}
+						imagePath="/images/social-media-marketing.jpg"
+						imageAlt="Social Media Marketing"
+						reversed={true}
+					/>
+				</section>
 			)}
 
 			{/* Bundle Packages */}
