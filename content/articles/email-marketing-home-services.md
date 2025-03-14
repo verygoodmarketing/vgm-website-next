@@ -23,6 +23,7 @@ createdAt: '2024-05-15T10:00:00.000Z'
 updatedAt: '2024-05-15T10:00:00.000Z'
 isPublished: true
 readingTime: 7
+featured: true
 ---
 
 # Email Marketing Strategies for Home Service Businesses

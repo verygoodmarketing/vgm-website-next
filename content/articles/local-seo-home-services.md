@@ -22,7 +22,8 @@ tags:
 createdAt: '2024-03-20T10:00:00.000Z'
 updatedAt: '2024-03-20T10:00:00.000Z'
 isPublished: true
-readingTime: 7
+readingTime: 8
+featured: true
 ---
 
 # Local SEO Essentials for Home Service Businesses

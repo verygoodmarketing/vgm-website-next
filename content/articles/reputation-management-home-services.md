@@ -22,7 +22,8 @@ tags:
 createdAt: '2024-05-12T10:00:00.000Z'
 updatedAt: '2024-05-12T10:00:00.000Z'
 isPublished: true
-readingTime: 7
+readingTime: 6
+featured: true
 ---
 
 # Reputation Management Essentials for Home Service Businesses

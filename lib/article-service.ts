@@ -51,6 +51,7 @@ async function readArticleFromFile(filePath: string): Promise<Article | null> {
 			updatedAt: data.updatedAt || new Date().toISOString(),
 			isPublished: data.isPublished !== false, // Default to true if not specified
 			readingTime: data.readingTime || calculateReadingTime(content),
+			featured: data.featured === true, // Add the featured property
 		}
 	} catch (error) {
 		console.error(`Error reading article from ${filePath}:`, error)
@@ -111,8 +112,9 @@ export async function getPublishedArticles(): Promise<Article[]> {
 // Get featured articles
 export async function getFeaturedArticles(limit: number = 3): Promise<Article[]> {
 	const articles = await getPublishedArticles()
+
 	return articles
-		.filter(article => article.featured)
+		.filter(article => article.featured === true) // Explicitly check for true
 		.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
 		.slice(0, limit)
 }

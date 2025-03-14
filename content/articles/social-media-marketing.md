@@ -20,6 +20,7 @@ createdAt: '2024-03-05T12:00:00.000Z'
 updatedAt: '2024-03-05T12:00:00.000Z'
 isPublished: true
 readingTime: 6
+featured: true
 ---
 
 # Social Media Marketing Strategies for Service Businesses
