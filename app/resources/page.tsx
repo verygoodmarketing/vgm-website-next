@@ -141,71 +141,77 @@ export default async function ResourcesPage() {
 				<Container>
 					<h2 className="text-3xl font-bold mb-8">Marketing Resources</h2>
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-						<div className="bg-white p-6 rounded-lg shadow-sm">
-							<div className="mb-4">
-								<Image
-									src="/placeholder.svg?height=200&width=300&text=Templates"
-									alt="Templates"
-									width={300}
-									height={200}
-									className="rounded-md"
-								/>
+						<Link
+							href="/resources/templates"
+							className="block group"
+						>
+							<div className="bg-white p-6 rounded-lg shadow-sm transition-shadow hover:shadow-md">
+								<div className="mb-4 flex justify-center">
+									<Image
+										src="/images/marketing-templates.jpg"
+										alt="Templates"
+										width={500}
+										height={200}
+										className="rounded-md"
+									/>
+								</div>
+								<h3 className="text-xl font-bold mb-2">Marketing Templates</h3>
+								<p className="text-gray-700 mb-4">
+									Download ready-to-use templates for marketing plans, content calendars, and more.
+								</p>
+								<div className="inline-flex items-center text-blue-700 font-medium group-hover:text-blue-800 transition-colors">
+									Browse Templates <ArrowRight className="ml-2 h-4 w-4" />
+								</div>
 							</div>
-							<h3 className="text-xl font-bold mb-2">Marketing Templates</h3>
-							<p className="text-gray-700 mb-4">
-								Download ready-to-use templates for marketing plans, content calendars, and more.
-							</p>
-							<Link
-								href="/resources/templates"
-								className="inline-flex items-center text-blue-700 font-medium hover:text-blue-800 transition-colors"
-							>
-								Browse Templates <ArrowRight className="ml-2 h-4 w-4" />
-							</Link>
-						</div>
+						</Link>
 
-						<div className="bg-white p-6 rounded-lg shadow-sm">
-							<div className="mb-4">
-								<Image
-									src="/placeholder.svg?height=200&width=300&text=Guides"
-									alt="Guides"
-									width={300}
-									height={200}
-									className="rounded-md"
-								/>
+						<Link
+							href="/resources/guides"
+							className="block group"
+						>
+							<div className="bg-white p-6 rounded-lg shadow-sm transition-shadow hover:shadow-md">
+								<div className="mb-4 flex justify-center">
+									<Image
+										src="/images/marketing-guides.png"
+										alt="Guides"
+										width={500}
+										height={200}
+										className="rounded-md"
+									/>
+								</div>
+								<h3 className="text-xl font-bold mb-2">Marketing Guides</h3>
+								<p className="text-gray-700 mb-4">
+									Step-by-step guides to help you implement effective marketing strategies for your business.
+								</p>
+								<div className="inline-flex items-center text-blue-700 font-medium group-hover:text-blue-800 transition-colors">
+									View Guides <ArrowRight className="ml-2 h-4 w-4" />
+								</div>
 							</div>
-							<h3 className="text-xl font-bold mb-2">Marketing Guides</h3>
-							<p className="text-gray-700 mb-4">
-								Step-by-step guides to help you implement effective marketing strategies for your business.
-							</p>
-							<Link
-								href="/resources/guides"
-								className="inline-flex items-center text-blue-700 font-medium hover:text-blue-800 transition-colors"
-							>
-								View Guides <ArrowRight className="ml-2 h-4 w-4" />
-							</Link>
-						</div>
+						</Link>
 
-						<div className="bg-white p-6 rounded-lg shadow-sm">
-							<div className="mb-4">
-								<Image
-									src="/placeholder.svg?height=200&width=300&text=Webinars"
-									alt="Webinars"
-									width={300}
-									height={200}
-									className="rounded-md"
-								/>
+						<Link
+							href="/resources/webinars"
+							className="block group"
+						>
+							<div className="bg-white p-6 rounded-lg shadow-sm transition-shadow hover:shadow-md">
+								<div className="mb-4 flex justify-center">
+									<Image
+										src="/images/webinars-events.jpg"
+										alt="Webinars"
+										width={500}
+										height={200}
+										className="rounded-md"
+									/>
+								</div>
+								<h3 className="text-xl font-bold mb-2">Webinars & Events</h3>
+								<p className="text-gray-700 mb-4">
+									Join our upcoming webinars or watch recordings of past events on marketing topics.
+								</p>
+								<div className="inline-flex items-center text-blue-700 font-medium group-hover:text-blue-800 transition-colors">
+									See Schedule <ArrowRight className="ml-2 h-4 w-4" />
+								</div>
 							</div>
-							<h3 className="text-xl font-bold mb-2">Webinars & Events</h3>
-							<p className="text-gray-700 mb-4">
-								Join our upcoming webinars or watch recordings of past events on marketing topics.
-							</p>
-							<Link
-								href="/resources/webinars"
-								className="inline-flex items-center text-blue-700 font-medium hover:text-blue-800 transition-colors"
-							>
-								See Schedule <ArrowRight className="ml-2 h-4 w-4" />
-							</Link>
-						</div>
+						</Link>
 					</div>
 				</Container>
 			</section>
