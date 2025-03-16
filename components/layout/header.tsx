@@ -129,6 +129,10 @@ export default function Header() {
 								width={200}
 								height={40}
 								priority={true}
+								style={{
+									width: '200px', // If you change width with CSS
+									height: 'auto', // Set height to auto to maintain aspect ratio
+								}}
 							/>
 						</Link>
 					</div>
@@ -214,8 +218,10 @@ export default function Header() {
 							alt="Very Good Marketing"
 							width={120}
 							height={24}
-							className="h-6 w-auto"
-							priority={true}
+							style={{
+								width: '120px', // If you change width with CSS
+								height: 'auto', // Set height to auto to maintain aspect ratio
+							}}
 						/>
 					</div>
 

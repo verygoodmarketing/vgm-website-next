@@ -16,8 +16,8 @@ export default function AboutPage() {
 	return (
 		<div>
 			<PageHeader
-				title="About"
-				description="Specialized marketing services for small service businesses, with websites as the foundation."
+				title="About Very Good Marketing"
+				description="Founded in 2022 to help home service businesses grow without overpaying for marketing. Transparency and results are our promise."
 			/>
 
 			<section className="py-16 md:py-24">
@@ -30,7 +30,9 @@ export default function AboutPage() {
 								with professional websites as the foundation of all marketing strategies.
 							</p>
 							<p className="text-xl text-gray-600 mb-6">
-								Unlike generic marketers or web designers, we create comprehensive marketing solutions tailored specifically to generate leads for service businesses. Every effective marketing strategy starts with a website that:
+								Unlike generic marketers or web designers, we create comprehensive marketing solutions tailored
+								specifically to generate leads for service businesses. Every effective marketing strategy starts with a
+								website that:
 							</p>
 							<ul className="space-y-4 mb-6">
 								<li className="flex items-start">
@@ -59,13 +61,16 @@ export default function AboutPage() {
 								</li>
 							</ul>
 							<p className="text-xl text-gray-600">
-								We've helped many service businesses get more customers with effective marketing strategies built on professional websites that actually work.
+								We've helped many service businesses get more customers with effective marketing strategies built on
+								professional websites that actually work.
 							</p>
 						</div>
 						<div className="relative h-[500px] rounded-lg overflow-hidden">
 							<Image
 								src="/images/service-business-marketing.jpg"
 								alt="Small service business marketing"
+								priority={true}
+								sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 								fill
 								className="object-cover"
 							/>
@@ -181,7 +186,8 @@ export default function AboutPage() {
 										<Check className="h-4 w-4 text-blue-600" />
 									</div>
 									<span className="text-gray-700">
-										We provide personal service and focused attention, not a cookie-cutter approach where you're just another client
+										We provide personal service and focused attention, not a cookie-cutter approach where you're just
+										another client
 									</span>
 								</li>
 								<li className="flex items-start">
@@ -194,7 +200,8 @@ export default function AboutPage() {
 								</li>
 							</ul>
 							<p className="text-lg text-gray-600">
-								This specialized approach allows us to create marketing strategies that truly understand the needs of your customers and effectively convert them into leads for your business.
+								This specialized approach allows us to create marketing strategies that truly understand the needs of
+								your customers and effectively convert them into leads for your business.
 							</p>
 						</div>
 						<div className="relative h-[400px] rounded-lg overflow-hidden order-1 lg:order-2">
@@ -220,19 +227,25 @@ export default function AboutPage() {
 
 					<div className="bg-white p-8 rounded-lg shadow-md max-w-3xl mx-auto">
 						<p className="text-lg text-gray-700 mb-6">
-							We've chosen to focus exclusively on small service businesses because we believe they're the backbone of local communities and deserve marketing that actually works for their unique needs.
+							We've chosen to focus exclusively on small service businesses because we believe they're the backbone of
+							local communities and deserve marketing that actually works for their unique needs.
 						</p>
-						
+
 						<p className="text-lg text-gray-700 mb-6">
-							Many small service businesses struggle with marketing because most agencies either charge too much or use cookie-cutter approaches that don't address the specific challenges of service-based companies.
+							Many small service businesses struggle with marketing because most agencies either charge too much or use
+							cookie-cutter approaches that don't address the specific challenges of service-based companies.
 						</p>
-						
+
 						<p className="text-lg text-gray-700 mb-6">
-							By specializing in this niche, we've developed proven strategies that help service businesses like yours connect with ideal customers who need your services right now - starting with a professional website that serves as the foundation for all your marketing efforts.
+							By specializing in this niche, we've developed proven strategies that help service businesses like yours
+							connect with ideal customers who need your services right now - starting with a professional website that
+							serves as the foundation for all your marketing efforts.
 						</p>
-						
+
 						<p className="text-lg text-gray-700">
-							Whether you're a cleaning company, landscaper, home service provider, or other local service business, our approach focuses on practical, results-driven marketing that generates real leads instead of just looking pretty.
+							Whether you're a cleaning company, landscaper, home service provider, or other local service business, our
+							approach focuses on practical, results-driven marketing that generates real leads instead of just looking
+							pretty.
 						</p>
 					</div>
 				</Container>

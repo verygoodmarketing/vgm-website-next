@@ -69,7 +69,7 @@ export default function ServicesPage() {
 				<section id="social-ads">
 					<ServiceSection
 						pricing={socialAdsPricing}
-						imagePath="/images/facebook-instagram.jpg"
+						imagePath="/images/facebook-instagram-ads.png"
 						imageAlt="Facebook and Instagram Advertising"
 					/>
 				</section>
