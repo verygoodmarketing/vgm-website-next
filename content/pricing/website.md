@@ -13,7 +13,7 @@ features:
     description: Built-in SEO features to help you rank in local searches for your services.
   - title: Mobile-Friendly Design
     description: Looks perfect on all devices, especially smartphones where most customers will find you.
-note: Includes hosting, security updates, and regular backups
+note: Includes hosting, security updates, and regular backups. An annual maintenance fee of $300 will be charged every 12 months.
 ctaText: Get Started
 ctaUrl: /contact?service=website
 ---
