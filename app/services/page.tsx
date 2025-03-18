@@ -88,7 +88,10 @@ export default function ServicesPage() {
 			)}
 
 			{/* Bundle Packages */}
-			<section className="py-16 bg-gray-50">
+			<section
+				id="bundle-packages"
+				className="py-16 bg-gray-50"
+			>
 				<Container>
 					<div className="text-center mb-12">
 						<h2 className="text-3xl md:text-4xl font-bold mb-4">Save With Our Digital Marketing Bundles</h2>
