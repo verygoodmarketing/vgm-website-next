@@ -1,6 +1,6 @@
 'use client'
 
-import { type ReactNode, createContext, useContext, useEffect, useState } from 'react'
+import { type ReactNode, createContext, useContext, useEffect, useState, useCallback } from 'react'
 import { usePathname } from 'next/navigation'
 
 interface TransitionContextType {
@@ -18,14 +18,27 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
 	const [prevPathname, setPrevPathname] = useState(pathname)
 	const [isTransitioning, setIsTransitioning] = useState(false)
 
+	// Memoize scroll restoration function to prevent unnecessary recreations
+	const scrollToTop = useCallback(() => {
+		if (typeof window !== 'undefined') {
+			// Use requestAnimationFrame to ensure the scroll happens in the next paint
+			window.requestAnimationFrame(() => {
+				window.scrollTo({
+					top: 0,
+					behavior: 'instant', // Use instant instead of smooth to prevent animation jank
+				})
+			})
+		}
+	}, [])
+
 	useEffect(() => {
 		// Only trigger transition when pathname actually changes
 		if (pathname !== prevPathname) {
 			// Start transition
 			setIsTransitioning(true)
 
-			// Scroll to top immediately when route changes
-			window.scrollTo(0, 0)
+			// Scroll to top using the optimized function
+			scrollToTop()
 
 			// After a short delay, update the previous pathname
 			const timer = setTimeout(() => {
@@ -39,7 +52,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
 
 			return () => clearTimeout(timer)
 		}
-	}, [pathname, prevPathname])
+	}, [pathname, prevPathname, scrollToTop])
 
 	return (
 		<TransitionContext.Provider value={{ isTransitioning }}>

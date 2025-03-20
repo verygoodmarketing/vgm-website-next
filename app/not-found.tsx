@@ -71,6 +71,7 @@ export default function NotFound() {
 							src="/images/404-illustration.svg"
 							alt="404 Illustration"
 							fill
+							sizes="100vw"
 							priority
 							className="object-contain"
 							onError={e => {

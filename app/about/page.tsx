@@ -209,6 +209,7 @@ export default function AboutPage() {
 								src="/images/service-business.jpg"
 								alt="Service businesses"
 								fill
+								sizes="100vw"
 								className="object-cover"
 							/>
 						</div>

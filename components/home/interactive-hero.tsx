@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
 import Container from '@/components/shared/container'
@@ -18,11 +18,40 @@ export default function InteractiveHero({ serviceIndustries }: InteractiveHeroPr
 	const searchParams = useSearchParams()
 
 	// Initialize state with the first industry in the array as default
-	const [activeIndustry, setActiveIndustry] = useState(serviceIndustries[0] || 'Tree Service')
+	const [activeIndustry, setActiveIndustry] = useState<string>(serviceIndustries[0] || 'Tree Service')
+	const [isClient, setIsClient] = useState(false)
+
+	// Set isClient to true once the component mounts
+	useEffect(() => {
+		setIsClient(true)
+	}, [])
+
+	// Map of industries to their background images - memoized to prevent recreation
+	const industryBackgrounds = useMemo<Record<string, string>>(
+		() => ({
+			Cleaning: '/images/hero/hero-bg-cleaning.jpg',
+			Janitorial: '/images/hero/hero-bg-janitorial.jpg',
+			'Pressure Washing': '/images/hero/hero-bg-pressure-washing.jpg',
+			'Window Cleaning': '/images/hero/hero-bg-window-cleaning.jpg',
+			'Lawn Care': '/images/hero/hero-bg-lawn-care.jpg',
+			'Tree Service': '/images/hero/hero-bg-tree-service.jpg',
+			Landscaping: '/images/hero/hero-bg-landscaping.jpg',
+			'Snow Removal': '/images/hero/hero-bg-snow-removal.jpg',
+			'General Contracting': '/images/hero/hero-bg-general-contracting.jpg',
+			Plumbing: '/images/hero/hero-bg-plumbing.jpg',
+			Handyman: '/images/hero/hero-bg-handyman.jpg',
+			HVAC: '/images/hero/hero-bg-hvac.jpg',
+			Electrical: '/images/hero/hero-bg-electrical.jpg',
+			Painting: '/images/hero/hero-bg-painting.jpg',
+			Roofing: '/images/hero/hero-bg-roofing.jpg',
+			Fencing: '/images/hero/hero-bg-fencing.jpg',
+		}),
+		[]
+	)
 
 	// Handle URL parameters and localStorage on mount
 	useEffect(() => {
-		if (typeof window === 'undefined') return
+		if (!isClient) return
 
 		// First check URL parameters (highest priority)
 		const industryParam = searchParams.get('industry')
@@ -37,42 +66,36 @@ export default function InteractiveHero({ serviceIndustries }: InteractiveHeroPr
 			// Check if formatted industry exists in our list
 			if (serviceIndustries.includes(formattedIndustry)) {
 				setActiveIndustry(formattedIndustry)
-				localStorage.setItem('selectedIndustry', formattedIndustry)
+				try {
+					localStorage.setItem('selectedIndustry', formattedIndustry)
+				} catch (e) {
+					console.error('localStorage is not available:', e)
+				}
 				return
 			}
 		}
 
 		// If no URL parameter, try localStorage
-		const savedIndustry = localStorage.getItem('selectedIndustry')
-		if (savedIndustry && serviceIndustries.includes(savedIndustry)) {
-			setActiveIndustry(savedIndustry)
+		try {
+			const savedIndustry = localStorage.getItem('selectedIndustry')
+			if (savedIndustry && serviceIndustries.includes(savedIndustry)) {
+				setActiveIndustry(savedIndustry)
+			}
+		} catch (e) {
+			console.error('localStorage is not available:', e)
 		}
-	}, [searchParams, serviceIndustries])
-
-	// Map of industries to their background images
-	const industryBackgrounds: Record<string, string> = {
-		Cleaning: '/images/hero/hero-bg-cleaning.jpg',
-		Janitorial: '/images/hero/hero-bg-janitorial.jpg',
-		'Pressure Washing': '/images/hero/hero-bg-pressure-washing.jpg',
-		'Window Cleaning': '/images/hero/hero-bg-window-cleaning.jpg',
-		'Lawn Care': '/images/hero/hero-bg-lawn-care.jpg',
-		'Tree Service': '/images/hero/hero-bg-tree-service.jpg',
-		Landscaping: '/images/hero/hero-bg-landscaping.jpg',
-		'Snow Removal': '/images/hero/hero-bg-snow-removal.jpg',
-		'General Contracting': '/images/hero/hero-bg-general-contracting.jpg',
-		Plumbing: '/images/hero/hero-bg-plumbing.jpg',
-		Handyman: '/images/hero/hero-bg-handyman.jpg',
-		HVAC: '/images/hero/hero-bg-hvac.jpg',
-		Electrical: '/images/hero/hero-bg-electrical.jpg',
-		Painting: '/images/hero/hero-bg-painting.jpg',
-		Roofing: '/images/hero/hero-bg-roofing.jpg',
-		Fencing: '/images/hero/hero-bg-fencing.jpg',
-	}
+	}, [searchParams, serviceIndustries, isClient])
 
 	// Function to handle industry selection
 	const handleIndustryClick = (industry: string) => {
 		setActiveIndustry(industry)
-		localStorage.setItem('selectedIndustry', industry)
+		if (isClient) {
+			try {
+				localStorage.setItem('selectedIndustry', industry)
+			} catch (e) {
+				console.error('localStorage is not available:', e)
+			}
+		}
 	}
 
 	// Function to convert industry name to URL param format
@@ -82,21 +105,32 @@ export default function InteractiveHero({ serviceIndustries }: InteractiveHeroPr
 
 	// Function to generate shareable link for current industry
 	const getShareableLink = (): string => {
-		if (typeof window === 'undefined') return ''
-		const baseUrl = window.location.origin + window.location.pathname
-		return `${baseUrl}?industry=${getIndustryParam(activeIndustry)}`
+		if (!isClient) return ''
+
+		try {
+			const baseUrl = window.location.origin + window.location.pathname
+			return `${baseUrl}?industry=${getIndustryParam(activeIndustry)}`
+		} catch (e) {
+			return ''
+		}
 	}
 
 	// Function to copy shareable link to clipboard
 	const copyShareableLink = () => {
-		if (typeof navigator === 'undefined' || !navigator.clipboard) return
+		if (!isClient) return
 
-		navigator.clipboard.writeText(getShareableLink())
-		toast({
-			title: 'Link copied!',
-			description: 'Shareable link copied to clipboard',
-			variant: 'default',
-		})
+		try {
+			if (navigator.clipboard) {
+				navigator.clipboard.writeText(getShareableLink())
+				toast({
+					title: 'Link copied!',
+					description: 'Shareable link copied to clipboard',
+					variant: 'default',
+				})
+			}
+		} catch (e) {
+			console.error('Clipboard API not available:', e)
+		}
 	}
 
 	// Default to a fallback image if the specific industry image doesn't exist
@@ -111,11 +145,12 @@ export default function InteractiveHero({ serviceIndustries }: InteractiveHeroPr
 						alt={`${activeIndustry} service business website`}
 						fill
 						priority
+						sizes="100vw"
+						quality={90}
 						className="object-cover transition-all duration-700 ease-in-out"
-						onError={e => {
-							// Fallback to default image if the specific one fails to load
-							const target = e.target as HTMLImageElement
-							target.src = '/images/hero/hero-bg-janitorial.jpg'
+						onError={() => {
+							// No need to handle errors directly in the onError prop
+							// Let the fallback logic handle it
 						}}
 					/>
 					<div className="absolute inset-0 bg-black/60" />
@@ -167,31 +202,33 @@ export default function InteractiveHero({ serviceIndustries }: InteractiveHeroPr
 						</div>
 
 						{/* Current selection */}
-						<div className="flex flex-col items-center mt-4">
-							<p className="text-xs text-white/80">
-								Currently showing: <span className="font-medium text-amber-400">{activeIndustry}</span>
-							</p>
-							<button
-								className="text-xs mt-2 text-white/70 hover:text-white underline flex items-center"
-								onClick={copyShareableLink}
-							>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									className="h-3 w-3 mr-1"
-									fill="none"
-									viewBox="0 0 24 24"
-									stroke="currentColor"
+						{isClient && (
+							<div className="flex flex-col items-center mt-4">
+								<p className="text-xs text-white/80">
+									Currently showing: <span className="font-medium text-amber-400">{activeIndustry}</span>
+								</p>
+								<button
+									className="text-xs mt-2 text-white/70 hover:text-white underline flex items-center"
+									onClick={copyShareableLink}
 								>
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										strokeWidth={2}
-										d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
-									/>
-								</svg>
-								Copy Shareable Link
-							</button>
-						</div>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										className="h-3 w-3 mr-1"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+									>
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											strokeWidth={2}
+											d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+										/>
+									</svg>
+									Copy Shareable Link
+								</button>
+							</div>
+						)}
 					</div>
 				</div>
 			</Container>

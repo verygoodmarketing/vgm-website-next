@@ -2,20 +2,20 @@
 const nextConfig = {
 	reactStrictMode: true,
 	images: {
+		domains: ['verygoodmarketing.com'],
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: '**',
+				hostname: 'images.unsplash.com',
 			},
 			{
 				protocol: 'https',
 				hostname: 'unsplash.com',
 			},
-			{
-				protocol: 'https',
-				hostname: 'images.unsplash.com',
-			},
 		],
+		deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+		imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+		formats: ['image/avif', 'image/webp'],
 	},
 	async redirects() {
 		return [
@@ -30,6 +30,11 @@ const nextConfig = {
 				permanent: true,
 			},
 		]
+	},
+	// Enable static optimization where possible
+	swcMinify: true,
+	compiler: {
+		removeConsole: process.env.NODE_ENV === 'production',
 	},
 }
 

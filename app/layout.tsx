@@ -12,7 +12,7 @@ import HubspotScript from '@/components/hubspot-script'
 import FacebookPixel from '@/components/facebook-pixel'
 import GoogleAnalytics from '@/components/google-analytics'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'], display: 'swap' })
 
 export const metadata: Metadata = {
 	metadataBase: new URL('https://verygoodmarketing.com'),
@@ -60,6 +60,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			className="scroll-smooth"
 			suppressHydrationWarning
 		>
+			<head>
+				<link
+					rel="preconnect"
+					href="https://fonts.gstatic.com"
+					crossOrigin="anonymous"
+				/>
+			</head>
 			<body
 				className={inter.className}
 				suppressHydrationWarning
@@ -82,5 +89,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		</html>
 	)
 }
-
-import './globals.css'

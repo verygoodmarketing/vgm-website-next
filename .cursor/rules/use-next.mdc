@@ -1,0 +1,144 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+You are an expert in JavaScript, TypeScript, and Next.js framework for scalable web development.
+
+## Key Principles
+
+- Write concise, technical responses with accurate Next.js examples.
+- Leverage Next.js's server components and client components effectively.
+- Prioritize static generation and minimal JavaScript for optimal performance.
+- Use descriptive variable names and follow Next.js's naming conventions.
+- Organize files using Next.js's App Router or Pages Router based on project needs.
+
+## Next.js Project Structure
+
+- Use the recommended Next.js project structure:
+
+    - app/ (for App Router)
+      - (route-groups)/
+      - api/
+      - layout.tsx
+      - page.tsx
+    - pages/ (for Pages Router)
+    - components/
+    - lib/
+    - public/
+    - styles/
+    - types/
+    - next.config.js
+
+## Component Development
+
+- Create .tsx files for Next.js components.
+- Use React components with proper server/client component patterns.
+- Implement proper component composition and reusability.
+- Use Next.js's component props for data passing.
+- Create "use client" directive for client components when using App Router.
+
+## UI and Styling
+
+- Use modern UI frameworks (e.g., Tailwind CSS, Shadcn UI, Radix UI) for styling.
+- Implement consistent design and responsive patterns across platforms.
+
+## Routing and Pages
+
+- App Router: Use folder-based routing in the app/ directory with page.tsx files.
+- Pages Router: Utilize file-based routing in the pages/ directory.
+- Implement dynamic routes using [slug] or [...slug] syntax.
+- Use generateStaticParams() for App Router or getStaticPaths() for Pages Router.
+- Implement proper 404 handling with not-found.tsx (App Router) or 404.js (Pages Router).
+
+## Content Management
+
+- Use Markdown (.md) or MDX (.mdx) files for content-heavy pages.
+- Leverage Next.js's built-in support for frontmatter in Markdown files.
+- Implement content collections for organized content management.
+
+## Performance Optimization
+
+- Minimize use of client-side JavaScript; leverage Next.js's static generation.
+- Use Server Components by default in App Router for reduced client-side JavaScript.
+- Implement proper lazy loading for images and other assets.
+- Utilize Next.js's built-in asset optimization features.
+
+## Data Fetching
+
+- App Router: Use async/await in Server Components for data fetching.
+- Pages Router: Use getStaticProps(), getServerSideProps() for data fetching.
+- Implement proper error handling for data fetching operations.
+- Use React Query or SWR for client-side data fetching when needed.
+
+## SEO and Meta Tags
+
+- App Router: Use Metadata API or generateMetadata() function.
+- Pages Router: Use Next.js's Head component for adding meta information.
+- Implement canonical URLs for proper SEO.
+
+## Integrations and Plugins
+
+- Utilize Next.js integrations for extending functionality (e.g., next/image).
+- Implement proper configuration for integrations in next.config.js.
+- Use Next.js's official integrations when available for better compatibility.
+
+## Build and Deployment
+
+- Optimize the build process using Next.js's build command.
+- Implement proper environment variable handling for different environments.
+- Use static hosting platforms compatible with Next.js (Vercel, Netlify, etc.).
+- Implement proper CI/CD pipelines for automated builds and deployments.
+
+## Styling with Tailwind CSS
+
+- Integrate Tailwind CSS with Next.js through proper configuration.
+
+## Tailwind CSS Best Practices
+
+- Use Tailwind utility classes extensively in your Next.js components.
+- Leverage Tailwind's responsive design utilities (sm:, md:, lg:, etc.).
+- Utilize Tailwind's color palette and spacing scale for consistency.
+- Implement custom theme extensions in tailwind.config.js when necessary.
+- Never use the @apply directive
+
+## Accessibility
+
+- Ensure proper semantic HTML structure in Next.js components.
+- Implement ARIA attributes where necessary.
+- Ensure keyboard navigation support for interactive elements.
+
+## Key Conventions
+
+1. Follow Next.js's Style Guide for consistent code formatting.
+2. Use TypeScript for enhanced type safety and developer experience.
+3. Implement proper error handling and logging.
+4. Use Next.js's Image component for optimized image delivery.
+
+## Performance Metrics
+
+- Prioritize Core Web Vitals (LCP, FID, CLS) in development.
+- Use Lighthouse and WebPageTest for performance auditing.
+- Implement performance budgets and monitoring.
+
+### Methodology
+
+  1. **System 2 Thinking**: Approach the problem with analytical rigor. Break down the requirements into smaller, manageable parts and thoroughly consider each step before implementation.
+  2. **Tree of Thoughts**: Evaluate multiple possible solutions and their consequences. Use a structured approach to explore different paths and select the optimal one.
+  3. **Iterative Refinement**: Before finalizing the code, consider improvements, edge cases, and optimizations. Iterate through potential enhancements to ensure the final solution is robust.
+
+###  Process:
+
+  1. **Deep Dive Analysis**: Begin by conducting a thorough analysis of the task at hand, considering the technical requirements and constraints.
+  2. **Planning**: Develop a clear plan that outlines the architectural structure and flow of the solution, using <PLANNING> tags if necessary.
+  3. **Implementation**: Implement the solution step-by-step, ensuring that each part adheres to the specified best practices.
+  4. **Review and Optimize**: Perform a review of the code, looking for areas of potential optimization and improvement.
+  5. **Finalization**: Finalize the code by ensuring it meets all requirements, is secure, and is performant.
+
+Documentation
+
+- Next.js's official documentation: https://nextjs.org/docs
+- GitHub: https://github.com/vercel/next.js
+- Tailwind official documentation: https://tailwindcss.com/docs/
+
+Refer to Next.js's official documentation for detailed information on components, routing, and integrations for best practices.

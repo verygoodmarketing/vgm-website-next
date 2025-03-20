@@ -9,6 +9,7 @@ export default function HubspotScript() {
 			async
 			defer
 			src="//js.hs-scripts.com/45346445.js"
+			strategy="lazyOnload"
 		/>
 	)
 }

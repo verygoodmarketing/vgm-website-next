@@ -75,6 +75,7 @@ export default async function SuccessStoriesPage() {
 												src={testimonial.image || '/placeholder.svg'}
 												alt={testimonial.author}
 												fill
+												sizes="48px"
 												className="object-cover"
 											/>
 										</div>
@@ -127,6 +128,7 @@ export default async function SuccessStoriesPage() {
 													src={testimonial.image || '/placeholder.svg'}
 													alt={testimonial.author}
 													fill
+													sizes="48px"
 													className="object-cover"
 												/>
 											</div>

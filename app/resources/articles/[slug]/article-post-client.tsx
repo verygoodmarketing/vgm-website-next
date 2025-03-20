@@ -237,6 +237,7 @@ export default function ArticlePostClient({ article: initialArticle }: ArticlePo
 									src={article.featuredImage || '/placeholder.svg'}
 									alt={article.title}
 									fill
+									sizes="100vw"
 									className="object-cover"
 									priority
 								/>
