@@ -167,7 +167,7 @@ export default function Header() {
 						ref={menuButtonRef}
 						type="button"
 						onClick={openMenu}
-						className="absolute top-6 right-6 rounded-full p-2 text-gray-700 hover:bg-gray-100 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 md:hidden z-50"
+						className="absolute top-6 right-2 rounded-full p-2 text-gray-700 hover:bg-gray-100 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 md:hidden z-50"
 						aria-expanded={menuVisible}
 						aria-label="Open main menu"
 					>
