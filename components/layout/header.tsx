@@ -57,9 +57,6 @@ export default function Header() {
 				setAnimationState('open')
 			}, 500) // Match this with the CSS animation duration
 		})
-
-		// Lock body scroll
-		document.body.style.overflow = 'hidden'
 	}, [clearAnimationTimeout])
 
 	const closeMenu = useCallback(() => {
@@ -73,10 +70,42 @@ export default function Header() {
 		animationTimeoutRef.current = setTimeout(() => {
 			setMenuVisible(false)
 			setAnimationState('idle')
-			// Restore body scroll
-			document.body.style.overflow = ''
 		}, 500) // Match this with the CSS animation duration
 	}, [clearAnimationTimeout])
+
+	// Handle body scroll lock
+	useEffect(() => {
+		if (menuVisible) {
+			// Save the current scroll position
+			const scrollY = window.scrollY
+			
+			// Add styles to prevent scrolling while maintaining position
+			document.body.style.position = 'fixed'
+			document.body.style.top = `-${scrollY}px`
+			document.body.style.width = '100%'
+			document.body.style.overflow = 'hidden'
+		} else {
+			// Restore scrolling and position
+			const scrollY = document.body.style.top
+			document.body.style.position = ''
+			document.body.style.top = ''
+			document.body.style.width = ''
+			document.body.style.overflow = ''
+			
+			// Restore scroll position
+			if (scrollY) {
+				window.scrollTo(0, parseInt(scrollY || '0', 10) * -1)
+			}
+		}
+		
+		// Cleanup function
+		return () => {
+			document.body.style.position = ''
+			document.body.style.top = ''
+			document.body.style.width = ''
+			document.body.style.overflow = ''
+		}
+	}, [menuVisible])
 
 	// Handle escape key to close menu
 	useEffect(() => {
@@ -91,17 +120,8 @@ export default function Header() {
 		return () => {
 			window.removeEventListener('keydown', handleEscKey)
 			clearAnimationTimeout()
-			// Ensure body scroll is restored when component unmounts
-			document.body.style.overflow = ''
 		}
 	}, [menuVisible, closeMenu, clearAnimationTimeout])
-
-	// Cleanup on unmount
-	useEffect(() => {
-		return () => {
-			clearAnimationTimeout()
-		}
-	}, [clearAnimationTimeout])
 
 	// Calculate animation origin position
 	const getAnimationOrigin = () => {
@@ -211,21 +231,21 @@ export default function Header() {
 					</button>
 
 					{/* Logo at top - centered, larger, without icon */}
-					<div className="absolute top-6 left-0 right-0 flex justify-center">
+					<div className="absolute top-[74px] left-0 right-0 flex justify-center">
 						<Image
 							src="/vg-horizontal-blue.png"
 							alt="Very Good Marketing"
-							width={180}
-							height={36}
+							width={280}
+							height={56}
 							style={{
-								width: '180px', // Increased size from 120px to 180px
+								width: '280px', // Increased size from 180px to 280px
 								height: 'auto', // Set height to auto to maintain aspect ratio
 							}}
 						/>
 					</div>
 
 					{/* Centered navigation */}
-					<nav className="flex flex-col items-center justify-center space-y-6 px-4 text-center mt-16">
+					<nav className="flex flex-col items-center justify-center space-y-6 px-4 text-center mt-32">
 						{navigation.map(item => (
 							<Link
 								key={item.name}
