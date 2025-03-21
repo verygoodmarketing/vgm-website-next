@@ -3,7 +3,7 @@ id: 'article-8'
 title: 'Email Marketing Strategies for Home Service Businesses'
 slug: 'email-marketing-strategies-home-service-businesses'
 excerpt: 'Learn how to create effective email marketing campaigns that generate repeat business and referrals for your home service company.'
-featuredImage: 'https://images.unsplash.com/photo-1596526131083-e8c633c948d2'
+featuredImage: '/images/articles/tree-service.jpg'
 author:
   id: '1'
   name: 'Marketing Expert'

@@ -3,7 +3,7 @@ id: 'article-2'
 title: 'Social Media Marketing Strategies for Service Businesses'
 slug: 'social-media-marketing-strategies-service-businesses'
 excerpt: 'Discover effective ways to leverage social media to attract more customers to your service business.'
-featuredImage: 'https://images.unsplash.com/photo-1683721003111-070bcc053d8b'
+featuredImage: '/images/articles/roofing.jpg'
 author:
   id: '1'
   name: 'Marketing Expert'

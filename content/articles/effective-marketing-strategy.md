@@ -3,7 +3,7 @@ id: 'article-1'
 title: 'How to Create an Effective Marketing Strategy on a Small Budget'
 slug: 'effective-marketing-strategy-small-budget'
 excerpt: 'Learn practical tips for maximizing your marketing impact without breaking the bank.'
-featuredImage: 'https://images.unsplash.com/photo-1614267118722-4b794b7876ed'
+featuredImage: '/images/articles/fencing.jpg'
 author:
   id: '1'
   name: 'Marketing Expert'

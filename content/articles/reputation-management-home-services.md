@@ -3,7 +3,7 @@ id: 'article-5'
 title: 'Reputation Management Essentials for Home Service Businesses'
 slug: 'reputation-management-essentials-home-service-businesses'
 excerpt: 'Discover why your online reputation can make or break your home service business and learn strategies to build and protect your reputation.'
-featuredImage: 'https://images.unsplash.com/photo-1633613286991-611fe299c4be'
+featuredImage: '/images/articles/painting.jpg'
 author:
   id: '1'
   name: 'Marketing Expert'
