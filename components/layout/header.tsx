@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { Menu, Mountain, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { CustomButton } from '@/components/custom-button'
 
 export default function Header() {
@@ -117,7 +117,7 @@ export default function Header() {
 	return (
 		<header className="sticky top-0 z-50 w-full bg-white shadow-md">
 			<div className="container mx-auto px-4">
-				<div className="flex h-20 items-center justify-between">
+				<div className="flex h-20 items-center justify-between relative">
 					<div className="flex-shrink-0">
 						<Link
 							href="/"
@@ -167,7 +167,7 @@ export default function Header() {
 						ref={menuButtonRef}
 						type="button"
 						onClick={openMenu}
-						className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 md:hidden z-50"
+						className="absolute top-6 right-6 rounded-full p-2 text-gray-700 hover:bg-gray-100 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 md:hidden z-50"
 						aria-expanded={menuVisible}
 						aria-label="Open main menu"
 					>
@@ -200,7 +200,7 @@ export default function Header() {
 					{/* Close button */}
 					<button
 						type="button"
-						className="absolute top-6 right-6 rounded-full p-2 text-gray-700 hover:bg-gray-100 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+						className="absolute top-6 right-6 rounded-full p-2 text-gray-700 hover:bg-gray-100 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 z-[60]"
 						onClick={closeMenu}
 						aria-label="Close menu"
 					>
@@ -210,23 +210,22 @@ export default function Header() {
 						/>
 					</button>
 
-					{/* Logo at top */}
-					<div className="absolute top-6 left-6 flex items-center">
-						<Mountain className="h-6 w-6 mr-2 text-blue-600" />
+					{/* Logo at top - centered, larger, without icon */}
+					<div className="absolute top-6 left-0 right-0 flex justify-center">
 						<Image
 							src="/vg-horizontal-blue.png"
 							alt="Very Good Marketing"
-							width={120}
-							height={24}
+							width={180}
+							height={36}
 							style={{
-								width: '120px', // If you change width with CSS
+								width: '180px', // Increased size from 120px to 180px
 								height: 'auto', // Set height to auto to maintain aspect ratio
 							}}
 						/>
 					</div>
 
 					{/* Centered navigation */}
-					<nav className="flex flex-col items-center justify-center space-y-6 px-4 text-center">
+					<nav className="flex flex-col items-center justify-center space-y-6 px-4 text-center mt-16">
 						{navigation.map(item => (
 							<Link
 								key={item.name}
