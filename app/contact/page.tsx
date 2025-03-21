@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Container from '@/components/shared/container'
-import ContactPageClient from './page-client-updated'
+import ContactPageClient from './page-client'
 import { fetchSiteSettings } from '@/lib/settings-actions'
 
 export const metadata: Metadata = {
