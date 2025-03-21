@@ -16,71 +16,21 @@ export default async function ArticlesPage() {
 	const allTags = await getAllTags()
 	const isDev = process.env.NODE_ENV === 'development'
 
-	// Create demo tags if no real tags exist
-	const demoTags: Tag[] =
-		allTags.length > 0
-			? allTags
-			: [
-					{ id: 'website', name: 'Website', slug: 'website' },
-					{ id: 'seo', name: 'SEO', slug: 'seo' },
-					{ id: 'marketing', name: 'Marketing', slug: 'marketing' },
-					{ id: 'business', name: 'Business', slug: 'business' },
-				]
-
 	// Make sure each tag has a valid slug
-	const validatedTags = demoTags.map(tag => ({
+	const validatedTags = allTags.map(tag => ({
 		...tag,
 		slug: tag.slug || tag.name.toLowerCase().replace(/\s+/g, '-'),
 	}))
 
-	// If we have published articles from markdown files, use those
-	const articlesList =
-		articles.length > 0
-			? articles.map(article => ({
-					title: article.title,
-					excerpt: article.excerpt,
-					date: new Date(article.createdAt).toLocaleDateString(),
-					image: article.featuredImage || '/placeholder.svg?height=400&width=600',
-					slug: article.slug,
-					tags: article.tags,
-				}))
-			: [
-					// Fallback static articles if no markdown files exist
-					{
-						title: 'Why Your Service Business Website Is Your Most Valuable Marketing Asset',
-						excerpt:
-							'Learn why your website is crucial for getting new customers and how to make it work harder for your business.',
-						date: 'Coming Soon',
-						image: '/placeholder.svg?height=400&width=600',
-						slug: '#',
-						tags: [validatedTags[0], validatedTags[2]], // Website, Marketing
-					},
-					{
-						title: '5 Website Mistakes Service Businesses Make That Cost Them Customers',
-						excerpt:
-							'Avoid these common website mistakes that drive potential customers away from your service business.',
-						date: 'Coming Soon',
-						image: '/placeholder.svg?height=400&width=600',
-						slug: '#',
-						tags: [validatedTags[0], validatedTags[3]], // Website, Business
-					},
-					{
-						title: 'Local SEO Guide for Cleaning, Landscaping, and Home Service Businesses',
-						excerpt: 'How to optimize your website to show up when local customers search for your services on Google.',
-						date: 'Coming Soon',
-						image: '/placeholder.svg?height=400&width=600',
-						slug: '#',
-						tags: [validatedTags[1], validatedTags[3]], // SEO, Business
-					},
-					{
-						title: 'How to Use Your Website to Book More Service Appointments',
-						excerpt: 'Practical tips for turning your website visitors into booked appointments and paying customers.',
-						date: 'Coming Soon',
-						image: '/placeholder.svg?height=400&width=600',
-						slug: '#',
-						tags: [validatedTags[0], validatedTags[2], validatedTags[3]], // Website, Marketing, Business
-					},
-				]
+	// Map articles to the format expected by ArticlesList
+	const articlesList = articles.map(article => ({
+		title: article.title,
+		excerpt: article.excerpt,
+		date: new Date(article.createdAt).toLocaleDateString(),
+		image: article.featuredImage || '/placeholder.svg?height=400&width=600',
+		slug: article.slug,
+		tags: article.tags,
+	}))
 
 	return (
 		<div>
