@@ -6,7 +6,8 @@ export const revalidate = 0
 
 export async function GET(request: Request, context: any) {
 	try {
-		const { slug } = context.params
+		const params = await context.params
+		const { slug } = params
 		const timestamp = new Date().toISOString()
 
 		if (!slug) {
