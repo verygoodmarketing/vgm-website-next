@@ -76,7 +76,9 @@ export default function ServiceSection({ pricing, imagePath, imageAlt, reversed 
 							{ctaText}
 						</CustomButton>
 					</div>
-					<div className={`relative h-[400px] rounded-lg overflow-hidden ${reversed ? 'order-1 lg:order-2' : ''}`}>
+					<div
+						className={`relative h-[400px] rounded-lg overflow-hidden hidden lg:block ${reversed ? 'order-1 lg:order-2' : ''}`}
+					>
 						<Image
 							src={imagePath}
 							alt={imageAlt}
