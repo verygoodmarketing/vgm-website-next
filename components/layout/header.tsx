@@ -6,12 +6,14 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ChevronRight } from 'lucide-react'
 import { CustomButton } from '@/components/custom-button'
+import { IndustryDesktopDropdown, IndustryMobileMenu } from './industry-dropdown'
 
 export default function Header() {
 	// Separate state for menu visibility and animation
 	const [menuVisible, setMenuVisible] = useState(false)
+	const [industryMenuVisible, setIndustryMenuVisible] = useState(false)
 	const [animationState, setAnimationState] = useState<'idle' | 'opening' | 'open' | 'closing'>('idle')
 	const menuButtonRef = useRef<HTMLButtonElement>(null)
 	const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -46,6 +48,7 @@ export default function Header() {
 
 		// First make the menu visible
 		setMenuVisible(true)
+		setIndustryMenuVisible(false)
 
 		// Then start the opening animation in the next frame
 		// This ensures the menu is in the DOM before animation starts
@@ -69,13 +72,22 @@ export default function Header() {
 		// Set a timeout to hide the menu after animation completes
 		animationTimeoutRef.current = setTimeout(() => {
 			setMenuVisible(false)
+			setIndustryMenuVisible(false)
 			setAnimationState('idle')
 		}, 500) // Match this with the CSS animation duration
 	}, [clearAnimationTimeout])
 
+	const openIndustryMenu = useCallback(() => {
+		setIndustryMenuVisible(true)
+	}, [])
+
+	const closeIndustryMenu = useCallback(() => {
+		setIndustryMenuVisible(false)
+	}, [])
+
 	// Handle body scroll lock
 	useEffect(() => {
-		if (menuVisible) {
+		if (menuVisible || industryMenuVisible) {
 			// Save the current scroll position
 			const scrollY = window.scrollY
 			
@@ -105,13 +117,17 @@ export default function Header() {
 			document.body.style.width = ''
 			document.body.style.overflow = ''
 		}
-	}, [menuVisible])
+	}, [menuVisible, industryMenuVisible])
 
 	// Handle escape key to close menu
 	useEffect(() => {
 		const handleEscKey = (event: KeyboardEvent) => {
-			if (event.key === 'Escape' && menuVisible) {
-				closeMenu()
+			if (event.key === 'Escape') {
+				if (industryMenuVisible) {
+					closeIndustryMenu()
+				} else if (menuVisible) {
+					closeMenu()
+				}
 			}
 		}
 
@@ -121,7 +137,7 @@ export default function Header() {
 			window.removeEventListener('keydown', handleEscKey)
 			clearAnimationTimeout()
 		}
-	}, [menuVisible, closeMenu, clearAnimationTimeout])
+	}, [menuVisible, industryMenuVisible, closeMenu, closeIndustryMenu, clearAnimationTimeout])
 
 	// Calculate animation origin position
 	const getAnimationOrigin = () => {
@@ -170,6 +186,8 @@ export default function Header() {
 								{item.name}
 							</Link>
 						))}
+						{/* Industry dropdown for desktop */}
+						<IndustryDesktopDropdown />
 					</nav>
 
 					<div className="hidden md:flex">
@@ -258,6 +276,14 @@ export default function Header() {
 								{item.name}
 							</Link>
 						))}
+						{/* Industry menu button for mobile */}
+						<button
+							className="text-2xl font-medium text-gray-800 hover:text-blue-600 transition-colors duration-300 flex items-center"
+							onClick={openIndustryMenu}
+						>
+							Industries
+							<ChevronRight className="ml-1 h-5 w-5" />
+						</button>
 						<div className="pt-8 mt-4">
 							<CustomButton
 								asChild
@@ -271,6 +297,13 @@ export default function Header() {
 					</nav>
 				</div>
 			)}
+
+			{/* Mobile industry submenu */}
+			<IndustryMobileMenu 
+				isOpen={industryMenuVisible} 
+				onBack={closeIndustryMenu}
+				onSelectIndustry={closeMenu}
+			/>
 		</header>
 	)
 }
