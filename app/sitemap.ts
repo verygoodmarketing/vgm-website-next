@@ -29,6 +29,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			priority: 0.9,
 		},
 		{
+			url: `${baseUrl}/resources`,
+			lastModified: new Date(),
+			changeFrequency: 'weekly' as const,
+			priority: 0.8,
+		},
+		{
 			url: `${baseUrl}/resources/articles`,
 			lastModified: new Date(),
 			changeFrequency: 'daily' as const,
@@ -39,6 +45,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			lastModified: new Date(),
 			changeFrequency: 'monthly' as const,
 			priority: 0.8,
+		},
+		{
+			url: `${baseUrl}/success-stories`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly' as const,
+			priority: 0.7,
 		},
 		{
 			url: `${baseUrl}/privacy`,
@@ -54,6 +66,106 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		},
 	]
 
+	// Industry pages
+	const industryPages = [
+		{
+			url: `${baseUrl}/industry`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly' as const,
+			priority: 0.8,
+		},
+		{
+			url: `${baseUrl}/industry/cleaning`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly' as const,
+			priority: 0.7,
+		},
+		{
+			url: `${baseUrl}/industry/electrical`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly' as const,
+			priority: 0.7,
+		},
+		{
+			url: `${baseUrl}/industry/fencing`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly' as const,
+			priority: 0.7,
+		},
+		{
+			url: `${baseUrl}/industry/general-contracting`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly' as const,
+			priority: 0.7,
+		},
+		{
+			url: `${baseUrl}/industry/handyman`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly' as const,
+			priority: 0.7,
+		},
+		{
+			url: `${baseUrl}/industry/hvac`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly' as const,
+			priority: 0.7,
+		},
+		{
+			url: `${baseUrl}/industry/landscaping`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly' as const,
+			priority: 0.7,
+		},
+		{
+			url: `${baseUrl}/industry/lawn-care`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly' as const,
+			priority: 0.7,
+		},
+		{
+			url: `${baseUrl}/industry/painting`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly' as const,
+			priority: 0.7,
+		},
+		{
+			url: `${baseUrl}/industry/plumbing`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly' as const,
+			priority: 0.7,
+		},
+		{
+			url: `${baseUrl}/industry/pressure-washing`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly' as const,
+			priority: 0.7,
+		},
+		{
+			url: `${baseUrl}/industry/roofing`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly' as const,
+			priority: 0.7,
+		},
+		{
+			url: `${baseUrl}/industry/snow-removal`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly' as const,
+			priority: 0.7,
+		},
+		{
+			url: `${baseUrl}/industry/tree-service`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly' as const,
+			priority: 0.7,
+		},
+		{
+			url: `${baseUrl}/industry/window-cleaning`,
+			lastModified: new Date(),
+			changeFrequency: 'monthly' as const,
+			priority: 0.7,
+		},
+	]
+
 	// Generate sitemap entries for articles
 	const articleEntries = articles.map((article: Article) => ({
 		url: `${baseUrl}/resources/articles/${article.slug}`,
@@ -63,5 +175,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	}))
 
 	// Combine all entries
-	return [...staticPages, ...articleEntries]
+	return [...staticPages, ...industryPages, ...articleEntries]
 }
