@@ -249,7 +249,7 @@ export default function Home() {
 							</CustomButton>
 							<CustomButton
 								variant="outline"
-								href="/services"
+								href="/pricing"
 							>
 								See Our Pricing
 							</CustomButton>

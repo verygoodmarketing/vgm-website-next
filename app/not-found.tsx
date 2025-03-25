@@ -165,11 +165,11 @@ export default function NotFound() {
 					<h3 className="text-xl font-semibold text-gray-900 mb-6">Quick Links</h3>
 					<div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
 						<div className="p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
-							<h3 className="font-semibold text-gray-900 mb-3 border-b pb-2 border-gray-100">Services</h3>
+							<h3 className="font-semibold text-gray-900 mb-3 border-b pb-2 border-gray-100">Pricing</h3>
 							<ul className="space-y-2">
 								<li>
 									<SmoothScrollLink
-										href="/services#website-creation"
+										href="/pricing#website-creation"
 										className="text-blue-600 hover:text-blue-800 transition-colors block hover:underline text-left"
 									>
 										Website Creation
@@ -177,7 +177,7 @@ export default function NotFound() {
 								</li>
 								<li>
 									<SmoothScrollLink
-										href="/services#google-ads"
+										href="/pricing#google-ads"
 										className="text-blue-600 hover:text-blue-800 transition-colors block hover:underline text-left"
 									>
 										Google Ads
@@ -185,7 +185,7 @@ export default function NotFound() {
 								</li>
 								<li>
 									<SmoothScrollLink
-										href="/services#social-media"
+										href="/pricing#social-media"
 										className="text-blue-600 hover:text-blue-800 transition-colors block hover:underline text-left"
 									>
 										Social Media

@@ -163,7 +163,7 @@ export default async function SuccessStoriesPage() {
 							asChild
 							size="lg"
 						>
-							<Link href="/services">View Our Services</Link>
+							<Link href="/pricing">View Our Pricing</Link>
 						</Button>
 					</div>
 				</section>

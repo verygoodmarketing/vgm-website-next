@@ -9,12 +9,12 @@ import { getServicePricing, getBundlePricing } from '@/lib/pricing-service'
 import SectionScrollHandler from '@/components/services/section-scroll-handler'
 
 export const metadata: Metadata = {
-	title: 'Digital Marketing Services for Service Businesses',
+	title: 'Digital Marketing Pricing for Service Businesses',
 	description:
-		'Professional website and digital marketing services designed specifically for service businesses like cleaning, landscaping, and home services.',
+		'Transparent pricing for professional websites and digital marketing services designed specifically for service businesses like cleaning, landscaping, and home services.',
 }
 
-export default function ServicesPage() {
+export default function PricingPage() {
 	// Get all service pricing data
 	const websitePricing = getServicePricing('website')
 	const googleAdsPricing = getServicePricing('google-ads')
@@ -32,10 +32,9 @@ export default function ServicesPage() {
 			<section className="py-16 md:py-24">
 				<Container>
 					<div className="max-w-3xl mx-auto text-center">
-						<h1 className="text-4xl md:text-5xl font-bold mb-6">Complete Digital Marketing For Service Businesses</h1>
+						<h1 className="text-4xl md:text-5xl font-bold mb-6">Digital Marketing Pricing For Service Businesses</h1>
 						<p className="text-xl text-gray-600">
-							From professional websites to paid advertising and social media, we offer everything service businesses
-							need to get more customers online.
+							Transparent pricing for professional websites, paid advertising, and social media marketing designed specifically for service businesses.
 						</p>
 					</div>
 				</Container>
@@ -89,7 +88,7 @@ export default function ServicesPage() {
 
 			{/* Bundle Packages */}
 			<section
-				id="bundle-packages"
+				id="bundles"
 				className="py-16 bg-gray-50"
 			>
 				<Container>

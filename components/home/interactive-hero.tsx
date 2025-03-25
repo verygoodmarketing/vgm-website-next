@@ -175,7 +175,7 @@ export default function InteractiveHero({ serviceIndustries }: InteractiveHeroPr
 						</CustomButton>
 						<CustomButton
 							variant="outline"
-							href="/services"
+							href="/pricing"
 						>
 							See How It Works
 						</CustomButton>

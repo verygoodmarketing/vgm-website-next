@@ -64,10 +64,10 @@ export default function FooterClient({ settings }: FooterClientProps) {
 							</li>
 							<li>
 								<Link
-									href="/services"
+									href="/pricing"
 									className="text-gray-100 hover:text-white transition-colors"
 								>
-									Services
+									Pricing
 								</Link>
 							</li>
 							<li>

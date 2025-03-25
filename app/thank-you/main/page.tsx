@@ -36,11 +36,11 @@ export default function ThankYouPage() {
 						<h3 className="text-lg font-medium mb-4 text-gray-800">Explore More</h3>
 						<div className="flex flex-wrap justify-center gap-4">
 							<Link
-								href="/services"
+								href="/pricing"
 								className="px-4 py-2 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-md transition-colors"
 								target="_top"
 							>
-								Our Services
+								Our Pricing
 							</Link>
 							<Link
 								href="/about"

@@ -60,10 +60,10 @@ export default async function Footer() {
 							</li>
 							<li>
 								<Link
-									href="/services"
+									href="/pricing"
 									className="text-gray-100 hover:text-white transition-colors"
 								>
-									Services
+									Pricing
 								</Link>
 							</li>
 							<li>

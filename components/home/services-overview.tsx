@@ -8,25 +8,25 @@ export default function ServicesOverview() {
       title: "Website Design & Development",
       description: "Professional, responsive websites designed to convert visitors into customers.",
       icon: <Globe className="h-8 w-8 text-blue-600" />,
-      link: "/services#website-creation",
+      link: "/pricing#website-creation",
     },
     {
       title: "Google Ads Management",
       description: "Targeted advertising to reach customers at the moment they're looking for you.",
       icon: <Search className="h-8 w-8 text-blue-600" />,
-      link: "/services#google-ads",
+      link: "/pricing#google-ads",
     },
     {
       title: "Facebook & Instagram Ads",
       description: "Reach potential customers in your area with compelling social media advertising.",
       icon: <Facebook className="h-8 w-8 text-blue-600" />,
-      link: "/services#social-ads",
+      link: "/pricing#social-ads",
     },
     {
       title: "Social Media Marketing",
       description: "Build your brand, showcase your work, and engage with your community.",
       icon: <Instagram className="h-8 w-8 text-blue-600" />,
-      link: "/services#social-media",
+      link: "/pricing#social-media",
     },
   ]
 
@@ -69,7 +69,7 @@ export default function ServicesOverview() {
           </div>
           <div className="flex flex-col md:flex-row justify-center gap-4">
             <Link
-              href="/services#bundles"
+              href="/pricing#bundles"
               className="bg-blue-600 text-white px-6 py-3 rounded-md font-medium hover:bg-blue-700 transition-colors text-center"
             >
               View Bundle Packages
@@ -84,12 +84,11 @@ export default function ServicesOverview() {
         </div>
 
         <div className="text-center mt-12">
-          <Link href="/services" className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
-            View all services <ArrowRight className="ml-2 h-4 w-4" />
+          <Link href="/pricing" className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
+            View all pricing <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </div>
       </Container>
     </section>
   )
 }
-
