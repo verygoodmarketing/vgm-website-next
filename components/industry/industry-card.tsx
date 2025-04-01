@@ -14,9 +14,9 @@ export default function IndustryCard({ name, slug, description, color, icon }: I
   return (
     <Link href={`/industry/${slug}`}>
       <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 group border-0 shadow-md">
-        <div className={`h-40 relative bg-gradient-to-r ${color}`}>
+        <div className={`h-40 relative bg-linear-to-r ${color}`}>
           <div className="absolute inset-0 bg-[url('/placeholder-pattern.svg')] mix-blend-overlay opacity-20"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent"></div>
           <div className="absolute top-4 left-4 text-4xl" aria-hidden="true">
             {icon}
           </div>

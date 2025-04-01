@@ -28,7 +28,7 @@ export default function HeroSection({
   const titleParts = highlightedText ? title.split(highlightedText) : [title];
 
   return (
-    <div className="relative bg-gradient-to-r from-blue-900 to-indigo-900 py-20 overflow-hidden">
+    <div className="relative bg-linear-to-r from-blue-900 to-indigo-900 py-20 overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[url('/placeholder-pattern.svg')] bg-repeat"></div>
         {backgroundImage && (
@@ -43,7 +43,7 @@ export default function HeroSection({
       </div>
       <Container className="relative z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-block bg-blue-500 bg-opacity-20 backdrop-blur-sm text-white px-4 py-1 rounded-full text-sm font-medium mb-4 animate-fade-in">
+          <div className="inline-block bg-blue-500 bg-opacity-20 backdrop-blur-xs text-white px-4 py-1 rounded-full text-sm font-medium mb-4 animate-fade-in">
             Specialized Marketing Solutions
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 animate-fade-in">

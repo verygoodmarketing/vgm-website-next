@@ -154,7 +154,7 @@ export default function Header() {
 		<header className="sticky top-0 z-50 w-full bg-white shadow-md">
 			<div className="container mx-auto px-4">
 				<div className="flex h-20 items-center justify-between relative">
-					<div className="flex-shrink-0">
+					<div className="shrink-0">
 						<Link
 							href="/"
 							className="flex items-center"
@@ -205,7 +205,7 @@ export default function Header() {
 						ref={menuButtonRef}
 						type="button"
 						onClick={openMenu}
-						className="absolute top-6 right-2 rounded-full p-2 text-gray-700 hover:bg-gray-100 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 md:hidden z-50"
+						className="absolute top-6 right-2 rounded-full p-2 text-gray-700 hover:bg-gray-100 hover:text-blue-600 focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-blue-500 md:hidden z-50"
 						aria-expanded={menuVisible}
 						aria-label="Open main menu"
 					>
@@ -238,7 +238,7 @@ export default function Header() {
 					{/* Close button */}
 					<button
 						type="button"
-						className="absolute top-6 right-6 rounded-full p-2 text-gray-700 hover:bg-gray-100 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 z-[60]"
+						className="absolute top-6 right-6 rounded-full p-2 text-gray-700 hover:bg-gray-100 hover:text-blue-600 focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-blue-500 z-60"
 						onClick={closeMenu}
 						aria-label="Close menu"
 					>

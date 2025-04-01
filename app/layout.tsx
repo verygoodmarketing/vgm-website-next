@@ -74,7 +74,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<TransitionProvider>
 					<div className="flex min-h-screen flex-col">
 						<Header />
-						<main className="flex-grow">
+						<main className="grow">
 							<AnimatedContent>{children}</AnimatedContent>
 						</main>
 						<Footer />

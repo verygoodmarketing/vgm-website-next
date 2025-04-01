@@ -85,14 +85,14 @@ export function IndustryDesktopDropdown() {
                 <Link
                   key={industry.slug}
                   href={`/industry/${industry.slug}`}
-                  className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100"
+                  className="block select-none rounded-md p-3 leading-none no-underline outline-hidden transition-colors hover:bg-gray-100"
                 >
                   <div className="text-sm font-medium leading-none">{industry.name}</div>
                 </Link>
               ))}
               <Link
                 href="/industry"
-                className="col-span-2 block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 bg-gray-50 mt-2"
+                className="col-span-2 block select-none rounded-md p-3 leading-none no-underline outline-hidden transition-colors hover:bg-gray-100 bg-gray-50 mt-2"
               >
                 <div className="text-sm font-medium leading-none">View All Industries</div>
               </Link>
@@ -152,7 +152,7 @@ export function IndustryMobileMenu({
 
   return (
     <div 
-      className={`fixed inset-0 z-[60] bg-white overflow-auto ${
+      className={`fixed inset-0 z-60 bg-white overflow-auto ${
         animationState === 'entering' ? 'slide-in-right' : 
         animationState === 'exiting' ? 'slide-out-right' : ''
       }`}

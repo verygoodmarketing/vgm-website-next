@@ -145,7 +145,7 @@ export default async function ResourcesPage() {
 							href="/resources/templates"
 							className="block group"
 						>
-							<div className="bg-white p-6 rounded-lg shadow-sm transition-shadow hover:shadow-md">
+							<div className="bg-white p-6 rounded-lg shadow-xs transition-shadow hover:shadow-md">
 								<div className="mb-4 flex justify-center">
 									<Image
 										src="/images/marketing-templates.jpg"
@@ -169,7 +169,7 @@ export default async function ResourcesPage() {
 							href="/resources/guides"
 							className="block group"
 						>
-							<div className="bg-white p-6 rounded-lg shadow-sm transition-shadow hover:shadow-md">
+							<div className="bg-white p-6 rounded-lg shadow-xs transition-shadow hover:shadow-md">
 								<div className="mb-4 flex justify-center">
 									<Image
 										src="/images/marketing-guides.png"
@@ -193,7 +193,7 @@ export default async function ResourcesPage() {
 							href="/resources/webinars"
 							className="block group"
 						>
-							<div className="bg-white p-6 rounded-lg shadow-sm transition-shadow hover:shadow-md">
+							<div className="bg-white p-6 rounded-lg shadow-xs transition-shadow hover:shadow-md">
 								<div className="mb-4 flex justify-center">
 									<Image
 										src="/images/webinars-events.jpg"

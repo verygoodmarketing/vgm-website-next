@@ -1,8 +1,99 @@
-@config "../tailwind.config.js";
+@import 'tailwindcss';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@plugin 'tailwindcss-animate';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+	--color-border: hsl(var(--border));
+	--color-input: hsl(var(--input));
+	--color-ring: hsl(var(--ring));
+	--color-background: hsl(var(--background));
+	--color-foreground: hsl(var(--foreground));
+
+	--color-primary: hsl(var(--primary));
+	--color-primary-foreground: hsl(var(--primary-foreground));
+	--color-primary-light: rgb(var(--color-primary-light));
+	--color-primary-dark: rgb(var(--color-primary-dark));
+
+	--color-secondary: hsl(var(--secondary));
+	--color-secondary-foreground: hsl(var(--secondary-foreground));
+	--color-secondary-light: rgb(var(--color-secondary-light));
+	--color-secondary-dark: rgb(var(--color-secondary-dark));
+
+	--color-destructive: hsl(var(--destructive));
+	--color-destructive-foreground: hsl(var(--destructive-foreground));
+
+	--color-muted: hsl(var(--muted));
+	--color-muted-foreground: hsl(var(--muted-foreground));
+
+	--color-accent: hsl(var(--accent));
+	--color-accent-foreground: hsl(var(--accent-foreground));
+
+	--color-popover: hsl(var(--popover));
+	--color-popover-foreground: hsl(var(--popover-foreground));
+
+	--color-card: hsl(var(--card));
+	--color-card-foreground: hsl(var(--card-foreground));
+
+	--color-text-primary: #1a202c;
+	--color-text-secondary: #2d3748;
+	--color-text-tertiary: #4a5568;
+	--color-text-on-dark: #f7fafc;
+
+	--background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+	--background-image-gradient-conic: conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops));
+
+	--radius-lg: var(--radius);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-sm: calc(var(--radius) - 4px);
+
+	--animate-circle-in: circle-in 0.5s forwards;
+	--animate-circle-out: circle-out 0.5s forwards;
+
+	@keyframes circle-in {
+		0% {
+			clip-path: circle(0% at var(--x, calc(100% - 2.5rem)) var(--y, 2.5rem));
+		}
+		100% {
+			clip-path: circle(150% at var(--x, calc(100% - 2.5rem)) var(--y, 2.5rem));
+		}
+	}
+	@keyframes circle-out {
+		0% {
+			clip-path: circle(150% at var(--x, calc(100% - 2.5rem)) var(--y, 2.5rem));
+		}
+		100% {
+			clip-path: circle(0% at var(--x, calc(100% - 2.5rem)) var(--y, 2.5rem));
+		}
+	}
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentColor);
+	}
+}
+
+@utility section-title {
+	@apply text-3xl md:text-4xl font-bold mb-6 text-gray-900;
+}
+
+@utility section-description {
+	@apply text-lg text-gray-800 mb-12 max-w-3xl mx-auto;
+}
 
 @layer base {
 	:root {
@@ -91,123 +182,67 @@
 	}
 }
 
-body {
-	color: rgb(var(--foreground-rgb));
-	background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
-}
-
-.glass-effect {
-	background: rgba(255, 255, 255, 0.9); /* Increased opacity for better contrast */
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
-	border: 1px solid rgba(255, 255, 255, 0.18);
-	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-}
-
-/* Mobile menu animations */
-.menu-opening {
-	animation: circle-in 500ms forwards;
-}
-
-.menu-open {
-	clip-path: circle(150% at var(--origin, top right));
-}
-
-.menu-closing {
-	animation: circle-out 500ms forwards;
-}
-
-@keyframes circle-in {
-	0% {
-		clip-path: circle(0% at var(--origin, top right));
-	}
-	100% {
-		clip-path: circle(150% at var(--origin, top right));
-	}
-}
-
-@keyframes circle-out {
-	0% {
-		clip-path: circle(150% at var(--origin, top right));
-	}
-	100% {
-		clip-path: circle(0% at var(--origin, top right));
-	}
-}
-
-/* Mobile slide transitions */
-.slide-in-right {
-	animation: slide-in-right 300ms forwards;
-}
-
-.slide-out-right {
-	animation: slide-out-right 300ms forwards;
-}
-
-@keyframes slide-in-right {
-	0% {
-		transform: translateX(100%);
-	}
-	100% {
-		transform: translateX(0);
-	}
-}
-
-@keyframes slide-out-right {
-	0% {
-		transform: translateX(0);
-	}
-	100% {
-		transform: translateX(100%);
-	}
-}
-
-@layer components {
-	.btn-primary {
-		@apply bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-md transition-all duration-300 shadow-md hover:shadow-lg;
-	}
-
-	.btn-secondary {
-		@apply bg-white hover:bg-gray-100 text-blue-700 font-bold py-2 px-6 rounded-md border border-blue-600 transition-all duration-300 shadow-md hover:shadow-lg;
-	}
-
-	.section-title {
-		@apply text-3xl md:text-4xl font-bold mb-6 text-gray-900;
-	}
-
-	.section-description {
-		@apply text-lg text-gray-800 mb-12 max-w-3xl mx-auto;
-	}
-}
-
 @layer utilities {
-	.text-color-primary {
-		color: rgb(var(--color-text-primary));
+	body {
+		color: rgb(var(--foreground-rgb));
+		background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 	}
-	.text-color-secondary {
-		color: rgb(var(--color-text-secondary));
-	}
-	.text-color-tertiary {
-		color: rgb(var(--color-text-tertiary));
-	}
-	.text-color-on-dark {
-		color: rgb(var(--color-text-on-dark));
-	}
-}
 
-.page-transition-overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: white;
-	pointer-events: none;
-	z-index: 9999;
-	opacity: 0;
-	transition: opacity 300ms ease-in-out;
-}
+	/* Mobile menu animations */
+	.menu-opening {
+		animation: circle-in 500ms forwards;
+	}
 
-.page-transition-overlay.active {
-	opacity: 1;
+	.menu-open {
+		clip-path: circle(150% at var(--origin, top right));
+	}
+
+	.menu-closing {
+		animation: circle-out 500ms forwards;
+	}
+
+	@keyframes circle-in {
+		0% {
+			clip-path: circle(0% at var(--origin, top right));
+		}
+		100% {
+			clip-path: circle(150% at var(--origin, top right));
+		}
+	}
+
+	@keyframes circle-out {
+		0% {
+			clip-path: circle(150% at var(--origin, top right));
+		}
+		100% {
+			clip-path: circle(0% at var(--origin, top right));
+		}
+	}
+
+	/* Mobile slide transitions */
+	.slide-in-right {
+		animation: slide-in-right 300ms forwards;
+	}
+
+	.slide-out-right {
+		animation: slide-out-right 300ms forwards;
+	}
+
+	@keyframes slide-in-right {
+		0% {
+			transform: translateX(100%);
+		}
+		100% {
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes slide-out-right {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(100%);
+		}
+	}
 }

@@ -170,7 +170,7 @@ export default function ArticlePostClient({ article: initialArticle }: ArticlePo
 												checked={autoRefresh}
 												onChange={toggleAutoRefresh}
 											/>
-											<div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+											<div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-hidden peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:rtl:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
 											<span className="ms-3 text-sm font-medium text-gray-700">Auto-refresh</span>
 										</label>
 										<button
@@ -298,7 +298,7 @@ export default function ArticlePostClient({ article: initialArticle }: ArticlePo
 							<CardContent className="p-6">
 								<div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
 									{article.author.avatar && (
-										<div className="w-20 h-20 rounded-full overflow-hidden flex-shrink-0 bg-gray-100">
+										<div className="w-20 h-20 rounded-full overflow-hidden shrink-0 bg-gray-100">
 											<Image
 												src={article.author.avatar}
 												alt={article.author.name}

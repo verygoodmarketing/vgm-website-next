@@ -45,7 +45,7 @@ export default async function Testimonials() {
 // Testimonial card component
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 	return (
-		<div className="bg-gray-50 p-8 rounded-lg shadow-sm">
+		<div className="bg-gray-50 p-8 rounded-lg shadow-xs">
 			<div className="flex flex-col h-full">
 				{testimonial.rating && (
 					<div className="flex text-amber-500 mb-4">
@@ -58,7 +58,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 					</div>
 				)}
 
-				<div className="mb-6 flex-grow">
+				<div className="mb-6 grow">
 					<p className="italic text-gray-600">"{testimonial.quote}"</p>
 				</div>
 

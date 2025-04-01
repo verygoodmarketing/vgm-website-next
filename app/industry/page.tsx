@@ -137,13 +137,13 @@ export default function IndustriesPage() {
   return (
     <div className="pb-20">
       {/* Enhanced Hero Section */}
-      <div className="relative bg-gradient-to-r from-blue-900 to-indigo-900 py-20 overflow-hidden">
+      <div className="relative bg-linear-to-r from-blue-900 to-indigo-900 py-20 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-[url('/placeholder-pattern.svg')] bg-repeat"></div>
         </div>
         <Container className="relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-block bg-blue-500 bg-opacity-20 backdrop-blur-sm text-white px-4 py-1 rounded-full text-sm font-medium mb-4 animate-fade-in">
+            <div className="inline-block bg-blue-500 bg-opacity-20 backdrop-blur-xs text-white px-4 py-1 rounded-full text-sm font-medium mb-4 animate-fade-in">
               Specialized Marketing Solutions
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 animate-fade-in">
@@ -201,9 +201,9 @@ export default function IndustriesPage() {
           {industries.map((industry, index) => (
             <Link key={industry.slug} href={`/industry/${industry.slug}`}>
               <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 group border-0 shadow-md">
-                <div className={`h-40 relative bg-gradient-to-r ${industry.color}`}>
+                <div className={`h-40 relative bg-linear-to-r ${industry.color}`}>
                   <div className="absolute inset-0 bg-[url('/placeholder-pattern.svg')] mix-blend-overlay opacity-20"></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent"></div>
                   <div className="absolute top-4 left-4 text-4xl" aria-hidden="true">
                     {industry.icon}
                   </div>
@@ -223,7 +223,7 @@ export default function IndustriesPage() {
         </div>
 
         {/* Enhanced CTA */}
-        <div className="mt-20 bg-gradient-to-r from-blue-600 to-indigo-600 p-10 rounded-2xl shadow-lg relative overflow-hidden">
+        <div className="mt-20 bg-linear-to-r from-blue-600 to-indigo-600 p-10 rounded-2xl shadow-lg relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('/placeholder-pattern.svg')] opacity-10"></div>
           <div className="relative z-10">
             <h2 className="text-3xl font-bold mb-4 text-white text-center">Don't See Your Industry?</h2>

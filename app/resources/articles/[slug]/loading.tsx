@@ -53,7 +53,7 @@ export default function Loading() {
           <div className="h-8 w-48 bg-gray-200 rounded-md animate-pulse mb-8"></div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[1, 2].map((i) => (
-              <div key={i} className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100">
+              <div key={i} className="bg-white rounded-lg overflow-hidden shadow-xs border border-gray-100">
                 {/* Image placeholder */}
                 <div className="h-48 bg-gray-200 animate-pulse"></div>
                 <div className="p-6">

@@ -27,7 +27,7 @@ function TagFilterButton({
 				e.preventDefault()
 				onClick()
 			}}
-			className={`text-sm ${isSelected ? 'shadow-sm' : ''}`}
+			className={`text-sm ${isSelected ? 'shadow-xs' : ''}`}
 			size="sm"
 			type="button"
 		>

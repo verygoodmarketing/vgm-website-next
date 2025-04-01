@@ -81,7 +81,7 @@ export default function NotFound() {
 							}}
 						/>
 					</div>
-					<h1 className="text-8xl md:text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500 mb-2">
+					<h1 className="text-8xl md:text-9xl font-bold text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-500 mb-2">
 						404
 					</h1>
 					<h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Oops! Page Not Found</h2>
@@ -93,7 +93,7 @@ export default function NotFound() {
 					transition={{ duration: 0.5, delay: 0.2 }}
 				>
 					<Card className="mb-10 shadow-lg border-0 overflow-hidden">
-						<CardContent className="p-8 bg-gradient-to-br from-white to-blue-50">
+						<CardContent className="p-8 bg-linear-to-br from-white to-blue-50">
 							<p className="text-lg text-gray-700 mb-8">
 								We couldn't find the page you were looking for. It might have been moved, deleted, or perhaps the URL
 								was mistyped.
@@ -164,7 +164,7 @@ export default function NotFound() {
 				>
 					<h3 className="text-xl font-semibold text-gray-900 mb-6">Quick Links</h3>
 					<div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-						<div className="p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+						<div className="p-4 bg-white rounded-xl shadow-xs hover:shadow-md transition-shadow">
 							<h3 className="font-semibold text-gray-900 mb-3 border-b pb-2 border-gray-100">Pricing</h3>
 							<ul className="space-y-2">
 								<li>
@@ -194,7 +194,7 @@ export default function NotFound() {
 							</ul>
 						</div>
 
-						<div className="p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+						<div className="p-4 bg-white rounded-xl shadow-xs hover:shadow-md transition-shadow">
 							<h3 className="font-semibold text-gray-900 mb-3 border-b pb-2 border-gray-100">About</h3>
 							<ul className="space-y-2">
 								<li>
@@ -224,7 +224,7 @@ export default function NotFound() {
 							</ul>
 						</div>
 
-						<div className="p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+						<div className="p-4 bg-white rounded-xl shadow-xs hover:shadow-md transition-shadow">
 							<h3 className="font-semibold text-gray-900 mb-3 border-b pb-2 border-gray-100">Legal</h3>
 							<ul className="space-y-2">
 								<li>
@@ -246,7 +246,7 @@ export default function NotFound() {
 							</ul>
 						</div>
 
-						<div className="p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+						<div className="p-4 bg-white rounded-xl shadow-xs hover:shadow-md transition-shadow">
 							<h3 className="font-semibold text-gray-900 mb-3 border-b pb-2 border-gray-100">Contact</h3>
 							<ul className="space-y-2">
 								<li>

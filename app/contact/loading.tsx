@@ -21,7 +21,7 @@ export default function Loading() {
         {/* Loading content placeholder */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Form placeholder */}
-          <div className="rounded-lg overflow-hidden shadow-sm border border-gray-100">
+          <div className="rounded-lg overflow-hidden shadow-xs border border-gray-100">
             <div className="p-6 bg-white">
               <div className="space-y-6">
                 <div className="h-6 w-32 bg-gray-200 rounded-md animate-pulse"></div>
@@ -36,7 +36,7 @@ export default function Loading() {
           </div>
           
           {/* Contact info placeholder */}
-          <div className="rounded-lg overflow-hidden shadow-sm border border-gray-100 bg-gray-50">
+          <div className="rounded-lg overflow-hidden shadow-xs border border-gray-100 bg-gray-50">
             <div className="p-6">
               <div className="h-6 w-48 bg-gray-200 rounded-md animate-pulse mb-6"></div>
               <div className="space-y-6">

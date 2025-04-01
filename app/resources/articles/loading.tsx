@@ -2,7 +2,7 @@ export default function Loading() {
   return (
     <div className="w-full">
       {/* Loading header placeholder */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 py-12 md:py-20">
+      <div className="bg-linear-to-r from-blue-50 to-indigo-50 py-12 md:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <div className="h-10 w-64 bg-gray-200 rounded-md animate-pulse mx-auto mb-4"></div>
@@ -27,7 +27,7 @@ export default function Loading() {
           {/* Articles grid placeholder */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100">
+              <div key={i} className="bg-white rounded-lg overflow-hidden shadow-xs border border-gray-100">
                 {/* Image placeholder */}
                 <div className="h-48 bg-gray-200 animate-pulse"></div>
                 <div className="p-6">

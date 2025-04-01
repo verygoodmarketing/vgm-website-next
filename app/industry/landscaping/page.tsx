@@ -64,7 +64,7 @@ export default function LandscapingPage() {
     <>
       {/* Enhanced Hero Section with Overlay Text and Parallax */}
       <div className="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/80 to-black/50 z-10"></div>
+        <div className="absolute inset-0 bg-linear-to-r from-emerald-900/80 to-black/50 z-10"></div>
         <Image 
           src="/images/articles/landscaping.jpg" 
           alt="Landscaping Services" 
@@ -268,7 +268,7 @@ export default function LandscapingPage() {
       </section>
 
       {/* Enhanced CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-emerald-600 to-emerald-800 relative overflow-hidden">
+      <section className="py-16 bg-linear-to-r from-emerald-600 to-emerald-800 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/placeholder-pattern.svg')] opacity-10"></div>
         <Container className="relative z-10">
           <div className="max-w-3xl mx-auto text-center">

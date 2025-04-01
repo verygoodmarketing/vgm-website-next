@@ -28,7 +28,7 @@ export default function TemplatesPage() {
 						</Link>
 					</div>
 
-					<div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 md:p-12 shadow-sm border border-blue-100">
+					<div className="bg-linear-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 md:p-12 shadow-xs border border-blue-100">
 						<div className="text-center max-w-2xl mx-auto">
 							<div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-6">
 								<FileText className="h-8 w-8 text-blue-600" />
@@ -39,7 +39,7 @@ export default function TemplatesPage() {
 								content calendars to campaign planners, we've got your marketing needs covered.
 							</p>
 
-							<div className="bg-white rounded-lg p-6 shadow-sm border border-blue-100 mb-8">
+							<div className="bg-white rounded-lg p-6 shadow-xs border border-blue-100 mb-8">
 								<h3 className="text-lg font-semibold mb-3">Get Notified When Templates Launch</h3>
 								<form
 									method="post"
@@ -52,7 +52,7 @@ export default function TemplatesPage() {
 										name="email"
 										placeholder="Your email address"
 										required
-										className="flex-grow px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+										className="grow px-4 py-2 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-blue-500"
 									/>
 									<input
 										type="submit"
