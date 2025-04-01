@@ -9,7 +9,6 @@ import { format } from 'date-fns'
 import type { Article } from '@/types/article'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { CustomButton } from '@/components/custom-button'
 import { Facebook, Linkedin, Clock, Calendar, User, Share2, ChevronUp, RefreshCw } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -17,6 +16,7 @@ import rehypeRaw from 'rehype-raw'
 import rehypeSlug from 'rehype-slug'
 import { cn } from '@/lib/utils'
 import './markdown-styles.css'
+import { Button } from '@/components/ui/button'
 
 interface ArticlePostClientProps {
 	article: Article
@@ -313,13 +313,13 @@ export default function ArticlePostClient({ article: initialArticle }: ArticlePo
 										<h4 className="font-medium text-lg mb-3 text-gray-800">{article.author.name}</h4>
 										<p className="text-gray-600 mb-4">{article.author.bio}</p>
 										<div className="flex justify-center md:justify-start">
-											<CustomButton
+											<Button
 												variant="outline"
 												size="sm"
-												href="/contact"
+												asChild
 											>
-												Contact the Author
-											</CustomButton>
+												<Link href="/contact">Contact the Author</Link>
+											</Button>
 										</div>
 									</div>
 								</div>

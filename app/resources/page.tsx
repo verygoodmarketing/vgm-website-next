@@ -2,13 +2,13 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import CustomButton from '@/components/shared/custom-button'
 import Container from '@/components/shared/container'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import ArticleCard from '@/components/article/article-card'
 import { getFeaturedArticles, getAllTags } from '@/lib/article-service'
 import { Tag } from '@/types/article'
 import FeaturedArticlesSection from '@/components/article/featured-articles-section'
+import { Button } from '@/components/ui/button'
 
 export const metadata: Metadata = {
 	title: 'Resources - Very Good Marketing',
@@ -107,12 +107,12 @@ export default async function ResourcesPage() {
 								</p>
 							</CardContent>
 							<CardFooter>
-								<CustomButton
+								<Button
 									variant="outline"
-									href="/tools/speed-analyzer"
+									asChild
 								>
-									Analyze Your Site
-								</CustomButton>
+									<Link href="/tools/speed-analyzer">Analyze Your Site</Link>
+								</Button>
 							</CardFooter>
 						</Card>
 
@@ -125,12 +125,12 @@ export default async function ResourcesPage() {
 								</p>
 							</CardContent>
 							<CardFooter>
-								<CustomButton
+								<Button
 									variant="outline"
-									href="/tools/seo-checker"
+									asChild
 								>
-									Check SEO Health
-								</CustomButton>
+									<Link href="/tools/seo-checker">Check SEO Health</Link>
+								</Button>
 							</CardFooter>
 						</Card>
 					</div>

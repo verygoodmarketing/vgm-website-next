@@ -2,11 +2,12 @@ import type { Metadata } from 'next'
 import Container from '@/components/shared/container'
 import ServiceSection from '@/components/services/service-section'
 import BundlePricingSection from '@/components/services/bundle-pricing'
-import CustomButton from '@/components/shared/custom-button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Check } from 'lucide-react'
 import { getServicePricing, getBundlePricing } from '@/lib/pricing-service'
 import SectionScrollHandler from '@/components/services/section-scroll-handler'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
 	title: 'Digital Marketing Pricing for Service Businesses',
@@ -34,7 +35,8 @@ export default function PricingPage() {
 					<div className="max-w-3xl mx-auto text-center">
 						<h1 className="text-4xl md:text-5xl font-bold mb-6">Digital Marketing Pricing For Service Businesses</h1>
 						<p className="text-xl text-gray-600">
-							Transparent pricing for professional websites, paid advertising, and social media marketing designed specifically for service businesses.
+							Transparent pricing for professional websites, paid advertising, and social media marketing designed
+							specifically for service businesses.
 						</p>
 					</div>
 				</Container>
@@ -263,12 +265,12 @@ export default function PricingPage() {
 					</div>
 
 					<div className="text-center mt-12">
-						<CustomButton
+						<Button
 							variant="blue"
-							href="/contact"
+							asChild
 						>
-							Schedule Your Discovery Call
-						</CustomButton>
+							<Link href="/contact">Schedule Your Discovery Call</Link>
+						</Button>
 					</div>
 				</Container>
 			</section>
@@ -334,12 +336,12 @@ export default function PricingPage() {
 							Schedule a free discovery call to discuss how our website and digital marketing services can help your
 							service business get more customers.
 						</p>
-						<CustomButton
+						<Button
 							variant="white"
-							href="/contact"
+							asChild
 						>
-							Schedule Your Free Discovery Call
-						</CustomButton>
+							<Link href="/contact">Schedule Your Free Discovery Call</Link>
+						</Button>
 						<p className="mt-8 text-sm opacity-80">
 							No obligation. No sales pressure. Just a friendly conversation about your business goals.
 						</p>

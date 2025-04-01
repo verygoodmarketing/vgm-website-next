@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Container from '@/components/shared/container'
-import CustomButton from '@/components/shared/custom-button'
 import { Search, Star, DollarSign, Clock, Phone, MapPin, Shield } from 'lucide-react'
 import Link from 'next/link'
 import { Card } from '@/components/ui/card'
 import InteractiveHero from '@/components/home/interactive-hero'
 import Testimonials from '@/components/home/testimonials'
+import { Button } from '@/components/ui/button'
 
 export const metadata: Metadata = {
 	title: 'Your Website: Your #1 Marketing Asset for Service Businesses',
@@ -241,18 +241,18 @@ export default function Home() {
 							Every day without a professional website is a day you're losing potential customers. Let's fix that.
 						</p>
 						<div className="flex flex-col sm:flex-row gap-4 justify-center">
-							<CustomButton
+							<Button
+								asChild
 								variant="white"
-								href="/success-stories"
 							>
-								Get Your Professional Website
-							</CustomButton>
-							<CustomButton
+								<Link href="/success-stories">Get Your Professional Website</Link>
+							</Button>
+							<Button
+								asChild
 								variant="outline"
-								href="/pricing"
 							>
-								See Our Pricing
-							</CustomButton>
+								<Link href="/pricing">See Our Pricing</Link>
+							</Button>
 						</div>
 						<p className="mt-8 text-sm opacity-80">
 							No long-term contracts. No hidden fees. Just a professional website that brings you customers.

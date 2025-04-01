@@ -7,9 +7,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Menu, X, ChevronRight } from 'lucide-react'
-import { CustomButton } from '@/components/custom-button'
 import { IndustryDesktopDropdown, IndustryMobileMenu } from './industry-dropdown'
-
+import { Button } from '@/components/ui/button'
 export default function Header() {
 	// Separate state for menu visibility and animation
 	const [menuVisible, setMenuVisible] = useState(false)
@@ -90,7 +89,7 @@ export default function Header() {
 		if (menuVisible || industryMenuVisible) {
 			// Save the current scroll position
 			const scrollY = window.scrollY
-			
+
 			// Add styles to prevent scrolling while maintaining position
 			document.body.style.position = 'fixed'
 			document.body.style.top = `-${scrollY}px`
@@ -103,13 +102,13 @@ export default function Header() {
 			document.body.style.top = ''
 			document.body.style.width = ''
 			document.body.style.overflow = ''
-			
+
 			// Restore scroll position
 			if (scrollY) {
 				window.scrollTo(0, parseInt(scrollY || '0', 10) * -1)
 			}
 		}
-		
+
 		// Cleanup function
 		return () => {
 			document.body.style.position = ''
@@ -191,13 +190,12 @@ export default function Header() {
 					</nav>
 
 					<div className="hidden md:flex">
-						<CustomButton
+						<Button
 							asChild
 							variant="blue"
-							href="/contact"
 						>
-							Free Consultation
-						</CustomButton>
+							<Link href="/contact">Free Consultation</Link>
+						</Button>
 					</div>
 
 					{/* Mobile menu button */}
@@ -285,22 +283,22 @@ export default function Header() {
 							<ChevronRight className="ml-1 h-5 w-5" />
 						</button>
 						<div className="pt-8 mt-4">
-							<CustomButton
+							<Button
 								asChild
 								variant="blue"
 								size="lg"
 								onClick={closeMenu}
 							>
 								<Link href="/contact">Free Consultation</Link>
-							</CustomButton>
+							</Button>
 						</div>
 					</nav>
 				</div>
 			)}
 
 			{/* Mobile industry submenu */}
-			<IndustryMobileMenu 
-				isOpen={industryMenuVisible} 
+			<IndustryMobileMenu
+				isOpen={industryMenuVisible}
 				onBack={closeIndustryMenu}
 				onSelectIndustry={closeMenu}
 			/>

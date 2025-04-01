@@ -1,8 +1,8 @@
-import CustomButton from '@/components/shared/custom-button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { BundlePricing, BundleFeature } from '@/lib/pricing-service'
 import { Check, X } from 'lucide-react'
-
+import { Button } from '../ui/button'
+import Link from 'next/link'
 interface BundlePricingCardProps {
 	bundle: BundlePricing
 }
@@ -59,13 +59,13 @@ export function BundlePricingCard({ bundle }: BundlePricingCardProps) {
 						</div>
 					)}
 
-					<CustomButton
+					<Button
+						asChild
 						variant="blue"
-						href={ctaUrl}
 						className="w-full"
 					>
-						{ctaText}
-					</CustomButton>
+						<Link href={ctaUrl}>{ctaText}</Link>
+					</Button>
 				</div>
 			</CardContent>
 		</Card>

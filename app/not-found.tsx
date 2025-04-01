@@ -3,10 +3,10 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { ArrowLeft, Home, Search } from 'lucide-react'
-import { CustomButton } from '@/components/custom-button'
 import { Card, CardContent } from '@/components/ui/card'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { Button } from '@/components/ui/button'
 
 // Function to create a smooth scroll link that works with Next.js
 const SmoothScrollLink = ({
@@ -104,7 +104,7 @@ export default function NotFound() {
 									whileHover={{ scale: 1.05 }}
 									whileTap={{ scale: 0.95 }}
 								>
-									<CustomButton
+									<Button
 										asChild
 										variant="blue"
 										className="flex items-center justify-center shadow-md w-full sm:w-auto px-6 py-2"
@@ -116,14 +116,14 @@ export default function NotFound() {
 											<Home className="mr-2 h-4 w-4" />
 											<span>Return Home</span>
 										</Link>
-									</CustomButton>
+									</Button>
 								</motion.div>
 
 								<motion.div
 									whileHover={{ scale: 1.05 }}
 									whileTap={{ scale: 0.95 }}
 								>
-									<CustomButton
+									<Button
 										asChild
 										variant="outline"
 										className="flex items-center justify-center border-blue-200 hover:bg-blue-50 transition-colors w-full sm:w-auto px-6 py-2"
@@ -135,7 +135,7 @@ export default function NotFound() {
 											<Search className="mr-2 h-4 w-4" />
 											<span>Contact Support</span>
 										</Link>
-									</CustomButton>
+									</Button>
 								</motion.div>
 							</div>
 

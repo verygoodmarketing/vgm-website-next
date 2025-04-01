@@ -4,8 +4,9 @@ import { useState, useEffect, useMemo } from 'react'
 import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
 import Container from '@/components/shared/container'
-import CustomButton from '@/components/shared/custom-button'
+import { Button } from '@/components/ui/button'
 import { useToast } from '@/hooks/use-toast'
+import Link from 'next/link'
 
 interface InteractiveHeroProps {
 	serviceIndustries: string[]
@@ -167,18 +168,18 @@ export default function InteractiveHero({ serviceIndustries }: InteractiveHeroPr
 						consumers search online for local services before making a call.
 					</p>
 					<div className="flex flex-col sm:flex-row gap-4 justify-center">
-						<CustomButton
+						<Button
+							asChild
 							variant="blue"
-							href="/contact"
 						>
-							Get Your Professional Website
-						</CustomButton>
-						<CustomButton
+							<Link href="/contact">Get Your Professional Website</Link>
+						</Button>
+						<Button
+							asChild
 							variant="outline"
-							href="/pricing"
 						>
-							See How It Works
-						</CustomButton>
+							<Link href="/pricing">See How It Works</Link>
+						</Button>
 					</div>
 
 					{/* Service Industries */}

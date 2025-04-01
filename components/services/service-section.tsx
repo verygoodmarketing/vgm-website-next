@@ -2,8 +2,8 @@ import Image from 'next/image'
 import Container from '@/components/shared/container'
 import { ServicePricing } from '@/lib/pricing-service'
 import { Check } from 'lucide-react'
-import CustomButton from '@/components/shared/custom-button'
-
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 interface ServiceSectionProps {
 	pricing: ServicePricing
 	imagePath: string
@@ -69,12 +69,12 @@ export default function ServiceSection({ pricing, imagePath, imageAlt, reversed 
 							)}
 						</div>
 
-						<CustomButton
+						<Button
 							variant="blue"
-							href={ctaUrl}
+							asChild
 						>
-							{ctaText}
-						</CustomButton>
+							<Link href={ctaUrl}>{ctaText}</Link>
+						</Button>
 					</div>
 					<div
 						className={`relative h-[400px] rounded-lg overflow-hidden hidden lg:block ${reversed ? 'order-1 lg:order-2' : ''}`}
