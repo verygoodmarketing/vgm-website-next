@@ -17,11 +17,9 @@ const nextConfig = {
 		],
 	},
 	experimental: {
-		webpackBuildWorker: true,
-		parallelServerBuildTraces: true,
-		parallelServerCompiles: true,
 		// CSS optimization with critters is now properly supported with the installed package
 		optimizeCss: true,
+		turbo: {},
 	},
 }
 
