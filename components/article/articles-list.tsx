@@ -117,7 +117,6 @@ export default function ArticlesList({ articles, allTags }: ArticlesListProps) {
 				<TagFilter
 					allTags={allTags}
 					onTagSelect={tag => {
-						console.log('Filter tag selected:', tag)
 						setIsFiltering(true)
 						setSelectedTag(tag)
 

@@ -19,8 +19,8 @@ tags:
   - id: '7'
     name: 'Reputation Management'
     slug: 'reputation-management'
-createdAt: '2024-05-12T10:00:00.000Z'
-updatedAt: '2024-05-12T10:00:00.000Z'
+createdAt: '2025-02-12T10:00:00.000Z'
+updatedAt: '2025-02-12T10:00:00.000Z'
 isPublished: true
 readingTime: 6
 featured: true

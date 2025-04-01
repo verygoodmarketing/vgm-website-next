@@ -16,8 +16,8 @@ tags:
   - id: '2'
     name: 'Small Business'
     slug: 'small-business'
-createdAt: '2024-03-01T12:00:00.000Z'
-updatedAt: '2024-03-01T12:00:00.000Z'
+createdAt: '2025-03-01T12:00:00.000Z'
+updatedAt: '2025-03-01T12:00:00.000Z'
 isPublished: true
 readingTime: 5
 ---

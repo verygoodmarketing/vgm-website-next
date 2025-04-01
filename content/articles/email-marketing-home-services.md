@@ -19,8 +19,8 @@ tags:
   - id: '10'
     name: 'Email Marketing'
     slug: 'email-marketing'
-createdAt: '2024-05-15T10:00:00.000Z'
-updatedAt: '2024-05-15T10:00:00.000Z'
+createdAt: '2025-02-15T10:00:00.000Z'
+updatedAt: '2025-02-15T10:00:00.000Z'
 isPublished: true
 readingTime: 7
 featured: true

@@ -16,8 +16,8 @@ tags:
   - id: '3'
     name: 'Social Media'
     slug: 'social-media'
-createdAt: '2024-03-05T12:00:00.000Z'
-updatedAt: '2024-03-05T12:00:00.000Z'
+createdAt: '2025-01-05T12:00:00.000Z'
+updatedAt: '2025-01-05T12:00:00.000Z'
 isPublished: true
 readingTime: 6
 featured: true

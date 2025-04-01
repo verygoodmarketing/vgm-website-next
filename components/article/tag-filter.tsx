@@ -27,7 +27,7 @@ function TagFilterButton({
 				e.preventDefault()
 				onClick()
 			}}
-			className={`text-sm ${isSelected ? 'shadow-xs' : ''}`}
+			className={`text-sm cursor-pointer ${isSelected ? 'shadow-xl border text-blue-500' : ''}`}
 			size="sm"
 			type="button"
 		>
@@ -42,12 +42,10 @@ export default function TagFilter({ allTags, onTagSelect, selectedTag }: TagFilt
 	}
 
 	const handleAllClick = () => {
-		console.log('All articles button clicked')
 		onTagSelect(null)
 	}
 
 	const handleTagClick = (tagSlug: string) => {
-		console.log('Tag filter button clicked:', tagSlug)
 		onTagSelect(tagSlug)
 	}
 
