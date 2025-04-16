@@ -2,7 +2,8 @@
 
 import { Suspense } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import HubspotIntegration from '@/components/contact/hubspot-integration'
+// import HubspotIntegration from '@/components/contact/hubspot-integration'
+import CalIntegration from '@/components/contact/caldotcom-integration'
 import { useSearchParams } from 'next/navigation'
 import ReliableHubspotForm from '@/components/contact/reliable-hubspot-form'
 import { SiteSettings } from '@/lib/settings-service'
@@ -123,7 +124,7 @@ export default function ContactPageClient({ settings }: ContactPageClientProps) 
 			<TabsContent value="schedule">
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 					<Suspense fallback={<LoadingForm />}>
-						<HubspotIntegration url="https://app.verygoodmarketing.com/meetings/brad-bodine/consultation" />
+						<CalIntegration />
 					</Suspense>
 					<div>
 						<div className="bg-gray-50 p-6 rounded-lg mb-6">
